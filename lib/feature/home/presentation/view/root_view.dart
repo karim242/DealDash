@@ -36,7 +36,6 @@ class _RootViewState extends State<RootView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // تغيير الصفحة بناءً على الفهرس المختار
       body: _pages[_selectedIndex],
       bottomNavigationBar: Container(
         decoration: BoxDecoration(

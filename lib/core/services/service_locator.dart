@@ -18,11 +18,14 @@ class ServiceLocator{
     sl.registerLazySingleton<ApiServes>(() => ApiServes(sl.get<Dio>()));
 
 
+
     sl.registerLazySingleton<AuthRepoImplementation>(
         () => AuthRepoImplementation(apiServes: sl.get<ApiServes>()));
     
     sl.registerFactory<LoginCubit>(() => LoginCubit(sl<AuthRepoImplementation>()));
         sl.registerFactory<SignupCubit>(() => SignupCubit(sl<AuthRepoImplementation>()));
 
+
+   
   }
 }

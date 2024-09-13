@@ -60,4 +60,6 @@ class AuthRepoImplementation implements AuthRepository {
       return left(ServerFailure(failure.toString()));
     }
   }
+  
+ 
 }

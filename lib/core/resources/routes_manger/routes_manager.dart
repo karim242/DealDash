@@ -1,6 +1,7 @@
 import 'package:dealdash/core/services/service_locator.dart';
 import 'package:dealdash/feature/auth/presentation/cubit/login/login_cubit.dart';
 import 'package:dealdash/feature/auth/presentation/views/signup_view.dart';
+import 'package:dealdash/feature/home/presentation/view/home_view.dart';
 import 'package:dealdash/feature/home/presentation/view/root_view.dart';
 import 'package:dealdash/feature/onbording_splash/presentation/views/onboarding_view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -22,7 +23,13 @@ class Routes {
   static const String forgetPasswordRoute = "/forgetPassword_view";
   static const String signUpRoute = "/signup_view";
   static const String rootViewRoute = '/rootView';
+  //static const String homeRoute = '/home_view';
 }
+
+
+
+
+
 
 abstract class AppRouter {
   static final router = GoRouter(routes: [
@@ -62,5 +69,14 @@ abstract class AppRouter {
       path: Routes.rootViewRoute,
       builder: (context, state) =>  const RootView(),
     ),
+    //  GoRoute(
+    //   path: Routes.homeRoute,
+    //   builder: (context, state) =>  const HomeView(),
+
+      ///context.go(Routes.onBoardingRoute,); push and replacment
+      ///
+    //  GoRouter.of(context).push(Routes.signUpRoute); // push 
+      
+   // ),
   ]);
 }

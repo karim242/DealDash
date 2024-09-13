@@ -11,7 +11,7 @@ showToast(
     gravity: ToastGravity.BOTTOM,
     timeInSecForIosWeb: 1,
     backgroundColor: ColorManager.whitGreen,
-    textColor: Colors.white,
+    textColor: ColorManager.whitGreen,
     fontSize: 16,
   );
 }

@@ -1,5 +1,8 @@
 import 'package:dealdash/core/resources/color_manger/color_manager.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+
+import '../../../../core/resources/routes_manger/routes_manager.dart';
 
 class WelcomeView extends StatelessWidget {
   const WelcomeView({super.key});
@@ -54,7 +57,7 @@ class WelcomeView extends StatelessWidget {
                     // Continue with Google Button
                     ElevatedButton(
                       onPressed: () {
-                        // Continue with Google action
+                        GoRouter.of(context).push(Routes.loginRoute,);
                       },
                       style: ElevatedButton.styleFrom(
                         foregroundColor: Colors.black,
@@ -68,7 +71,8 @@ class WelcomeView extends StatelessWidget {
                     // Continue with Facebook Button
                     ElevatedButton(
                       onPressed: () {
-                        // Continue with Facebook action
+                                     GoRouter.of(context).push(Routes.signUpRoute);
+
                       },
                       style: ElevatedButton.styleFrom(
                         foregroundColor: Colors.grey.shade200,

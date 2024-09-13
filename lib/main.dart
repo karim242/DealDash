@@ -8,7 +8,7 @@ import 'core/services/service_locator.dart';
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
  // await CacheHelper.init();
- // ServiceLocator().init();
+  ServiceLocator().init();
  // DioHelper.init();
   runApp(const MyApp());
 }

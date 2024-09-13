@@ -38,8 +38,9 @@ Future.delayed(const Duration(seconds: 4), () {
             firstChild: const SizedBox(),
             secondChild: SizedBox(
               child: Image.asset("assets/images/splash.png", 
-              
-               ),
+                
+                 
+              ),
             ),
             crossFadeState: CrossFadeState.showSecond,
             duration: const Duration(seconds: 1),

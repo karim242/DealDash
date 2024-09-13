@@ -43,7 +43,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
       _pageController.nextPage(
           duration: const Duration(milliseconds: 300), curve: Curves.ease);
     } else if( _currentPage ==2){
-      context.go(Routes.welcomeRoute);
+      context.go(Routes.rootViewRoute);
     }
     else {
       // Finish onboarding, navigate to home or login screen

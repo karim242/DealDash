@@ -36,10 +36,11 @@ Future.delayed(Duration(seconds: 4), () {
           Center(
               child: AnimatedCrossFade(
             firstChild: const SizedBox(),
-            secondChild: Expanded(
+            secondChild: SizedBox(
               child: Image.asset("assets/images/splash.png", 
-              
-               ),
+                
+                 
+              ),
             ),
             crossFadeState: CrossFadeState.showSecond,
             duration: const Duration(seconds: 1),

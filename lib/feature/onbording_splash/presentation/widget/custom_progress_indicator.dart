@@ -21,13 +21,13 @@ final void Function()? onTap;
             child: CircularProgressIndicator(
               value: (currentPage + 1) / 3,  // يتغير بناءً على الصفحة الحالية
               strokeWidth: 5,
-              valueColor:  AlwaysStoppedAnimation<Color>(ColorManager.whitGreen,),
-              backgroundColor: ColorManager.red,
+              valueColor:  AlwaysStoppedAnimation<Color>(ColorManager.red,),
+              backgroundColor: ColorManager.whitGreen,
             ),
           ),
            Icon(
             Icons.arrow_forward,
-            color: ColorManager.gray,
+            color: ColorManager.red,
             size: 30,
           ),
         ],

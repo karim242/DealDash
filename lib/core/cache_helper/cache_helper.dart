@@ -5,7 +5,7 @@ class CacheHelper{
   static init()async{
     sharedPreferences = await SharedPreferences.getInstance();
   }
-  static void insertText({required String key, required String value}){
+  static void saveData({required String key, required String value}){
     sharedPreferences.setString(key, value);
   }
   static String? returnText({required String key}){

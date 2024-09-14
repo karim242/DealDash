@@ -1,6 +1,6 @@
 class CategoryModel{
-  String ?title;
-  String ?image;
+  String title;
+  String image;
 
-  CategoryModel({this.title, this.image});
+  CategoryModel({required this.title, required this.image});
 }

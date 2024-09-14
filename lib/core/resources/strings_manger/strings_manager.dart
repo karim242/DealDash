@@ -14,10 +14,12 @@ class AppStrings{
   static String search = 'search';
   static String customSearchFormLabelText = 'Enter your Search';
   static String customSearchFormValidatorText = 'Enter your Search';
-  static String customBanerOfferText = 'وفـــر  ';
+  static String customBanerOfferText = 'وفـــر   ';
   static String customBanerOneHPText = '  100ج  ';
   static String customBanerPromoCodeText = ' ببرموكود DEALDASH100';
-  static String customWhatYouWantText =  "بتدور على ايه ؟";
+  static String whatYouWantText =  "بتدور على ايه ؟";
+  static String suggestedForYou = "مُقترحة لك";
+  static String appelMob = "أبل آيفون 15 برو ماكس، سعة 256 جيجابايت، تيتانيوم طبيعي";
 
 
 

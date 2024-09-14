@@ -3,38 +3,23 @@ import 'category_model.dart';
 
 class HomeViewModel{
 
-  List<CategoryModel> listCategory = [
+ static List<CategoryModel> listCategory = [
     CategoryModel(
       title: "سوبر ماركت",
       image: ImageManger.imageSm1,
     ),
     CategoryModel(
-      title: "سوبر ماركت",
-      image: ImageManger.imageSm1,
+      title: "ملابس",
+      image: ImageManger.imageCloth,
     ),
     CategoryModel(
-      title: "سوبر ماركت",
-      image: ImageManger.imageSm1,
+      title: "أجهزة كهربائية",
+      image: ImageManger.imageHomeDevice,
     ),
     CategoryModel(
-      title: "سوبر ماركت",
-      image: ImageManger.imageSm1,
+      title: "موبيلات",
+      image: ImageManger.imageMobil,
     ),
-    CategoryModel(
-      title: "سوبر ماركت",
-      image: ImageManger.imageSm1,
-    ),
-    CategoryModel(
-      title: "سوبر ماركت",
-      image: ImageManger.imageSm1,
-    ),
-    CategoryModel(
-      title: "سوبر ماركت",
-      image: ImageManger.imageSm1,
-    ),
-    CategoryModel(
-      title: "سوبر ماركت",
-      image: ImageManger.imageSm1,
-    ),
+
   ];
 }

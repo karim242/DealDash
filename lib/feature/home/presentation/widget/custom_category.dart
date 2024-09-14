@@ -1,15 +1,16 @@
+import 'package:dealdash/feature/home/presentation/control/category_model.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 class CustomCategory extends StatelessWidget {
-  final String title;
-  final String image;
 
-  const CustomCategory({super.key, required this.title, required this.image});
+CategoryModel categoryModel;
+   CustomCategory({super.key,required this.categoryModel});
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        print(title);
+        print(categoryModel.title);
       },
       child: Stack(
         children: [
@@ -20,7 +21,7 @@ class CustomCategory extends StatelessWidget {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(12),
               child: Image.asset(
-                image,
+                categoryModel.image,
                 fit: BoxFit.fill,
               ),
             ),
@@ -32,7 +33,7 @@ class CustomCategory extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 4),
                 color: Colors.black.withOpacity(.7),
                 child: Text(
-                  title,
+                  categoryModel.title,
                   style: const TextStyle(
                       fontSize: 14,
                       color: Colors.white,

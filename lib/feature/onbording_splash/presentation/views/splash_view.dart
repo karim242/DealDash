@@ -5,7 +5,6 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../core/resources/routes_manger/routes_manager.dart';
 
-
 class SplashView extends StatefulWidget {
   const SplashView({super.key});
 
@@ -16,36 +15,32 @@ class SplashView extends StatefulWidget {
 class _SplashViewState extends State<SplashView> {
   @override
   void initState() {
-Future.delayed(const Duration(seconds: 4), () {
-      context.go(Routes.onBoardingRoute,);
+    Future.delayed(const Duration(seconds: 3), () {
+      context.go(
+        Routes.onBoardingRoute,
+      );
     });
-     super.initState();
+    super.initState();
   }
-
-  
-
-  
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       backgroundColor: ColorManager.primary,
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Center(
-              child: AnimatedCrossFade(
-            firstChild: const SizedBox(),
-            secondChild: SizedBox(
-              child: Image.asset("assets/images/splash.png", 
-                
-                 
+      backgroundColor: ColorManager.primary,
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            AnimatedCrossFade(
+              firstChild: const SizedBox(),
+              secondChild: Image.asset(
+                "assets/images/splash.png",
               ),
+              crossFadeState: CrossFadeState.showSecond,
+              duration: const Duration(seconds: 1),
             ),
-            crossFadeState: CrossFadeState.showSecond,
-            duration: const Duration(seconds: 1),
-          )),
-        ],
+          ],
+        ),
       ),
     );
   }

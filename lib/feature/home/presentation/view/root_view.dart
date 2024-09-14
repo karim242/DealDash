@@ -1,10 +1,8 @@
 import 'package:dealdash/feature/home/presentation/view/home_view.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 import '../../../../core/resources/color_manger/color_manager.dart';
 import '../../../favoruite/presentation/view/favoruite_view.dart';
-import '../../../location/presentation/view/location_view.dart';
 import '../../../notification/presentation/view/notification_view.dart';
 import '../../../profile/presentation/view/profile_view.dart';
 
@@ -16,13 +14,13 @@ class RootView extends StatefulWidget {
 }
 
 class _RootViewState extends State<RootView> {
- int _selectedIndex = 0;
+  int _selectedIndex = 0;
 
   // الصفحات التي سيتم عرضها بناءً على الفهرس
   final List<Widget> _pages = [
-    const HomeView(),
+     HomeView(),
     const FavoriteView(),
-   const Placeholder(), // صفحة Placeholder مكان الزر العائم (لن تستخدم)
+    const Placeholder(), // صفحة Placeholder مكان الزر العائم (لن تستخدم)
     const NotificationView(),
     const ProfileView(),
   ];
@@ -40,14 +38,13 @@ class _RootViewState extends State<RootView> {
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
           border: Border(
-            top: BorderSide(color: Colors.grey.shade300, width: 1.5), // الحد السفلي فقط
+            top: BorderSide(
+                color: Colors.grey.shade300, width: 1.5), // الحد السفلي فقط
           ),
         ),
-      
-      
         child: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
-          selectedItemColor:ColorManager.yellow,
+          selectedItemColor: ColorManager.yellow,
           unselectedItemColor: ColorManager.primary,
           currentIndex: _selectedIndex,
           onTap: _onItemTapped,
@@ -76,21 +73,24 @@ class _RootViewState extends State<RootView> {
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-     floatingActionButton: Container(
+      floatingActionButton: Container(
         height: 60, // حجم أكبر للزر العائم
         width: 60,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(16.0), 
-         
-        ),  // 
+          borderRadius: BorderRadius.circular(16.0),
+        ), //
         child: FloatingActionButton(
           onPressed: () {
             setState(() {
               _selectedIndex = 2;
             });
           },
-          child:  Icon(Icons.location_on, size: 30,color: ColorManager.primary,), 
           backgroundColor: ColorManager.red,
+          child: Icon(
+            Icons.location_on,
+            size: 30,
+            color: ColorManager.primary,
+          ),
         ),
       ),
     );

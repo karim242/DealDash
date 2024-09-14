@@ -12,6 +12,12 @@ class AppStrings{
   static String types = 'geocode';
   static String estimateOrder = 'estimate-order';
   static String search = 'search';
+  static String customSearchFormLabelText = 'Enter your Search';
+  static String customSearchFormValidatorText = 'Enter your Search';
+  static String customBanerOfferText = 'وفـــر  ';
+  static String customBanerOneHPText = '  100ج  ';
+  static String customBanerPromoCodeText = ' ببرموكود DEALDASH100';
+  static String customWhatYouWantText =  "بتدور على ايه ؟";
 
 
 

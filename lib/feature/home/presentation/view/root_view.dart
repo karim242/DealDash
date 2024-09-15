@@ -34,6 +34,7 @@ class _RootViewState extends State<RootView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(toolbarHeight: MediaQuery.of(context).size.height*.02,),
       resizeToAvoidBottomInset: false,
       body: _pages[_selectedIndex],
       bottomNavigationBar: Container(

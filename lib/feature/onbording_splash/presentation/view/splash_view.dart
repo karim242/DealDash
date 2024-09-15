@@ -1,5 +1,4 @@
 import 'package:dealdash/core/resources/color_manger/color_manager.dart';
-import 'package:dealdash/feature/onbording_splash/presentation/views/onboarding_view.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 

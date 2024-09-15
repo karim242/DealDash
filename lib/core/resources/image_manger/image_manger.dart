@@ -9,4 +9,5 @@ class ImageManger{
   static const String imageHomeDevice="assets/images/home_device.png";
   static const String imageMobil="assets/images/mobil1.png";
   static const String imageMobil2="assets/images/mb2.png";
+  static const String splash="assets/images/splash.png";
 }

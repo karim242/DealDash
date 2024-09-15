@@ -1,4 +1,5 @@
 class AppStrings{
+  static String nameProject = 'DealDash';
   static String login = 'login';
   static String register ='register';
   static String categories = 'categories';

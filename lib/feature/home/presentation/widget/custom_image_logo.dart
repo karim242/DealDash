@@ -7,10 +7,10 @@ class CustomImageLogo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  Container(
-        margin: const EdgeInsets.only(right: 8, left: 0),
+        margin: const EdgeInsets.only(right: 8) ,
         height: 50,
         width: 50,
         child:
-        Image.asset(fit: BoxFit.cover, ImageManger.logoPath));
+        Image.asset(fit: BoxFit.cover, ImageManger.splash));
   }
 }

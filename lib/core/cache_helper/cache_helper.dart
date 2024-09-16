@@ -5,16 +5,10 @@ class CacheHelper{
   static init()async{
     sharedPreferences = await SharedPreferences.getInstance();
   }
-  static void saveData({required String key, required String value}){
-    sharedPreferences.setString(key, value);
+  static void saveToken({ required String value}){
+    sharedPreferences.setString('auth_token', value);
   }
-  static String? returnText({required String key}){
-    return sharedPreferences.getString(key);
-  }
-  static void insertBool({required String key, required bool value}){
-    sharedPreferences.setBool(key, value);
-  }
-  static String? returnBool({required String key}){
-    return sharedPreferences.getString(key);
+  static String? getToken({required String key}){
+    return sharedPreferences.getString('auth_token');
   }
 }

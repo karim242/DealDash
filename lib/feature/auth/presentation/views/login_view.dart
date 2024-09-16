@@ -20,7 +20,8 @@ class LoginView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: ColorManager.primary,
-        body: BlocConsumer<LoginCubit, LoginState>(listener: (context, state) {
+        body: BlocConsumer<LoginCubit, LoginState>(
+          listener: (context, state) {
           if (state is LoginSuccess) {
             showToast("You are In");
               GoRouter.of(context).push(Routes.rootViewRoute);
@@ -28,6 +29,7 @@ class LoginView extends StatelessWidget {
             showToast(state.errorMassage!);
           }
         }, builder: (context, state) {
+        
           return SafeArea(
             child: Form(
               key: formKey,

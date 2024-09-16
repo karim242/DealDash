@@ -3,23 +3,29 @@ import 'package:dealdash/core/error/failure.dart';
 import 'package:dealdash/feature/auth/data/model/user_model.dart';
 import 'package:dio/dio.dart';
 
+import '../../../../core/cache_helper/cache_helper.dart';
 import '../../../../core/network_helper/dio_helper.dart.dart';
 import 'auth_repo.dart';
 
 class AuthRepoImplementation implements AuthRepository {
-  final ApiServes apiServes;
+  final ApiService apiServes;
+  String? token;
   AuthRepoImplementation({required this.apiServes});
 
   @override
   Future<Either<Failure, UserModel>> signIn(
       {required String email, required String password}) async {
     try {
-      final response = await apiServes.post(endpoint: 'login', data: {
+      final response = await apiServes.post(endpoint: 'auth/login', data: {
         'email': email,
         'password': password,
       });
       if (response.isNotEmpty) {
-        return right(UserModel.fromJson(response));
+        
+         UserModel userModel = UserModel.fromJson(response);
+
+          CacheHelper.saveToken(value: userModel.token);
+        return right(userModel);
       } else {
         return left(ServerFailure(response['message']));
       }
@@ -39,7 +45,7 @@ class AuthRepoImplementation implements AuthRepository {
       required String name}) async {
     try {
       final response = await apiServes.post(
-        endpoint: 'register',
+        endpoint: 'auth/register',
         data: {
           'email': email,
           'password': password,
@@ -60,4 +66,6 @@ class AuthRepoImplementation implements AuthRepository {
       return left(ServerFailure(failure.toString()));
     }
   }
+  
+ 
 }

@@ -7,13 +7,12 @@ import 'package:dealdash/feature/onbording_splash/presentation/views/onboarding_
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:go_router/go_router.dart';
-
+import '../../../feature/location/data/model/store_model.dart';
 import '../../../feature/auth/presentation/cubit/signup/signup_cubit.dart';
 import '../../../feature/auth/presentation/views/forget_password.dart';
 import '../../../feature/auth/presentation/views/login_view.dart';
 import '../../../feature/onbording_splash/presentation/views/splash_view.dart';
 import '../../../feature/onbording_splash/presentation/views/welcome_view.dart';
-
 class Routes {
   static const String splashRoute = "/";
   static const String onBoardingRoute = "/onBoardingView";
@@ -23,9 +22,15 @@ class Routes {
   static const String forgetPasswordRoute = "/forgetPassword_view";
   static const String signUpRoute = "/signup_view";
   static const String rootViewRoute = '/rootView';
+  static const String locationRoute = '/location_view';
 
   static const String aboutStoreRoute = '/aboutStoreView';
 }
+
+
+
+
+
 
 abstract class AppRouter {
   static final router = GoRouter(routes: [
@@ -67,7 +72,10 @@ abstract class AppRouter {
     ),
     GoRoute(
       path: Routes.aboutStoreRoute,
-      builder: (context, state) =>  const AboutStoresView(),
+      builder: (context, state) {
+        final store = state.extra as StoreModel;
+         return AboutStoresView(store: store);
+      }
     ),
   ]);
 }

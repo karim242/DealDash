@@ -9,10 +9,10 @@ import 'package:dealdash/generated/assets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-
+import 'package:dealdash/feature/location/data/model/store_model.dart';
 class AboutStoresView extends StatelessWidget {
-  const AboutStoresView({super.key});
-
+  const AboutStoresView({super.key, required this.store});
+final StoreModel store;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,7 +24,7 @@ class AboutStoresView extends StatelessWidget {
             children: [
               Stack(
                 children: [
-                  Image.asset(Assets.storesAssetsStoreLogo),
+                  Image.network(store.image!),
                   IconButton(onPressed: (){
                     GoRouter.of(context).pop();
                   }, icon: const Icon(Icons.arrow_back_ios_new)),
@@ -35,15 +35,15 @@ class AboutStoresView extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const StoreName(name: "Defacto"),
+                     StoreName(name: store.name!),
                      SizedBox(height: 8.h),
-                    const CategoryText(category: "Clothing"),
+                     CategoryText(category: store.category!),
                      SizedBox(height: 8.h),
                     const RateSection(rateNumber: 4.0, peopleRatedNum: 200),
                      SizedBox(height: 32.h),
-                    const HeaderText(header: "About"),
+                     HeaderText(header: "About"),
                      SizedBox(height: 8.h),
-                    const SideText(text: "Find all your fashion needs in one place."),
+                     SideText(text: store.about!),
                      SizedBox(height: 32.h),
                     SizedBox(
                       height: 85.h,
@@ -76,7 +76,7 @@ class AboutStoresView extends StatelessWidget {
                      SizedBox(height: 32.h),
                     const HeaderText(header: "ADDRESS"),
                      SizedBox(height: 8.h),
-                    const SideText(text: "El-Gaish St, Mansoura Qism2, El Mansoura"),
+                     SideText(text: store.address!),
                      SizedBox(height: 32.h),
                     const HeaderText(header: "Offers"),
                      SizedBox(height: 8.h),

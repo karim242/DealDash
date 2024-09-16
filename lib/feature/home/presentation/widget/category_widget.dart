@@ -1,21 +1,30 @@
 import 'package:dealdash/feature/home/presentation/control/category_model.dart';
+import 'package:dealdash/feature/home/presentation/data/data.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-class CustomCategory extends StatelessWidget {
+
+import 'list_top_offer_addis_details_widget.dart';
+class CategoryWidget extends StatelessWidget {
 
 CategoryModel categoryModel;
-   CustomCategory({super.key,required this.categoryModel});
+final List list;
+   CategoryWidget({super.key,required this.categoryModel, required this.list});
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        print(categoryModel.title);
+        print("llllll");
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => ListTopOfferAddisDetailsWidget(
+                 list: list,
+                )));
       },
       child: Stack(
         children: [
           Container(
-            height: 120,
             width: 120,
             decoration: BoxDecoration(borderRadius: BorderRadius.circular(12)),
             child: ClipRRect(
@@ -27,8 +36,6 @@ CategoryModel categoryModel;
             ),
           ),
           Positioned(
-              top: 2,
-              right: 15,
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 4),
                 color: Colors.black.withOpacity(.7),

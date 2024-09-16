@@ -27,7 +27,11 @@ class CustomSearchFormState extends State<CustomSearchForm> {
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  const CustomImageLogo(),
+                  InkWell(
+                      onTap: (){
+                        print("on run");
+                      },
+                      child: const CustomImageLogo()),
                   const SizedBox(width: 2,),
                   Expanded(
                     child: TextFormField(

@@ -19,15 +19,17 @@ TextStyle? getSemiBoldStyle({required Color color,required double fontSize}){
   return _getTextStyle(fontSize,FontConstants.poppins , FontWeightManager.bold, color,);
 }
 
-TextStyle? getSoultanSemiBoldStyle({required Color color,required double fontSize}){
-  return _getTextStyle(fontSize,FontConstants.poppins , FontWeightManager.bold, color,);
-}
+
 
 class AppStyle{
   static  TextStyle sultan=TextStyle(
       color: Colors.black,
       fontSize: 16,
       fontFamily: FontConstants.sultan);
+  static  TextStyle semiBoldStyle=TextStyle(
+      color: Colors.black,
+      fontSize: 16,
+      fontFamily: FontConstants.poppins);
 
 }
 
@@ -35,6 +37,7 @@ class AppTheme{
  static ThemeData theme=ThemeData(
     textTheme: TextTheme(
       headlineMedium: AppStyle.sultan,
+      titleMedium:AppStyle.semiBoldStyle
     )
   );
 }

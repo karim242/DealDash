@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-
 import '../../../../core/resources/strings_manger/strings_manager.dart';
 import 'custom_list_view_category.dart';
-import 'custom_offer_auto_page_view.dart';
-import 'custom_what_you_want_text.dart';
-class CustomDivWhatYouWantWidget extends StatelessWidget {
+import 'text_widget.dart';
+class TestCustomDivWhatYouWantWidget extends StatelessWidget {
   final  double height;
   final double width;
-  const CustomDivWhatYouWantWidget({super.key, required this.height, required this.width});
+  const TestCustomDivWhatYouWantWidget({super.key, required this.height, required this.width});
 
   @override
   Widget build(BuildContext context) {
@@ -18,15 +16,15 @@ class CustomDivWhatYouWantWidget extends StatelessWidget {
           //valu addidas
           SizedBox(
             height: height * .2,
-            child: const CustomOfferAutoPageView(),
+            child:  Container(color: Colors.red,width: 100,height: 100,),
           ),
           SizedBox(height: height * .01),
-          CustomWhatYouWantText(
+          TextWidget(
             title: AppStrings.whatYouWantText,
           ),
           SizedBox(height: height * .01),
-          const SizedBox(height: 100, child: CustomListViewCategory()),
-          CustomWhatYouWantText(
+          const SizedBox(height: 100, child: ListViewCategoryWidget()),
+          TextWidget(
             title: AppStrings.suggestedForYou,
           ),
         ],

@@ -1,10 +1,12 @@
 import 'dart:async';
 
+import 'package:dealdash/feature/home/presentation/view/home_view.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/resources/color_manger/color_manager.dart';
 import '../../../../core/resources/font_manger/font_manager.dart';
 import '../../../../core/resources/strings_manger/strings_manager.dart';
+import 'custom_search_form.dart';
 
 class CustomBaner extends StatelessWidget {
   const CustomBaner({
@@ -16,50 +18,29 @@ class CustomBaner extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        Navigator.pushNamed(context, M);
-      },
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 15),
-        alignment: Alignment.centerRight,
-        color: ColorManager.green,
-        height: height * .04,
-        width: double.infinity,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Expanded(
-              child: Text(
-                "اعرف اكتر...",
-                textDirection: TextDirection.rtl,
-                style: Theme.of(context)
-                    .textTheme
-                    .headlineMedium
-                    ?.copyWith(fontSize: 12),
-              ),
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 15),
+      alignment: AlignmentDirectional.centerStart,
+      color: ColorManager.green,
+      height: height * .05,
+      width: double.infinity,
+      child: RichText(
+        text: TextSpan(
+          children: <TextSpan>[
+            TextSpan(
+              style: Theme.of(context).textTheme.titleMedium,
+              text: AppStrings.customBanerOfferText,
             ),
-            Expanded(
-              flex: 4,
-              child: RichText(
-                textDirection: TextDirection.rtl,
-                text: TextSpan(
-                  style: Theme.of(context).textTheme.headlineMedium,
-                  children: <TextSpan>[
-                    TextSpan(
-                      text: AppStrings.customBanerOfferText,
-                    ),
-                    TextSpan(
-                      text: AppStrings.customBanerOneHPText,
-                      style: const TextStyle(
-                          backgroundColor: Colors.yellow, height: 1.9),
-                    ),
-                    TextSpan(
-                      text: AppStrings.customBanerPromoCodeText,
-                    ),
-                  ],
-                ),
-              ),
+            TextSpan(
+              text: AppStrings.customBanerOneHPText,
+              style: Theme.of(context)
+                  .textTheme
+                  .titleMedium
+                  ?.copyWith(backgroundColor: Colors.yellow),
+            ),
+            TextSpan(
+              style: Theme.of(context).textTheme.titleMedium,
+              text: AppStrings.customBanerPromoCodeText,
             ),
           ],
         ),
@@ -68,20 +49,16 @@ class CustomBaner extends StatelessWidget {
   }
 }
 
-class CustomBanerDetails extends StatelessWidget {
-  const CustomBanerDetails({super.key});
+/*
+            Expanded(
+              child: Text(
+                AppStrings.readMore,
+                style: Theme
+                    .of(context)
+                    .textTheme
+                    .titleMedium
+                    ?.copyWith(fontSize: 12),
+              ),
+            ),
 
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Row(
-          children: [
-            Text(AppStrings.nameProject),
-            IconButton(onPressed: (){}, icon: Icon(Icons.arrow_back))
-          ],
-        )
-      ],
-    );
-  }
-}
+ */

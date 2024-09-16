@@ -6,7 +6,7 @@ import 'package:go_router/go_router.dart';
 import '../../../../core/resources/routes_manger/routes_manager.dart';
 
 class StoreCard extends StatelessWidget {
-   final StoreModel store;
+  final StoreModel store;
 
   const StoreCard({super.key, required this.store});
 
@@ -14,10 +14,9 @@ class StoreCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-          GoRouter.of(context).push(Routes.aboutStoreRoute,);
+        GoRouter.of(context).push(Routes.aboutStoreRoute, extra: store);
       },
       child: Card(
-       
         margin: const EdgeInsets.all(10),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15),
@@ -34,7 +33,7 @@ class StoreCard extends StatelessWidget {
                     topRight: Radius.circular(15),
                   ),
                   child: Image.network(
-                   store.image!,
+                    store.image!,
                     height: 200,
                     width: double.infinity,
                     fit: BoxFit.fill,
@@ -45,8 +44,11 @@ class StoreCard extends StatelessWidget {
                   top: 10,
                   right: 10,
                   child: Icon(
-                    store.favoritesCount==1  ? Icons.favorite : Icons.favorite_border,
-                    color:store.favoritesCount == 1 ? Colors.red : Colors.white,
+                    store.favoritesCount == 1
+                        ? Icons.favorite
+                        : Icons.favorite_border,
+                    color:
+                        store.favoritesCount == 1 ? Colors.red : Colors.white,
                     size: 30,
                   ),
                 ),
@@ -55,12 +57,11 @@ class StoreCard extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(10.0),
               child: Text(
-               store.name!,
-                style:  TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: ColorManager.primary
-                ),
+                store.name!,
+                style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: ColorManager.primary),
               ),
             ),
             Padding(
@@ -76,7 +77,7 @@ class StoreCard extends StatelessWidget {
                   // Offers
                   Text(
                     'Offer: ${store.offers!.length}',
-                    style:  TextStyle(fontSize: 16, color: ColorManager.red),
+                    style: TextStyle(fontSize: 16, color: ColorManager.red),
                   ),
                 ],
               ),

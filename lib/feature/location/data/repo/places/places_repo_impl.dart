@@ -10,7 +10,7 @@ class PlacesRepositoryImpl implements PlacesRepository {
 
   @override
   Future<List<Place>> getNearbyPlaces(double lat, double lng) async {
-    const String apiKey = 'AIzaSyDDy84wLd9CciA9Vx6hrI1lyJ4JLOlbR00'; 
+    const String apiKey = 'Api for service'; 
     final String url =
         'https://maps.googleapis.com/maps/api/place/nearbysearch/json?keyword=stores&location=$lat,$lng&radius=100&type=مولاتمحلات ملابس واجهزه كهربائي&key=$apiKey';
 

@@ -1,9 +1,10 @@
+import 'package:dealdash/core/resources/color_manger/color_manager.dart';
 import 'package:flutter/material.dart';
 
 import '../../data/model/store_model.dart';
 
 class StoreCard extends StatelessWidget {
-   final Store store;
+   final StoreModel store;
 
   const StoreCard({super.key, required this.store});
 
@@ -26,10 +27,10 @@ class StoreCard extends StatelessWidget {
                   topRight: Radius.circular(15),
                 ),
                 child: Image.network(
-                 store.imageUrl,
+                 store.image!,
                   height: 200,
                   width: double.infinity,
-                  fit: BoxFit.cover,
+                  fit: BoxFit.fill,
                 ),
               ),
               // Favourite Icon
@@ -37,8 +38,8 @@ class StoreCard extends StatelessWidget {
                 top: 10,
                 right: 10,
                 child: Icon(
-                  store.isFavourite ? Icons.favorite : Icons.favorite_border,
-                  color:store.isFavourite ? Colors.red : Colors.white,
+                  store.favoritesCount==1  ? Icons.favorite : Icons.favorite_border,
+                  color:store.favoritesCount == 1 ? Colors.red : Colors.white,
                   size: 30,
                 ),
               ),
@@ -47,27 +48,28 @@ class StoreCard extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(10.0),
             child: Text(
-             store.name,
-              style: const TextStyle(
+             store.name!,
+              style:  TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
+                color: ColorManager.primary
               ),
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10.0),
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 // Distance
                 Text(
-                  'المسافة: ${store.distance}',
-                  style: TextStyle(fontSize: 16, color: Colors.grey[600]),
+                  'dis: ${store.distance!.toStringAsFixed(1)} ',
+                  style: TextStyle(fontSize: 16, color: ColorManager.yellow),
                 ),
                 // Offers
                 Text(
-                  'عروض: ${store.offers}',
-                  style: const TextStyle(fontSize: 16, color: Colors.blue),
+                  'Offer: ${store.offers!.length}',
+                  style:  TextStyle(fontSize: 16, color: ColorManager.red),
                 ),
               ],
             ),

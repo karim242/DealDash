@@ -88,14 +88,13 @@ class _RootViewState extends State<RootView> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: Container(
-        height: 60, // حجم أكبر للزر العائم
+        height: 60,
         width: 60,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16.0),
         ),
         child: FloatingActionButton(
           onPressed: () async {
-            // الحصول على الموقع
             LocationData? locationData = await _locationService.requestLocationPermission();
             if (locationData != null) {
               setState(() {

@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 
- class ApiServes {
+class ApiService {
 //   static late Dio dio;
 //   static init() {
 //     dio = Dio(BaseOptions(
@@ -29,28 +29,30 @@ import 'package:dio/dio.dart';
 //   }
 // }
 
-final _baseUrl = 'https://dealdash-demo-a2ec8528b2f4.herokuapp.com/api/auth/';
+  final _baseUrl = 'https://deal-dash-demo-4635067e93c3.herokuapp.com';
   final Dio _dio;
 
-  ApiServes(this._dio);
-  Future<Map<String, dynamic>> get({
+  ApiService(this._dio);
+   Future<List<dynamic>>getData({
     required String endpoint,
-    Map<String, dynamic>? data,
+    Map<String, dynamic>? query,
     String? token,
-   
   }) async {
-    var response = await _dio.get(
-      '$_baseUrl$endpoint',
-      data: data,
-      options: Options(
-        headers: {
-          
-          'authorization': 'Bearer $token',
-        },
-      ),
-    );
-
-    return response.data;
+    try {
+      final response = await _dio.get(
+       '$_baseUrl$endpoint',
+        queryParameters: query,
+        options: Options(
+          headers: {
+            'Authorization': 'Bearer $token',
+            'Content-Type': 'application/json',
+          },
+        ),
+      );
+      return response.data;
+    } catch (e) {
+      rethrow;
+    }
   }
 
   Future<Map<String, dynamic>> post({
@@ -58,17 +60,20 @@ final _baseUrl = 'https://dealdash-demo-a2ec8528b2f4.herokuapp.com/api/auth/';
     required Map<String, dynamic> data,
     String? token,
   }) async {
-    var response = await _dio.post(
-      '$_baseUrl$endpoint',
-      data: data,
-      options: Options(
-        headers: {
-          'authorization': 'Bearer $token',
-        },
-      ),
-    );
-     //response.statusCode;
-
-    return response.data;
+    try {
+      var response = await _dio.post(
+        '$_baseUrl$endpoint',
+        data: data,
+        options: Options(
+          headers: {
+            'authorization': 'Bearer $token',
+          },
+        ),
+      );
+      return response.data;
+    } catch (e) {
+      rethrow;
+    }
+    //response.statusCode;
   }
 }

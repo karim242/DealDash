@@ -1,4 +1,7 @@
+import 'package:dealdash/core/services/service_locator.dart';
+import 'package:dealdash/feature/location/presentation/cubit/places_cubit/places_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../core/resources/routes_manger/routes_manager.dart';
 
@@ -7,11 +10,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    return MaterialApp.router(
-      debugShowCheckedModeBanner: false,
-      routerConfig: AppRouter.router,
-    
+    return BlocProvider(
+            create: (context) => sl<PlacesCubit>(),
+      child: MaterialApp.router(
+        debugShowCheckedModeBanner: false,
+        routerConfig: AppRouter.router,
+      ),
     );
   }
 }

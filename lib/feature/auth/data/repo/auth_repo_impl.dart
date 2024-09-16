@@ -7,14 +7,14 @@ import '../../../../core/network_helper/dio_helper.dart.dart';
 import 'auth_repo.dart';
 
 class AuthRepoImplementation implements AuthRepository {
-  final ApiServes apiServes;
+  final ApiService apiServes;
   AuthRepoImplementation({required this.apiServes});
 
   @override
   Future<Either<Failure, UserModel>> signIn(
       {required String email, required String password}) async {
     try {
-      final response = await apiServes.post(endpoint: 'login', data: {
+      final response = await apiServes.post(endpoint: 'auth/login', data: {
         'email': email,
         'password': password,
       });
@@ -39,7 +39,7 @@ class AuthRepoImplementation implements AuthRepository {
       required String name}) async {
     try {
       final response = await apiServes.post(
-        endpoint: 'register',
+        endpoint: 'auth/register',
         data: {
           'email': email,
           'password': password,

@@ -1,4 +1,5 @@
 import 'package:dealdash/core/services/service_locator.dart';
+import 'package:dealdash/feature/about_stores/presentation/view/about_stores_view.dart';
 import 'package:dealdash/feature/auth/presentation/cubit/login/login_cubit.dart';
 import 'package:dealdash/feature/auth/presentation/views/signup_view.dart';
 import 'package:dealdash/feature/home/presentation/view/home_view.dart';
@@ -14,7 +15,7 @@ import '../../../feature/auth/presentation/views/forget_password.dart';
 import '../../../feature/auth/presentation/views/login_view.dart';
 import '../../../feature/onbording_splash/presentation/views/splash_view.dart';
 import '../../../feature/onbording_splash/presentation/views/welcome_view.dart';
-
+import '../../../feature/about_stores/presentation/view/about_stores_view.dart';
 class Routes {
   static const String splashRoute = "/";
   static const String onBoardingRoute = "/onBoardingView";
@@ -25,6 +26,8 @@ class Routes {
   static const String signUpRoute = "/signup_view";
   static const String rootViewRoute = '/rootView';
   static const String locationRoute = '/location_view';
+
+  static const String aboutStoreRoute = '/aboutStoreView';
 }
 
 
@@ -70,14 +73,9 @@ abstract class AppRouter {
       path: Routes.rootViewRoute,
       builder: (context, state) =>  const RootView(),
     ),
-    //  GoRoute(
-    //    path: Routes.locationRoute,
-    //    builder: (context, state) =>  const LocationView(),
-    //  )
-      ///context.go(Routes.onBoardingRoute,); push and replacment
-      ///
-    //  GoRouter.of(context).push(Routes.signUpRoute); // push 
-      
-   // ),
+    GoRoute(
+      path: Routes.aboutStoreRoute,
+      builder: (context, state) =>  const AboutStoresView(),
+    ),
   ]);
 }

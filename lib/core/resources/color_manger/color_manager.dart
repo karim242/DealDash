@@ -6,8 +6,4 @@ class ColorManager{
   static Color whitGreen = const Color(0XFFABD1C6);
   static Color yellow = const Color(0XFFf9bc60);
   static Color red = const Color(0XFFe16162);
-  
-
-
-
 }

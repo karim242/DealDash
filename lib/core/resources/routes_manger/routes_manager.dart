@@ -1,4 +1,5 @@
 import 'package:dealdash/core/services/service_locator.dart';
+import 'package:dealdash/feature/about_stores/presentation/view/about_stores_view.dart';
 import 'package:dealdash/feature/auth/presentation/cubit/login/login_cubit.dart';
 import 'package:dealdash/feature/auth/presentation/views/signup_view.dart';
 import 'package:dealdash/feature/home/presentation/view/root_view.dart';
@@ -22,6 +23,8 @@ class Routes {
   static const String forgetPasswordRoute = "/forgetPassword_view";
   static const String signUpRoute = "/signup_view";
   static const String rootViewRoute = '/rootView';
+
+  static const String aboutStoreRoute = '/aboutStoreView';
 }
 
 abstract class AppRouter {
@@ -61,6 +64,10 @@ abstract class AppRouter {
     GoRoute(
       path: Routes.rootViewRoute,
       builder: (context, state) =>  const RootView(),
+    ),
+    GoRoute(
+      path: Routes.aboutStoreRoute,
+      builder: (context, state) =>  const AboutStoresView(),
     ),
   ]);
 }

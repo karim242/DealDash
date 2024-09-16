@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/resources/color_manger/color_manager.dart';
 
@@ -12,7 +13,7 @@ class StoreIconButtons extends StatelessWidget {
   Widget build(BuildContext context) {
     return CircleAvatar(
       backgroundColor: ColorManager.primary,
-      radius: 25,
+      radius: 25.w,
       child: IconButton(onPressed:onTap, icon: Icon(iconData,color: ColorManager.red,)),
     );
   }

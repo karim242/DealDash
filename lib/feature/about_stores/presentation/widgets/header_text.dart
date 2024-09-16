@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class HeaderText extends StatelessWidget {
   const HeaderText({super.key, required this.header});
@@ -9,9 +10,9 @@ class HeaderText extends StatelessWidget {
   Widget build(BuildContext context) {
     return  Text(
       header,
-      style: const TextStyle(
+      style:  TextStyle(
         fontWeight: FontWeight.w500,
-        fontSize: 18,
+        fontSize: 18.sp,
       ),
     );
   }

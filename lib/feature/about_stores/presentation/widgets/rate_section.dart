@@ -1,5 +1,6 @@
 import 'package:dealdash/feature/about_stores/presentation/widgets/category_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/resources/color_manger/color_manager.dart';
 
@@ -14,8 +15,8 @@ class RateSection extends StatelessWidget {
     return Row(
       children: [
         Container(
-          width: 65,
-          padding: const EdgeInsetsDirectional.symmetric(vertical: 4),
+          width: 65.w,
+          padding:  EdgeInsetsDirectional.symmetric(vertical: 4.h),
           decoration: BoxDecoration(
               color: ColorManager.primary,
               borderRadius: BorderRadius.circular(5)
@@ -25,18 +26,18 @@ class RateSection extends StatelessWidget {
             children: [
                Text(
                 "$rateNumber",
-                style: const TextStyle(
+                style:  TextStyle(
                     fontWeight: FontWeight.w400,
-                    fontSize: 15,
+                    fontSize: 15.sp,
                     color: Colors.white
                 ),
               ),
-              const SizedBox(width: 4),
-              Icon(Icons.star, color: ColorManager.yellow,size: 15,)
+               SizedBox(width: 4.w),
+              Icon(Icons.star, color: ColorManager.yellow,size: 15.w,)
             ],
           ),
         ),
-        const SizedBox(width: 8),
+         SizedBox(width: 8.w),
         CategoryText(category: peopleRatedNum >= 100 ? "+99 People Rated" : "$peopleRatedNum People Rated"),
       ],
     );

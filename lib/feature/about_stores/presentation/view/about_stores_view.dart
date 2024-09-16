@@ -36,25 +36,25 @@ class AboutStoresView extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const StoreName(name: "Defacto"),
-                    const SizedBox(height: 8),
+                     SizedBox(height: 8.h),
                     const CategoryText(category: "Clothing"),
-                    const SizedBox(height: 8),
+                     SizedBox(height: 8.h),
                     const RateSection(rateNumber: 4.0, peopleRatedNum: 200),
-                    const SizedBox(height: 32),
+                     SizedBox(height: 32.h),
                     const HeaderText(header: "About"),
-                    const SizedBox(height: 8),
+                     SizedBox(height: 8.h),
                     const SideText(text: "Find all your fashion needs in one place."),
-                    const SizedBox(height: 32),
+                     SizedBox(height: 32.h),
                     SizedBox(
-                      height: 85,
+                      height: 85.h,
                       child:   Row(
                         children: [
-                           const Expanded(child: Column(
+                            Expanded(child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               HeaderText(header: "Opening Hours"),
-                              SizedBox(height: 8),
+                              SizedBox(height: 8.h),
                               SideText(text: "(10:00 am - 11:00 pm)"),
                             ],
                           ),),
@@ -62,54 +62,54 @@ class AboutStoresView extends StatelessWidget {
                             color: ColorManager.red,
                             thickness: 1,
                           ),
-                          const SizedBox(width: 10),
+                           SizedBox(width: 10.w),
                           Row(
                             children: [
                               StoreIconButtons(iconData: Icons.favorite_border, onTap: (){}),
-                              const SizedBox(width: 16),
+                               SizedBox(width: 16.w),
                               StoreIconButtons(iconData: Icons.call, onTap: (){}),
                             ],
                           )
                         ],
                       ),
                     ),
-                    const SizedBox(height: 32),
+                     SizedBox(height: 32.h),
                     const HeaderText(header: "ADDRESS"),
-                    const SizedBox(height: 8),
+                     SizedBox(height: 8.h),
                     const SideText(text: "El-Gaish St, Mansoura Qism2, El Mansoura"),
-                    const SizedBox(height: 32),
+                     SizedBox(height: 32.h),
                     const HeaderText(header: "Offers"),
-                    const SizedBox(height: 8),
+                     SizedBox(height: 8.h),
                     SizedBox(
                       width: double.infinity,
                       child: GridView.builder(
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
-                        gridDelegate:  const SliverGridDelegateWithFixedCrossAxisCount(
+                        gridDelegate:   SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2, // Number of columns
-                          crossAxisSpacing: 10.0, // Spacing between columns
-                          mainAxisSpacing: 10.0, // Spacing between rows
-                          childAspectRatio: 1.0/1.9, // Aspect ratio of each item (width/height)
+                          crossAxisSpacing: 10.0.w, // Spacing between columns
+                          mainAxisSpacing: 10.0.h, // Spacing between rows
+                          childAspectRatio: 1.0.w/2.3.h, // Aspect ratio of each item (width/height)
                         ),
                         itemCount: 10,
                         itemBuilder: (context, index) => Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Image.asset(Assets.storesAssetsStoreOffer1),
-                             const SizedBox(height: 8),
+                              SizedBox(height: 8.h),
                              Text(
                               "Regular Fit V-neck short sleeve T-Shirt",
                               style: TextStyle(
                                 fontWeight: FontWeight.w400,
-                                fontSize: 15,
+                                fontSize: 15.sp,
                                 color: ColorManager.primary
                               ),
                             ),
-                            const SizedBox(height: 6),
-                            const Text(
+                             SizedBox(height: 6.h),
+                             Text(
                               "209 EGP",
                               style: TextStyle(
-                                fontSize: 14,
+                                fontSize: 14.sp,
                                 fontWeight: FontWeight.w500
                               ),
                             ),
@@ -118,7 +118,7 @@ class AboutStoresView extends StatelessWidget {
                                  Text(
                                   "299 EGP",
                                   style: TextStyle(
-                                      fontSize: 14,
+                                      fontSize: 14.sp,
                                       fontWeight: FontWeight.w500,
                                     color: Colors.black.withOpacity(0.4),
                                     decoration: TextDecoration.lineThrough, // Add strikethrough effect
@@ -126,11 +126,11 @@ class AboutStoresView extends StatelessWidget {
                                     decorationThickness: 2, // Se
                                   ),
                                 ),
-                                const SizedBox(width: 8),
+                                 SizedBox(width: 8.w),
                                 Text(
                                   "30% Off",
                                   style: TextStyle(
-                                    fontSize: 16,
+                                    fontSize: 16.sp,
                                     fontWeight: FontWeight.w400,
                                     color: ColorManager.red,
                                   ),

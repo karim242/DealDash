@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SideText extends StatelessWidget {
   const SideText({super.key, required this.text});
@@ -9,9 +10,9 @@ class SideText extends StatelessWidget {
   Widget build(BuildContext context) {
     return  Text(
       text,
-      style: const TextStyle(
+      style:  TextStyle(
         fontWeight: FontWeight.w400,
-        fontSize: 15,
+        fontSize: 15.sp,
       ),
     );
   }

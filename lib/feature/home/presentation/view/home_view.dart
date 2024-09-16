@@ -9,14 +9,14 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: IconButton(
-          onPressed: () {
-            GoRouter.of(context).push(Routes.aboutStoreRoute,);
-          }, icon: const Icon(Icons.arrow_forward_ios)),
-      // child: Text(
-      //   'Home Page',
-      //   style: TextStyle(fontSize: 24),
-      // ),
+     // child: IconButton(
+       //   onPressed: () {
+        //    GoRouter.of(context).push(Routes.aboutStoreRoute,);
+        //  }, icon: const Icon(Icons.arrow_forward_ios)),
+       child: Text(
+         'Home Page',
+       style: TextStyle(fontSize: 24),
+    ),
     );
   }
 }

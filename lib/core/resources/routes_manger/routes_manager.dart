@@ -75,7 +75,7 @@ abstract class AppRouter {
     ),
     GoRoute(
       path: Routes.aboutStoreRoute,
-      builder: (context, state) =>  const AboutStoresView(),
+      builder: (context, state) =>  const AboutStoresView(store: null,),
     ),
   ]);
 }

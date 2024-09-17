@@ -31,7 +31,6 @@ dependencies:
   card_swiper: ^3.0.1
   carousel_slider: ^5.0.0
   conditional_builder_null_safety: ^0.0.6
-<<<<<<< HEAD
   cupertino_icons: ^1.0.2
   dartz: ^0.10.1
   dio: ^5.7.0
@@ -49,15 +48,13 @@ dependencies:
   get_it: ^7.7.0
   go_router: ^14.2.7
   google_fonts: ^6.2.1
-  google_maps_flutter: null
+  google_maps_flutter: 
   location: ^7.0.0
   shared_preferences: ^2.2.3
   shimmer: ^3.0.0
   smooth_page_indicator: ^1.2.0+3
-=======
   url_launcher: ^6.3.0
   permission_handler: ^10.0.0
->>>>>>> 6a5fa646b1e0c3025548f93cfdee936b4aa523ec
 
 dev_dependencies:
   flutter_lints: ^2.0.0

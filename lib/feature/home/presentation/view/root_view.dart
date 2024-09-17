@@ -18,11 +18,12 @@ class _RootViewState extends State<RootView> {
 
   // الصفحات التي سيتم عرضها بناءً على الفهرس
   final List<Widget> _pages = [
-     HomeView(),
+     const HomeView(),
     const FavoriteView(),
     const Placeholder(), // صفحة Placeholder مكان الزر العائم (لن تستخدم)
     const NotificationView(),
     const ProfileView(),
+    Container(color: Colors.red,)
   ];
 
   void _onItemTapped(int index) {

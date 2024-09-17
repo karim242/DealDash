@@ -33,6 +33,7 @@ dependencies:
   fluttertoast: ^8.2.8
   carousel_slider: ^5.0.0
   conditional_builder_null_safety: ^0.0.6
+  provider:
 
 dev_dependencies:
   flutter_test:
@@ -53,6 +54,8 @@ flutter:
     - assets/images/home_images/category/
     - assets/images/home_images/cloth/
     - assets/images/home_images/mobile/
+    - assets/images/home_images/market/
+    - assets/images/home_images/electric/
     - assets/font/
 
   fonts:

@@ -27,6 +27,7 @@ class AppStrings{
   static String clothes = "clothes";
   static String appelMob = "أبل آيفون 15 برو ماكس، سعة 256 جيجابايت، تيتانيوم طبيعي";
   static String tishrtTitle = "اليشم الأخضر اليوسفي قميص عصري";
+  static String category = "Category";
 
 
 

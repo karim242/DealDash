@@ -1,11 +1,9 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../core/resources/color_manger/color_manager.dart';
 import '../../../../core/resources/image_manger/image_manger.dart';
 import '../../../../core/resources/strings_manger/strings_manager.dart';
 import '../control/product_model.dart';
-import 'list_top_offer_addis_details_widget.dart';
+import '../data/data.dart';
 
 class ItemOfListBottomWidget extends StatefulWidget {
   ProductModel? productModel;
@@ -19,6 +17,7 @@ class ItemOfListBottomWidget extends StatefulWidget {
 class _ItemOfListBottomWidgetState extends State<ItemOfListBottomWidget> {
   bool isFav = false;
 
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -29,7 +28,10 @@ class _ItemOfListBottomWidgetState extends State<ItemOfListBottomWidget> {
             children: [
               //image
               SizedBox(
-                height: MediaQuery.of(context).size.height * .2,
+                height: MediaQuery
+                    .of(context)
+                    .size
+                    .height * .2,
                 width: double.infinity,
                 child: Image.asset(
                   widget.productModel?.imagePath ?? ImageManger.imageMobil2,
@@ -64,24 +66,25 @@ class _ItemOfListBottomWidgetState extends State<ItemOfListBottomWidget> {
                 onTap: () {
                   setState(() {
                     isFav = !isFav;
+                    addDeleteListFav();
                   });
                 },
                 child: isFav
                     ? const Icon(
-                        Icons.favorite,
-                        color: Colors.red,
-                      )
+                  Icons.favorite,
+                  color: Colors.red,
+                )
                     : const Icon(
-                        Icons.favorite,
-                        color: Colors.white,
-                      ),
+                  Icons.favorite,
+                  color: Colors.white,
+                ),
               ),
             ),
           ),
           Positioned(
             top: 5,
             left: 5,
-            child:  Container(
+            child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 4),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(50),
@@ -111,7 +114,7 @@ class _ItemOfListBottomWidgetState extends State<ItemOfListBottomWidget> {
                   Text(
                     widget.productModel?.oldPrice ?? "2500 E",
                     style:
-                        const TextStyle(decoration: TextDecoration.lineThrough),
+                    const TextStyle(decoration: TextDecoration.lineThrough),
                   ),
                   const SizedBox(width: 12),
                   Container(
@@ -132,4 +135,35 @@ class _ItemOfListBottomWidgetState extends State<ItemOfListBottomWidget> {
       ),
     );
   }
+
+  void addDeleteListFav() {
+    bool found = true;
+    if (isFav) {
+      if (favList.isEmpty) {
+        favList.add(
+            widget.productModel ?? mobileList[0]
+        );
+      } else {
+        String img = widget.productModel!.imagePath;
+        for (ProductModel i in favList) {
+          print(img);
+        print(i.imagePath);
+          if (img == i.imagePath) {
+           found = false;
+          }
+        }
+        print(found);
+        if(found){
+          favList.add(
+              widget.productModel ?? mobileList[0]
+          );
+      }else{
+          favList.remove(widget.productModel);
+        }
+
+
+      }
+  }
+}
+
 }

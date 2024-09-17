@@ -1,26 +1,25 @@
 import 'package:flutter/material.dart';
-import '../control/home_view_model.dart';
 import '../data/data.dart';
 import 'category_widget.dart';
 
 class ListViewCategoryWidget extends StatelessWidget {
-  const ListViewCategoryWidget({super.key});
+   const ListViewCategoryWidget({super.key, required this.list});
+  final List list;
 
   @override
   Widget build(BuildContext context) {
 
+
     return ListView.separated(
+      separatorBuilder: (BuildContext context, int index) => const SizedBox(width: 8),
       scrollDirection: Axis.horizontal,
-      itemCount: HomeViewModel.listCategory.length,
+      itemCount: list.length,
       itemBuilder: (c, i) {
         return CategoryWidget(
-          categoryModel: HomeViewModel.listCategory[i],
+          categoryModel: list[i],
           list: productList[i],
         );
       },
-      separatorBuilder: (BuildContext context, int index) => const SizedBox(
-        width: 8,
-      ),
     );
   }
 }

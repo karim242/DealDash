@@ -25,5 +25,21 @@ class ImageManger{
   static const String mob4="assets/images/home_images/mobile/mb4.png";
   static const String mob5="assets/images/home_images/mobile/mb5.png";
   static const String mob6="assets/images/home_images/mobile/mb6.png";
+  //electric
+  static const String elc1="assets/images/home_images/electric/dv1.png";
+  static const String elc2="assets/images/home_images/electric/dv2.png";
+  static const String elc3="assets/images/home_images/electric/dv3.png";
+  static const String elc4="assets/images/home_images/electric/dv4.png";
+  static const String elc5="assets/images/home_images/electric/dv5.png";
+  static const String elc6="assets/images/home_images/electric/dv6.png";
+  //market
+  static const String market1="assets/images/home_images/market/smr1.png";
+  static const String market2="assets/images/home_images/market/smr2.png";
+  static const String market3="assets/images/home_images/market/smr3.png";
+  static const String market4="assets/images/home_images/market/smr4.png";
+  static const String market5="assets/images/home_images/market/smr5.png";
+  static const String market6="assets/images/home_images/market/smr6.png";
+  static const String market7="assets/images/home_images/market/smr7.png";
+  static const String market8="assets/images/home_images/market/smr8.png";
   static const String splash="assets/images/splash.png";
 }

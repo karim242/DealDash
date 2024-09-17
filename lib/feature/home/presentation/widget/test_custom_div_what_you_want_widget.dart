@@ -23,7 +23,7 @@ class TestCustomDivWhatYouWantWidget extends StatelessWidget {
             title: AppStrings.whatYouWantText,
           ),
           SizedBox(height: height * .01),
-          const SizedBox(height: 100, child: ListViewCategoryWidget()),
+          // const SizedBox(height: 100, child: ListViewCategoryWidget()),
           TextWidget(
             title: AppStrings.suggestedForYou,
           ),

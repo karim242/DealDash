@@ -4,11 +4,12 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'list_top_offer_addis_details_widget.dart';
-class CategoryWidget extends StatelessWidget {
 
-CategoryModel categoryModel;
-final List list;
-   CategoryWidget({super.key,required this.categoryModel, required this.list});
+class CategoryWidget extends StatelessWidget {
+  CategoryModel categoryModel;
+  final List list;
+
+  CategoryWidget({super.key, required this.categoryModel, required this.list});
 
   @override
   Widget build(BuildContext context) {
@@ -19,14 +20,14 @@ final List list;
             context,
             MaterialPageRoute(
                 builder: (context) => ListTopOfferAddisDetailsWidget(
-                 list: list,
-                )));
+                      list: list,
+                    )));
       },
       child: Stack(
+        alignment: Alignment.center,
         children: [
-          Container(
-            width: 120,
-            decoration: BoxDecoration(borderRadius: BorderRadius.circular(12)),
+          SizedBox(
+            width: 100,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(12),
               child: Image.asset(
@@ -36,17 +37,20 @@ final List list;
             ),
           ),
           Positioned(
-              child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 4),
-                color: Colors.black.withOpacity(.7),
-                child: Text(
-                  categoryModel.title,
-                  style: const TextStyle(
-                      fontSize: 14,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold),
-                ),
-              )),
+            bottom: 0,
+            child: Container(
+              alignment: Alignment.center,
+              width: 100,
+              color: Colors.black.withOpacity(.4),
+              child: Text(
+                categoryModel.title,
+                style: const TextStyle(
+                    fontSize: 14,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold),
+              ),
+            ),
+          ),
         ],
       ),
     );

@@ -4,7 +4,7 @@ import 'item_page_view_addis_widget.dart';
 import 'list_top_offer_addis_details_widget.dart';
 
 class ListTopOfferAddisWidget extends StatelessWidget {
-  ListTopOfferAddisWidget({super.key});
+  const ListTopOfferAddisWidget({super.key});
 
 
   @override
@@ -19,12 +19,12 @@ class ListTopOfferAddisWidget extends StatelessWidget {
           return ItemListTopPageViewAddisWidget(
             imagePath: imageListTopAddis[index],
             function: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => ListTopOfferAddisDetailsWidget(
-                        list: mobileList,
-                          )));
+              // Navigator.push(
+              //     context,
+              //     MaterialPageRoute(
+              //         builder: (context) => ListTopOfferAddisDetailsWidget(
+              //           list: mobileList,
+              //             )));
             },
           );
         },

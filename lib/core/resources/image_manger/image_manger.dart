@@ -9,6 +9,7 @@ class ImageManger{
   static const String imageCloth="assets/images/home_images/category/cloth.png";
   static const String imageHomeDevice="assets/images/home_images/category/home_device.png";
   static const String imageMobil="assets/images/home_images/category/mobil1.png";
+  //cloth
   static const String imageMobil2="assets/images/home_images/mb6.png";
   static const String man1="assets/images/home_images/cloth/man1.png";
   static const String man2="assets/images/home_images/cloth/man2.png";

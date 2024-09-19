@@ -16,14 +16,14 @@ class RootView extends StatefulWidget {
 }
 
 class _RootViewState extends State<RootView> {
- int _selectedIndex = 0;
+  int _selectedIndex = 0;
 
   // الصفحات التي سيتم عرضها بناءً على الفهرس
   final List<Widget> _pages = [
     const HomeView(),
     const FavoriteView(),
-   const Placeholder(), // صفحة Placeholder مكان الزر العائم (لن تستخدم)
-    const NotificationView(),
+    const Placeholder(), // صفحة Placeholder مكان الزر العائم (لن تستخدم)
+    NotificationView(),
     const ProfileView(),
   ];
 
@@ -41,14 +41,13 @@ class _RootViewState extends State<RootView> {
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
           border: Border(
-            top: BorderSide(color: Colors.grey.shade300, width: 1.5), // الحد السفلي فقط
+            top: BorderSide(
+                color: Colors.grey.shade300, width: 1.5), // الحد السفلي فقط
           ),
         ),
-      
-      
         child: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
-          selectedItemColor:ColorManager.yellow,
+          selectedItemColor: ColorManager.yellow,
           unselectedItemColor: ColorManager.primary,
           currentIndex: _selectedIndex,
           onTap: _onItemTapped,
@@ -77,20 +76,23 @@ class _RootViewState extends State<RootView> {
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-     floatingActionButton: Container(
+      floatingActionButton: Container(
         height: 60, // حجم أكبر للزر العائم
         width: 60,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(16.0), 
-         
-        ),  // 
+          borderRadius: BorderRadius.circular(16.0),
+        ), //
         child: FloatingActionButton(
           onPressed: () {
             setState(() {
               _selectedIndex = 2;
             });
           },
-          child:  Icon(Icons.location_on, size: 30,color: ColorManager.primary,), 
+          child: Icon(
+            Icons.location_on,
+            size: 30,
+            color: ColorManager.primary,
+          ),
           backgroundColor: ColorManager.red,
         ),
       ),

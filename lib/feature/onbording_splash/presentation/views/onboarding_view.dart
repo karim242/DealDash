@@ -35,17 +35,15 @@ class _OnBoardingViewState extends State<OnBoardingView> {
         description: 'Don\'t go far, there are offers next to you',
       ),
     ];
-  
   }
 
   void _onNextPage() {
     if (_currentPage < 2) {
       _pageController.nextPage(
           duration: const Duration(milliseconds: 300), curve: Curves.ease);
-    } else if( _currentPage ==2){
+    } else if (_currentPage == 2) {
       context.go(Routes.rootViewRoute);
-    }
-    else {
+    } else {
       // Finish onboarding, navigate to home or login screen
       print("Onboarding finished");
     }
@@ -72,11 +70,12 @@ class _OnBoardingViewState extends State<OnBoardingView> {
           // هنا يتم عرض Progress Indicator دائري مخصص
           Padding(
             padding: const EdgeInsets.all(16.0),
-            child: CustomProgressIndicator(currentPage: _currentPage, onTap: _onNextPage,),
+            child: CustomProgressIndicator(
+              currentPage: _currentPage,
+              onTap: _onNextPage,
+            ),
           ),
           const SizedBox(height: 20),
-      
-       
         ],
       ),
     );

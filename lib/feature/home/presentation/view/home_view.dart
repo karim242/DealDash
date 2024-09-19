@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
-import '../../../../core/resources/routes_manger/routes_manager.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return const Center(
      // child: IconButton(
        //   onPressed: () {
         //    GoRouter.of(context).push(Routes.aboutStoreRoute,);

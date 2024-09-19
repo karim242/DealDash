@@ -1,5 +1,4 @@
 import 'package:dealdash/core/resources/color_manger/color_manager.dart';
-import 'package:dealdash/feature/onbording_splash/presentation/views/onboarding_view.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -16,7 +15,7 @@ class SplashView extends StatefulWidget {
 class _SplashViewState extends State<SplashView> {
   @override
   void initState() {
-Future.delayed(Duration(seconds: 4), () {
+Future.delayed(const Duration(seconds: 4), () {
       context.go(Routes.onBoardingRoute,);
     });
      super.initState();

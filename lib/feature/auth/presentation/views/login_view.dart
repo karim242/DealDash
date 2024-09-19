@@ -112,7 +112,7 @@ class LoginView extends StatelessWidget {
                           const SizedBox(height: 15),
 
                           // Continue with Facebook Button
-                          CustomLoginRow()
+                          const CustomLoginRow()
                         ],
                       ),
                     ),

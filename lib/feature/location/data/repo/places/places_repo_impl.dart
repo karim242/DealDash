@@ -1,3 +1,4 @@
+import 'package:dealdash/core/resources/strings_manger/strings_manager.dart';
 import 'package:dio/dio.dart';
 
 import '../../model/places_model.dart';
@@ -10,9 +11,9 @@ class PlacesRepositoryImpl implements PlacesRepository {
 
   @override
   Future<List<Place>> getNearbyPlaces(double lat, double lng) async {
-    const String apiKey = 'Api for service'; 
+   
     final String url =
-        'https://maps.googleapis.com/maps/api/place/nearbysearch/json?keyword=stores&location=$lat,$lng&radius=100&type=مولاتمحلات ملابس واجهزه كهربائي&key=$apiKey';
+        'https://maps.googleapis.com/maps/api/place/nearbysearch/json?keyword=stores&location=$lat,$lng&radius=100&type=مولاتمحلات ملابس واجهزه كهربائي&key=${AppStrings.apiKey}';
 
     try {
       final response = await dio.get(url);

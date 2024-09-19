@@ -49,7 +49,7 @@ class StoreModel {
     about = json['about'];
     latitude = json['latitude'];
     longitude = json['longitude'];
-    distance = json['distance'];
+    //distance = json['distance'].toInt;
     favoritesCount = json['favorites_count'];
     if (json['offers'] != null) {
       offers = <Offers>[];
@@ -60,19 +60,19 @@ class StoreModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name'] = this.name;
-    data['category'] = this.category;
-    data['image'] = this.image;
-    data['address'] = this.address;
-    data['about'] = this.about;
-    data['latitude'] = this.latitude;
-    data['longitude'] = this.longitude;
-    data['distance'] = this.distance;
-    data['favorites_count'] = this.favoritesCount;
-    if (this.offers != null) {
-      data['offers'] = this.offers!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['name'] = name;
+    data['category'] = category;
+    data['image'] = image;
+    data['address'] = address;
+    data['about'] = about;
+    data['latitude'] = latitude;
+    data['longitude'] = longitude;
+    data['distance'] = distance;
+    data['favorites_count'] = favoritesCount;
+    if (offers != null) {
+      data['offers'] = offers!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -125,18 +125,18 @@ class Offers {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name'] = this.name;
-    data['store_id'] = this.storeId;
-    data['image'] = this.image;
-    data['address'] = this.address;
-    data['about'] = this.about;
-    data['latitude'] = this.latitude;
-    data['longitude'] = this.longitude;
-    data['start_date'] = this.startDate;
-    data['end_date'] = this.endDate;
-    data['created_at'] = this.createdAt;
-    data['updated_at'] = this.updatedAt;
+    data['id'] = id;
+    data['name'] = name;
+    data['store_id'] = storeId;
+    data['image'] = image;
+    data['address'] = address;
+    data['about'] = about;
+    data['latitude'] = latitude;
+    data['longitude'] = longitude;
+    data['start_date'] = startDate;
+    data['end_date'] = endDate;
+    data['created_at'] = createdAt;
+    data['updated_at'] = updatedAt;
     return data;
   }
 }

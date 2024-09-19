@@ -71,7 +71,8 @@ class StoreCard extends StatelessWidget {
                 children: [
                   // Distance
                   Text(
-                    'dis: ${store.distance!.toStringAsFixed(1)} ',
+                  //  ${store.distance!.toStringAsFixed(1)}
+                    'dis:  2',
                     style: TextStyle(fontSize: 16, color: ColorManager.yellow),
                   ),
                   // Offers

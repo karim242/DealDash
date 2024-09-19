@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/resources/color_manger/color_manager.dart';
 
@@ -44,7 +43,7 @@ class CustomTextField extends StatelessWidget {
         cursorColor: ColorManager.gray,
         maxLines: maxLines,
         decoration: InputDecoration(
-          contentPadding: EdgeInsets.all(8),
+          contentPadding: const EdgeInsets.all(8),
           labelText: labelText,
           prefixIcon:prefixIcon,
           prefixIconColor: ColorManager.yellow,

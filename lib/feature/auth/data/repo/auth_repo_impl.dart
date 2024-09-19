@@ -16,7 +16,7 @@ class AuthRepoImplementation implements AuthRepository {
   Future<Either<Failure, UserModel>> signIn(
       {required String email, required String password}) async {
     try {
-      final response = await apiServes.post(endpoint: 'auth/login', data: {
+      final response = await apiServes.post(endpoint: '/api/auth/login', data: {
         'email': email,
         'password': password,
       });

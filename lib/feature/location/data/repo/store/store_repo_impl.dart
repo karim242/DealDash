@@ -24,8 +24,8 @@ class StoreRepositoryImpl implements StoreRepository {
         final data = await apiService.getData(
           endpoint: '/api/v1/user/stores/nearby-stores',
           query: {
-            'latitude': lat,
-            'longitude': long,
+            'latitude': 31.39327333,
+            'longitude': 31.03190087,
             'radius': 10,
           },
           token: token,

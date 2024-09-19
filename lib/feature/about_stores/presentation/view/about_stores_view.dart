@@ -41,7 +41,7 @@ final StoreModel store;
                      SizedBox(height: 8.h),
                     const RateSection(rateNumber: 4.0, peopleRatedNum: 200),
                      SizedBox(height: 32.h),
-                     HeaderText(header: "About"),
+                     const HeaderText(header: "About"),
                      SizedBox(height: 8.h),
                      SideText(text: store.about!),
                      SizedBox(height: 32.h),
@@ -53,9 +53,9 @@ final StoreModel store;
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              HeaderText(header: "Opening Hours"),
+                              const HeaderText(header: "Opening Hours"),
                               SizedBox(height: 8.h),
-                              SideText(text: "(10:00 am - 11:00 pm)"),
+                              const SideText(text: "(10:00 am - 11:00 pm)"),
                             ],
                           ),),
                           VerticalDivider(

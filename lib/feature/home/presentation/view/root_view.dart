@@ -1,11 +1,8 @@
 import 'package:dealdash/feature/home/presentation/view/home_view.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:go_router/go_router.dart';
 import 'package:location/location.dart';
 
 import '../../../../core/resources/color_manger/color_manager.dart';
-import '../../../../core/resources/routes_manger/routes_manager.dart';
 import '../../../../core/services/location_service.dart';
 import '../../../favoruite/presentation/view/favoruite_view.dart';
 import '../../../location/presentation/view/location_view.dart';

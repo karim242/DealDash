@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 import 'package:dealdash/feature/home/presentation/view/category_screen.dart';
 
 import 'package:flutter/material.dart';
@@ -23,18 +23,9 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-<<<<<<< HEAD
-    return const Center(
-     // child: IconButton(
-       //   onPressed: () {
-        //    GoRouter.of(context).push(Routes.aboutStoreRoute,);
-        //  }, icon: const Icon(Icons.arrow_forward_ios)),
-       child: Text(
-         'Home Page',
-       style: TextStyle(fontSize: 24),
-    ),
-=======
-<<<<<<< HEAD
+
+   
+
     double h = MediaQuery.of(context).size.height;
     double w = MediaQuery.of(context).size.width;
     return CustomScrollView(
@@ -90,7 +81,6 @@ class HomeView extends StatelessWidget {
         ),
 
       ],
->>>>>>> 760f02c3eb0f4c5d087f3ed205403da427d09707
     );
   }
 }

@@ -21,7 +21,7 @@ class CustomBaner extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 15),
       alignment: AlignmentDirectional.centerStart,
-      color: ColorManager.green,
+      color: ColorManager.primary,
       height: height * .05,
       width: double.infinity,
       child: RichText(

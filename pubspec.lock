@@ -102,6 +102,7 @@ packages:
     description:
       name: crypto
       sha256: ec30d999af904f33454ba22ed9a86162b35e52b44ac4807d1d93c288041d7d27
+<<<<<<< HEAD
       url: "https://pub.dev"
     source: hosted
     version: "3.0.5"
@@ -111,6 +112,9 @@ packages:
       name: csslib
       sha256: "706b5707578e0c1b4b7550f64078f0a0f19dec3f50a178ffae7006b0a9ca58fb"
       url: "https://pub.dev"
+=======
+      url: "https://pub.flutter-io.cn"
+>>>>>>> 760f02c3eb0f4c5d087f3ed205403da427d09707
     source: hosted
     version: "1.0.0"
   cupertino_icons:
@@ -546,7 +550,11 @@ packages:
     description:
       name: path_provider_android
       sha256: "6f01f8e37ec30b07bc424b4deabac37cacb1bc7e2e515ad74486039918a37eb7"
+<<<<<<< HEAD
       url: "https://pub.dev"
+=======
+      url: "https://pub.flutter-io.cn"
+>>>>>>> 760f02c3eb0f4c5d087f3ed205403da427d09707
     source: hosted
     version: "2.2.10"
   path_provider_foundation:
@@ -646,7 +654,7 @@ packages:
     source: hosted
     version: "2.1.8"
   provider:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: provider
       sha256: c8a055ee5ce3fd98d6fc872478b03823ffdb448699c6ebdbbc71d59b596fd48c
@@ -666,7 +674,11 @@ packages:
     description:
       name: shared_preferences
       sha256: "746e5369a43170c25816cc472ee016d3a66bc13fcf430c0bc41ad7b4b2922051"
+<<<<<<< HEAD
       url: "https://pub.dev"
+=======
+      url: "https://pub.flutter-io.cn"
+>>>>>>> 760f02c3eb0f4c5d087f3ed205403da427d09707
     source: hosted
     version: "2.3.2"
   shared_preferences_android:
@@ -674,7 +686,11 @@ packages:
     description:
       name: shared_preferences_android
       sha256: "480ba4345773f56acda9abf5f50bd966f581dac5d514e5fc4a18c62976bbba7e"
+<<<<<<< HEAD
       url: "https://pub.dev"
+=======
+      url: "https://pub.flutter-io.cn"
+>>>>>>> 760f02c3eb0f4c5d087f3ed205403da427d09707
     source: hosted
     version: "2.3.2"
   shared_preferences_foundation:
@@ -706,7 +722,11 @@ packages:
     description:
       name: shared_preferences_web
       sha256: d2ca4132d3946fec2184261726b355836a82c33d7d5b67af32692aff18a4684e
+<<<<<<< HEAD
       url: "https://pub.dev"
+=======
+      url: "https://pub.flutter-io.cn"
+>>>>>>> 760f02c3eb0f4c5d087f3ed205403da427d09707
     source: hosted
     version: "2.4.2"
   shared_preferences_windows:
@@ -886,8 +906,8 @@ packages:
     dependency: transitive
     description:
       name: web
-      sha256: "97da13628db363c635202ad97068d47c5b8aa555808e7a9411963c533b449b27"
-      url: "https://pub.dev"
+      sha256: d43c1d6b787bf0afad444700ae7f4db8827f701bc61c255ac8d328c6f4d52062
+      url: "https://pub.flutter-io.cn"
     source: hosted
     version: "0.5.1"
   win32:
@@ -895,7 +915,11 @@ packages:
     description:
       name: win32
       sha256: "68d1e89a91ed61ad9c370f9f8b6effed9ae5e0ede22a270bdfa6daf79fc2290a"
+<<<<<<< HEAD
       url: "https://pub.dev"
+=======
+      url: "https://pub.flutter-io.cn"
+>>>>>>> 760f02c3eb0f4c5d087f3ed205403da427d09707
     source: hosted
     version: "5.5.4"
   xdg_directories:

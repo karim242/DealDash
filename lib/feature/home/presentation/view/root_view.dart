@@ -1,10 +1,8 @@
-import 'package:dealdash/feature/home/presentation/view/home_view.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../core/resources/color_manger/color_manager.dart';
-import '../../../favoruite/presentation/view/favoruite_view.dart';
-import '../../../notification/presentation/view/notification_view.dart';
-import '../../../profile/presentation/view/profile_view.dart';
+import '../data/constrain.dart';
+import '../widget/bottom_navbar_widget.dart';
+import '../widget/floating_action_button.dart';
 
 class RootView extends StatefulWidget {
   const RootView({super.key});
@@ -16,65 +14,56 @@ class RootView extends StatefulWidget {
 class _RootViewState extends State<RootView> {
   int _selectedIndex = 0;
 
-  // الصفحات التي سيتم عرضها بناءً على الفهرس
-  final List<Widget> _pages = [
-     const HomeView(),
-    const FavoriteView(),
-    const Placeholder(), // صفحة Placeholder مكان الزر العائم (لن تستخدم)
-    const NotificationView(),
-    const ProfileView(),
-    Container(color: Colors.red,)
-  ];
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      extendBody: true,
+      appBar: AppBar(toolbarHeight: MediaQuery.of(context).size.height*.02,),
+      resizeToAvoidBottomInset: false,
+      body: pages[_selectedIndex],
+        floatingActionButton:FABWidget(selectFun: _onItemTapped,),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      bottomNavigationBar: BottomNavBarWidget(change:_onItemTapped ,)
+    );
+  }
 
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });
   }
+}
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(toolbarHeight: MediaQuery.of(context).size.height*.02,),
-      resizeToAvoidBottomInset: false,
-      body: _pages[_selectedIndex],
-      bottomNavigationBar: Container(
-        decoration: BoxDecoration(
-          border: Border(
-            top: BorderSide(
-                color: Colors.grey.shade300, width: 1.5), // الحد السفلي فقط
-          ),
-        ),
-        child: BottomNavigationBar(
-          type: BottomNavigationBarType.fixed,
-          selectedItemColor: ColorManager.yellow,
-          unselectedItemColor: ColorManager.primary,
-          currentIndex: _selectedIndex,
-          onTap: _onItemTapped,
-          items: const [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'Home',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.favorite),
-              label: 'Favorite',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(null), // تركه فارغًا لزر الـ FloatingActionButton
-              label: '',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.notifications),
-              label: 'Notification',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.person),
-              label: 'Profile',
-            ),
-          ],
-        ),
-      ),
+
+
+
+
+
+
+
+
+
+/*
+ FloatingActionButton(
+          backgroundColor: Colors.orange,
+          shape: const StadiumBorder(),
+          onPressed: () {
+            setState(() {
+              _selectedIndex=2;
+            });
+          },
+          child: const Icon(Icons.location_on_outlined,size: 40,color: Colors.white,),
+          //params
+        )
+ */
+
+
+
+
+
+
+//old
+/*
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: Container(
         height: 60, // حجم أكبر للزر العائم
@@ -96,6 +85,44 @@ class _RootViewState extends State<RootView> {
           ),
         ),
       ),
-    );
-  }
-}
+
+
+Container(
+decoration: BoxDecoration(
+border: Border(
+top: BorderSide(
+color: Colors.grey.shade300, width: 1.5), // الحد السفلي فقط
+),
+),
+child: BottomNavigationBar(
+type: BottomNavigationBarType.fixed,
+selectedItemColor: ColorManager.yellow,
+unselectedItemColor: ColorManager.primary,
+currentIndex: _selectedIndex,
+onTap: _onItemTapped,
+items: const [
+BottomNavigationBarItem(
+icon: Icon(Icons.home),
+label: 'Home',
+),
+BottomNavigationBarItem(
+icon: Icon(Icons.favorite),
+label: 'Favorite',
+),
+BottomNavigationBarItem(
+icon: Icon(null), // تركه فارغًا لزر الـ FloatingActionButton
+label: '',
+),
+BottomNavigationBarItem(
+icon: Icon(Icons.notifications),
+label: 'Notification',
+),
+BottomNavigationBarItem(
+icon: Icon(Icons.person),
+label: 'Profile',
+),
+],
+),
+),
+*/
+

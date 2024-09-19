@@ -34,6 +34,7 @@ dependencies:
   carousel_slider: ^5.0.0
   conditional_builder_null_safety: ^0.0.6
   provider:
+  animated_bottom_navigation_bar: ^1.3.3
 
 dev_dependencies:
   flutter_test:

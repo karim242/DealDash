@@ -11,7 +11,7 @@ Widget buildNotificationCard(NotificationItem item) {
         // Notification Image
         ClipRRect(
           borderRadius: BorderRadius.circular(8.0),
-          child: Image.network(
+          child: Image.asset(
             item.imageUrl,
             width: 70,
             height: 70,

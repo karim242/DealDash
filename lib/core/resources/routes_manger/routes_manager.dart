@@ -3,9 +3,7 @@ import 'package:dealdash/feature/about_stores/presentation/view/about_stores_vie
 import 'package:dealdash/feature/auth/presentation/cubit/login/login_cubit.dart';
 import 'package:dealdash/feature/auth/presentation/views/signup_view.dart';
 import 'package:dealdash/feature/home/presentation/view/root_view.dart';
-import 'package:dealdash/feature/onbording_splash/presentation/views/onboarding_view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:go_router/go_router.dart';
 import '../../../feature/location/data/model/store_model.dart';
 import '../../../feature/auth/presentation/cubit/signup/signup_cubit.dart';
@@ -13,6 +11,7 @@ import '../../../feature/auth/presentation/views/forget_password.dart';
 import '../../../feature/auth/presentation/views/login_view.dart';
 import '../../../feature/onbording_splash/presentation/views/splash_view.dart';
 import '../../../feature/onbording_splash/presentation/views/welcome_view.dart';
+
 class Routes {
   static const String splashRoute = "/";
   static const String onBoardingRoute = "/onBoardingView";
@@ -33,7 +32,8 @@ class Routes {
 
 
 abstract class AppRouter {
-  static final router = GoRouter(routes: [
+  static final router = GoRouter(
+      routes: [
     GoRoute(
       path: Routes.splashRoute,
       builder: (context, state) => const SplashView(),

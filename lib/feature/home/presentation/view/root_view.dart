@@ -1,11 +1,13 @@
 import 'package:dealdash/feature/home/presentation/view/home_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 import '../../../../core/resources/color_manger/color_manager.dart';
+import '../../../../core/resources/routes_manger/routes_manager.dart';
+import '../../../../core/services/location_service.dart';
 import '../../../favoruite/presentation/view/favoruite_view.dart';
 import '../../../notification/presentation/view/notification_view.dart';
 import '../../../profile/presentation/view/profile_view.dart';
-
 class RootView extends StatefulWidget {
   const RootView({super.key});
 
@@ -14,16 +16,15 @@ class RootView extends StatefulWidget {
 }
 
 class _RootViewState extends State<RootView> {
-  int _selectedIndex = 0;
+ int _selectedIndex = 0;
 
   // الصفحات التي سيتم عرضها بناءً على الفهرس
   final List<Widget> _pages = [
-     const HomeView(),
+    const HomeView(),
     const FavoriteView(),
-    const Placeholder(), // صفحة Placeholder مكان الزر العائم (لن تستخدم)
+   const Placeholder(), // صفحة Placeholder مكان الزر العائم (لن تستخدم)
     const NotificationView(),
     const ProfileView(),
-    Container(color: Colors.red,)
   ];
 
   void _onItemTapped(int index) {
@@ -76,18 +77,29 @@ class _RootViewState extends State<RootView> {
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: Container(
+     floatingActionButton: Container(
         height: 60, // حجم أكبر للزر العائم
         width: 60,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(16.0),
-        ), //
+          borderRadius: BorderRadius.circular(16.0), 
+         
+        ),  // 
         child: FloatingActionButton(
-          onPressed: () {
-            setState(() {
-              _selectedIndex = 2;
-            });
+          onPressed: () async {
+            LocationData? locationData = await _locationService.requestLocationPermission();
+            if (locationData != null) {
+              setState(() {
+                currentLocation = locationData;
+                _pages[2] = LocationView(currentLocation: currentLocation!); // تحديث صفحة الموقع
+                _selectedIndex = 2; // الانتقال إلى صفحة الموقع
+              });
+            } else {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text("Failed to get location")),
+              );
+            }
           },
+          child:  Icon(Icons.location_on, size: 30,color: ColorManager.primary,), 
           backgroundColor: ColorManager.red,
           child: Icon(
             Icons.location_on,

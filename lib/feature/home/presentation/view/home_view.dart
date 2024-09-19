@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 import 'package:dealdash/feature/home/presentation/view/category_screen.dart';
+
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+
+import '../../../../core/resources/routes_manger/routes_manager.dart';
 
 import '../../../../core/resources/color_manger/color_manager.dart';
 import '../../../../core/resources/strings_manger/strings_manager.dart';
@@ -20,6 +25,7 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+<<<<<<< HEAD
     double h = MediaQuery.of(context).size.height;
     double w = MediaQuery.of(context).size.width;
     return CustomScrollView(

@@ -1,16 +1,16 @@
 import 'package:dealdash/core/services/service_locator.dart';
+import 'package:dealdash/feature/about_stores/presentation/view/about_stores_view.dart';
 import 'package:dealdash/feature/auth/presentation/cubit/login/login_cubit.dart';
 import 'package:dealdash/feature/auth/presentation/views/signup_view.dart';
 import 'package:dealdash/feature/home/presentation/view/root_view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-
+import '../../../feature/location/data/model/store_model.dart';
 import '../../../feature/auth/presentation/cubit/signup/signup_cubit.dart';
 import '../../../feature/auth/presentation/views/forget_password.dart';
 import '../../../feature/auth/presentation/views/login_view.dart';
-import '../../../feature/onbording_splash/presentation/view/onboarding_view.dart';
-import '../../../feature/onbording_splash/presentation/view/splash_view.dart';
-import '../../../feature/onbording_splash/presentation/view/welcome_view.dart';
+import '../../../feature/onbording_splash/presentation/views/splash_view.dart';
+import '../../../feature/onbording_splash/presentation/views/welcome_view.dart';
 
 class Routes {
   static const String splashRoute = "/";
@@ -21,7 +21,9 @@ class Routes {
   static const String forgetPasswordRoute = "/forgetPassword_view";
   static const String signUpRoute = "/signup_view";
   static const String rootViewRoute = '/rootView';
-  //static const String homeRoute = '/home_view';
+  static const String locationRoute = '/location_view';
+
+  static const String aboutStoreRoute = '/aboutStoreView';
 }
 
 
@@ -68,14 +70,12 @@ abstract class AppRouter {
       path: Routes.rootViewRoute,
       builder: (context, state) =>  const RootView(),
     ),
-    //  GoRoute(
-    //   path: Routes.homeRoute,
-    //   builder: (context, state) =>  const HomeView(),
-
-      ///context.go(Routes.onBoardingRoute,); push and replacment
-      ///
-    //  GoRouter.of(context).push(Routes.signUpRoute); // push 
-      
-   // ),
+    GoRoute(
+      path: Routes.aboutStoreRoute,
+      builder: (context, state) {
+        final store = state.extra as StoreModel;
+         return AboutStoresView(store: store);
+      }
+    ),
   ]);
 }

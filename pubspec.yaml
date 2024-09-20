@@ -65,6 +65,12 @@ flutter:
     - assets/images/home_images/electric/
     - assets/font/
 
+    - assets/images/image_notification/
+  # assets:
+  #   - images/a_dot_burr.jpeg
+  #   - images/a_dot_ham.jpeg
+
+
   fonts:
     - family: Alarabiya
       fonts:

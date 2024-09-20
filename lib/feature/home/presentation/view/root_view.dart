@@ -16,6 +16,7 @@ class RootView extends StatefulWidget {
 }
 
 class _RootViewState extends State<RootView> {
+
   LocationData? currentLocation;
   LocationService _locationService = LocationService();
   
@@ -37,6 +38,7 @@ class _RootViewState extends State<RootView> {
     ];
   }
 
+
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
@@ -51,7 +53,8 @@ class _RootViewState extends State<RootView> {
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
           border: Border(
-            top: BorderSide(color: Colors.grey.shade300, width: 1.5), // الحد السفلي فقط
+            top: BorderSide(
+                color: Colors.grey.shade300, width: 1.5), // الحد السفلي فقط
           ),
         ),
         child: BottomNavigationBar(
@@ -86,11 +89,12 @@ class _RootViewState extends State<RootView> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: Container(
-        height: 60,
+                height: 60,
         width: 60,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16.0),
         ),
+
         child: FloatingActionButton(
           onPressed: () async {
             LocationData? locationData = await _locationService.requestLocationPermission();
@@ -106,7 +110,9 @@ class _RootViewState extends State<RootView> {
               );
             }
           },
+
           child: Icon(Icons.location_on, size: 30, color: ColorManager.primary),
+
           backgroundColor: ColorManager.red,
         ),
       ),

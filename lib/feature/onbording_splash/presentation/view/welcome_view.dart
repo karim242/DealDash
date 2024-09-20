@@ -2,12 +2,35 @@ import 'package:dealdash/core/resources/color_manger/color_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../core/cache_helper/cache_helper.dart';
 import '../../../../core/resources/routes_manger/routes_manager.dart';
 
-class WelcomeView extends StatelessWidget {
+class WelcomeView extends StatefulWidget {
   const WelcomeView({super.key});
 
   @override
+  State<WelcomeView> createState() => _WelcomeViewState();
+}
+
+class _WelcomeViewState extends State<WelcomeView> {
+
+  @override
+   void initState() {
+    super.initState();
+   // checkLoginStatus(context);
+  }
+
+  void checkLoginStatus(BuildContext context) {
+    String? token = CacheHelper.getToken(); 
+    print(token); 
+    if (token != null) {
+      context.go(Routes.rootViewRoute);
+    } else {
+      context.go(Routes.loginRoute);
+    }
+  }
+  @override
+
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: ColorManager.primary,
@@ -57,7 +80,7 @@ class WelcomeView extends StatelessWidget {
                     // Continue with Google Button
                     ElevatedButton(
                       onPressed: () {
-                        GoRouter.of(context).push(Routes.loginRoute,);
+                      checkLoginStatus(context);
                       },
                       style: ElevatedButton.styleFrom(
                         foregroundColor: Colors.black,

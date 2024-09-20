@@ -31,7 +31,6 @@ class _LocationViewState extends State<LocationView> {
       widget.currentLocation.longitude!,
     );
 
-    // استدعاء PlacesCubit لجلب المحلات القريبة
     context.read<PlacesCubit>().fetchNearbyPlaces(
           widget.currentLocation.latitude!,
           widget.currentLocation.longitude!,

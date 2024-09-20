@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../home/presentation/data/data.dart';
+import '../../../home/data/data.dart';
 import '../../../home/presentation/widget/sliver_grid_widget.dart';
 
 class FavoriteView extends StatelessWidget {

@@ -21,14 +21,14 @@ class CustomBaner extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 15),
       alignment: AlignmentDirectional.centerStart,
-      color: ColorManager.primary,
+      color: ColorManager.whitGreen,
       height: height * .05,
       width: double.infinity,
       child: RichText(
         text: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              style: Theme.of(context).textTheme.titleMedium,
+              style: Theme.of(context).textTheme.titleMedium!.copyWith(color: ColorManager.primary),
               text: AppStrings.customBanerOfferText,
             ),
             TextSpan(
@@ -36,10 +36,10 @@ class CustomBaner extends StatelessWidget {
               style: Theme.of(context)
                   .textTheme
                   .titleMedium
-                  ?.copyWith(backgroundColor: Colors.yellow),
+                  ?.copyWith(backgroundColor: ColorManager.yellow),
             ),
             TextSpan(
-              style: Theme.of(context).textTheme.titleMedium,
+              style: Theme.of(context).textTheme.titleMedium!.copyWith(color: ColorManager.primary),
               text: AppStrings.customBanerPromoCodeText,
             ),
           ],
@@ -48,7 +48,6 @@ class CustomBaner extends StatelessWidget {
     );
   }
 }
-
 /*
             Expanded(
               child: Text(

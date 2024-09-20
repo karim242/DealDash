@@ -33,8 +33,8 @@ class StoreCard extends StatelessWidget {
                     topRight: Radius.circular(15),
                   ),
                   child: Image.network(
-                    store.image!,
-                    height: 200,
+                    store.image?? 'https://media.istockphoto.com/id/681622484/photo/concrete-wall-shiny-smooth-backgrounds-white-textured.jpg?s=2048x2048&w=is&k=20&c=87J5-OznIqEEKD923thUgWZBNIiAD4oDVAmHSQYLr1o=',
+                     height: 200,
                     width: double.infinity,
                     fit: BoxFit.fill,
                   ),

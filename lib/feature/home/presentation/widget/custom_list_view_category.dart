@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../data/data.dart';
+import '../../data/data.dart';
 import 'category_widget.dart';
 
 class ListViewCategoryWidget extends StatelessWidget {

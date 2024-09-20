@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../control/product_model.dart';
-import '../data/data.dart';
+import '../../data/data.dart';
 import 'item_of_list_bottom_widget.dart';
 class SliverGridWidget extends StatelessWidget {
    SliverGridWidget({super.key, required this.list});
@@ -14,8 +14,11 @@ if(list is List<List<ProductModel>>){
 }
     return  SliverGrid.builder(
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          
           crossAxisCount: 2,
-          childAspectRatio: 1 / 1.2,
+          crossAxisSpacing: 6,
+          mainAxisSpacing: 12,
+          childAspectRatio: 1 / 1.3,
         ),
         itemCount:  list.length,
         itemBuilder: (BuildContext context, int index) {

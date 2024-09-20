@@ -17,7 +17,7 @@ class StoreRepositoryImpl implements StoreRepository {
       double? lat, double? long) async {
     try {
       // استرجاع الـ token من CacheHelper
-      String? token = CacheHelper.getToken(key: 'auth_token');
+      String? token = CacheHelper.getToken();
 
       if (token != null) {
         // طلب البيانات باستخدام الـ token

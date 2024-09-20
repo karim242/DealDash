@@ -1,21 +1,20 @@
+import 'package:dealdash/core/resources/color_manger/color_manager.dart';
 import 'package:dealdash/feature/home/presentation/control/category_model.dart';
-import 'package:dealdash/feature/home/presentation/data/data.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'list_top_offer_addis_details_widget.dart';
 
 class CategoryWidget extends StatelessWidget {
-  CategoryModel categoryModel;
+  final CategoryModel categoryModel;
   final List list;
 
-  CategoryWidget({super.key, required this.categoryModel, required this.list});
+  const CategoryWidget({super.key, required this.categoryModel, required this.list});
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        print("llllll");
+    
         Navigator.push(
             context,
             MaterialPageRoute(
@@ -41,7 +40,7 @@ class CategoryWidget extends StatelessWidget {
             child: Container(
               alignment: Alignment.center,
               width: 100,
-              color: Colors.black.withOpacity(.4),
+              color: ColorManager.whitGreen,
               child: Text(
                 categoryModel.title,
                 style: const TextStyle(

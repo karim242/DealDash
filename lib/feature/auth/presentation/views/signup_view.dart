@@ -6,7 +6,6 @@ import '../../../../core/widget/custom_toast.dart';
 import '../cubit/signup/signup_cubit.dart';
 import '../cubit/signup/signup_state.dart';
 import '../widget/custom_auth_btn.dart';
-import '../widget/custom_login_row.dart';
 import '../widget/custom_text_field.dart';
 
 class SignUpView extends StatelessWidget {

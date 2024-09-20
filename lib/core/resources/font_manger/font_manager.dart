@@ -2,6 +2,9 @@ import 'dart:ui';
 
 class FontConstants{
   static String poppins = 'Poppins';
+  static String alarabiya = 'Alarabiya';
+  static String aljazeera = 'Aljazeera';
+  static String sultan = 'Sultan';
 }
 
 class FontWeightManager{

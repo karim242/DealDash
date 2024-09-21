@@ -8,6 +8,7 @@ import '../../../favoruite/presentation/view/favoruite_view.dart';
 import '../../../location/presentation/view/location_view.dart';
 import '../../../notification/presentation/view/notification_view.dart';
 import '../../../profile/presentation/view/profile_view.dart';
+
 class RootView extends StatefulWidget {
   const RootView({super.key});
 
@@ -16,13 +17,10 @@ class RootView extends StatefulWidget {
 }
 
 class _RootViewState extends State<RootView> {
-
   LocationData? currentLocation;
-  LocationService _locationService = LocationService();
-  
-  int _selectedIndex = 0;
+  final LocationService _locationService = LocationService();
 
-  // الصفحات التي سيتم عرضها بناءً على الفهرس
+  int _selectedIndex = 0;
   late List<Widget> _pages;
 
   @override
@@ -32,12 +30,13 @@ class _RootViewState extends State<RootView> {
     _pages = [
       const HomeView(),
       const FavoriteView(),
-      currentLocation != null ? LocationView(currentLocation: currentLocation!) : Container(),
+      currentLocation != null
+          ? LocationView(currentLocation: currentLocation!)
+          : Container(),
       const NotificationView(),
       const ProfileView(),
     ];
   }
-
 
   void _onItemTapped(int index) {
     setState(() {
@@ -48,7 +47,6 @@ class _RootViewState extends State<RootView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-     
       body: _pages[_selectedIndex],
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
@@ -89,31 +87,31 @@ class _RootViewState extends State<RootView> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: Container(
-                height: 60,
+        height: 60,
         width: 60,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16.0),
         ),
-
         child: FloatingActionButton(
           onPressed: () async {
-            LocationData? locationData = await _locationService.requestLocationPermission();
+            LocationData? locationData =
+                await _locationService.requestLocationPermission();
             if (locationData != null) {
-              setState(() {
-                currentLocation = locationData;
-                _pages[2] = LocationView(currentLocation: currentLocation!); // تحديث صفحة الموقع
-                _selectedIndex = 2; // الانتقال إلى صفحة الموقع
-              });
+              setState(
+                () {
+                  currentLocation = locationData;
+                  _pages[2] = LocationView(currentLocation: currentLocation!);
+                  _selectedIndex = 2;
+                },
+              );
             } else {
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(content: Text("Failed to get location")),
               );
             }
           },
-
-          child: Icon(Icons.location_on, size: 30, color: ColorManager.primary),
-
           backgroundColor: ColorManager.red,
+          child: Icon(Icons.location_on, size: 30, color: ColorManager.primary),
         ),
       ),
     );

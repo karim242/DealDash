@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../core/resources/color_manger/color_manager.dart';
+import '../../../../core/resources/routes_manger/routes_manager.dart';
 import '../../../../core/widget/custom_toast.dart';
 import '../cubit/signup/signup_cubit.dart';
 import '../cubit/signup/signup_state.dart';
@@ -24,7 +26,9 @@ class SignUpView extends StatelessWidget {
             BlocConsumer<SignupCubit, SignupState>(listener: (context, state) {
           if (state is SignupSuccess) {
             showToast("You are In");
-            //  GoRouter.of(context).push(RoutesNames.kRootView);
+            context.go(
+              Routes.rootViewRoute,
+            );
           } else if (state is SignupError) {
             showToast(state.errorMassage!);
           }
@@ -90,7 +94,7 @@ class SignUpView extends StatelessWidget {
                           ),
                           const SizedBox(height: 22),
 
-                          state is SignupLoding
+                          state is SignupLoading
                               ? const Center(child: CircularProgressIndicator())
                               : CustomAuthBtn(
                                   label: 'Sign Up',

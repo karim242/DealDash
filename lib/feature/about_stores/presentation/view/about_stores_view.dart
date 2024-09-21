@@ -92,67 +92,9 @@ class AboutStoresView extends StatelessWidget {
                     SizedBox(height: 32.h),
                     const HeaderText(header: "Offers"),
                     SizedBox(height: 8.h),
-                    SizedBox(
+                     SizedBox(
                       width: double.infinity,
-                      child: GridView.builder(
-                          shrinkWrap: true,
-                          physics: const NeverScrollableScrollPhysics(),
-                          gridDelegate:
-                              SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2, // Number of columns
-                            crossAxisSpacing: 10.0.w, // Spacing between columns
-                            mainAxisSpacing: 10.0.h, // Spacing between rows
-                            childAspectRatio: 1.0.w /
-                                2.3.h, // Aspect ratio of each item (width/height)
-                          ),
-                          itemCount: 10,
-                          itemBuilder: (context, index) => Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Image.asset(Assets.storesAssetsStoreOffer1),
-                                  SizedBox(height: 8.h),
-                                  Text(
-                                    "Regular Fit V-neck short sleeve T-Shirt",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 15.sp,
-                                        color: ColorManager.primary),
-                                  ),
-                                  SizedBox(height: 6.h),
-                                  Text(
-                                    "209 EGP",
-                                    style: TextStyle(
-                                        fontSize: 14.sp,
-                                        fontWeight: FontWeight.w500),
-                                  ),
-                                  Row(
-                                    children: [
-                                      Text(
-                                        "299 EGP",
-                                        style: TextStyle(
-                                          fontSize: 14.sp,
-                                          fontWeight: FontWeight.w500,
-                                          color: Colors.black.withOpacity(0.4),
-                                          decoration: TextDecoration
-                                              .lineThrough, // Add strikethrough effect
-                                          decorationColor: Colors
-                                              .grey, // Set decoration color
-                                          decorationThickness: 2, // Se
-                                        ),
-                                      ),
-                                      SizedBox(width: 8.w),
-                                      Text(
-                                        "30% Off",
-                                        style: TextStyle(
-                                          fontSize: 16.sp,
-                                          fontWeight: FontWeight.w400,
-                                          color: ColorManager.red,
-                                        ),
-                                      ),
-                                    ],
-                                  )
-                                ],
-                              )),
+                      child:  OfferGridView(offerList:store.offers ),
                     )
                   ],
                 ),
@@ -162,5 +104,85 @@ class AboutStoresView extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+class OfferGridView extends StatelessWidget {
+  const OfferGridView({
+    super.key,  this.offerList,
+  });
+final List<Offers>? offerList;
+  @override
+  Widget build(BuildContext context) {
+    return GridView.builder(
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        gridDelegate:
+            SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2, // Number of columns
+          crossAxisSpacing: 10.0.w, // Spacing between columns
+          mainAxisSpacing: 10.0.h, // Spacing between rows
+          childAspectRatio: 1.0.w /
+              2.3.h, // Aspect ratio of each item (width/height)
+        ),
+        itemCount: offerList!.length,
+        itemBuilder: (context, index) =>  OfferItem(offers:offerList![index] ,));
+  }
+}
+
+class OfferItem extends StatelessWidget {
+  const OfferItem({
+    super.key, required this.offers,
+  });
+final Offers offers;
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Image.network( offers.image!),
+            SizedBox(height: 8.h),
+            Text(
+              offers.name!,
+              style: TextStyle(
+                  fontWeight: FontWeight.w400,
+                  fontSize: 15.sp,
+                  color: ColorManager.primary),
+            ),
+            SizedBox(height: 6.h),
+            Text(
+              "209 EGP",
+              style: TextStyle(
+                  fontSize: 14.sp,
+                  fontWeight: FontWeight.w500),
+            ),
+            Row(
+              children: [
+                Text(
+                  "299 EGP",
+                  style: TextStyle(
+                    fontSize: 14.sp,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.black.withOpacity(0.4),
+                    decoration: TextDecoration
+                        .lineThrough, // Add strikethrough effect
+                    decorationColor: Colors
+                        .grey, // Set decoration color
+                    decorationThickness: 2, // Se
+                  ),
+                ),
+                SizedBox(width: 8.w),
+                Text(
+                  "30% Off",
+                  style: TextStyle(
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.w400,
+                    color: ColorManager.red,
+                  ),
+                ),
+              ],
+            )
+          ],
+        );
   }
 }

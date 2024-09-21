@@ -4,66 +4,71 @@ import 'package:dealdash/feature/auth/data/model/user_model.dart';
 import 'package:dio/dio.dart';
 
 import '../../../../core/cache_helper/cache_helper.dart';
+import '../../../../core/error/error_model.dart';
 import '../../../../core/network_helper/dio_helper.dart.dart';
 import 'auth_repo.dart';
 
-class AuthRepoImplementation implements AuthRepository {
+class AuthRepositoryImpl implements AuthRepository {
   final ApiService apiServes;
   String? token;
-  AuthRepoImplementation({required this.apiServes});
+  AuthRepositoryImpl({required this.apiServes});
 
   @override
-  Future<Either<Failure, UserModel>> signIn(
-      {required String email, required String password}) async {
-    try {
-      final response = await apiServes.post(endpoint: '/api/auth/login', data: {
-        'email': email,
-        'password': password,
-      });
-      if (response.isNotEmpty) {
-        
-         UserModel userModel = UserModel.fromJson(response);
-
-          CacheHelper.saveToken(value: userModel.token);
-        return right(userModel);
-      } else {
-        return left(ServerFailure(response['message']));
-      }
-    } catch (failure) {
-      if (failure is DioError) {
-        return left(ServerFailure(failure.toString()));
-      }
-      return left(ServerFailure(failure.toString()));
-    }
-  }
-
-  @override
-  Future<Either<Failure, UserModel>> signUp(
-      {required String email,
-      required String password,
-      required String phone,
-      required String name}) async {
+  Future<Either<ServerException, UserModel>> signIn({
+    required String email,
+    required String password,
+  }) async {
     try {
       final response = await apiServes.post(
-        endpoint: 'auth/register',
+       endpoint:  '/api/auth/signin',
         data: {
           'email': email,
           'password': password,
-          'name': name,
-          'phone': phone,
         },
       );
 
-      if (response.isNotEmpty) {
-        return right(UserModel.fromJson(response));
-      } else {
-        return left(ServerFailure(response['message']));
-      }
-    } catch (failure) {
-      if (failure is DioError) {
-        return left(ServerFailure(failure.toString()));
-      }
-      return left(ServerFailure(failure.toString()));
+      final userModel = UserModel.fromJson(response);
+      CacheHelper.saveToken(value: userModel.token);
+      return Right(userModel);
+    } on DioException catch (e) {
+      // Handle Dio-specific exceptions
+      handelDioException(e);
+      return Left(ServerException(errorModel: ErrorModel.fromJson(e.response?.data)));
+    } catch (e) {
+      // Handle any other type of exception
+      return Left(ServerException(errorModel: ErrorModel(message: 'Unknown error occurred')));
+    }
+  }
+
+
+  Future<Either<ServerException, UserModel>> signUp({
+    required String email,
+    required String password,
+    required String phone,
+    required String name,
+  }) async {
+    try {
+      final response = await apiServes.post(
+        endpoint: '/api/auth/register',
+        data: {
+          'email': email,
+          'password': password,
+          'phone': phone,
+          'name': name,
+        },
+      );
+      print(response);
+  
+      final userModel = UserModel.fromJson(response);
+      CacheHelper.saveToken(value: userModel.token);
+      return Right(userModel);
+    } on DioException catch (e) {
+      // Handle Dio-specific exceptions
+      handelDioException(e);
+      return Left(ServerException(errorModel: ErrorModel.fromJson(e.response?.data)));
+    } catch (e) {
+      // Handle any other type of exception
+      return Left(ServerException(errorModel: ErrorModel(message: 'Unknown error occurred')));
     }
   }
   

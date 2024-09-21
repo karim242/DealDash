@@ -11,4 +11,4 @@ class SignupError extends SignupState {
 
 class SignupSuccess extends SignupState {}
 
-class SignupLoding extends SignupState {}
+class SignupLoading extends SignupState {}

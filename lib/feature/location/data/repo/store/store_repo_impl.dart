@@ -2,21 +2,20 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 
 import '../../../../../core/cache_helper/cache_helper.dart';
+import '../../../../../core/error/error_model.dart';
 import '../../../../../core/error/failure.dart';
 import '../../../../../core/network_helper/dio_helper.dart.dart';
 import '../../model/store_model.dart';
 import 'store_repo.dart';
-
 class StoreRepositoryImpl implements StoreRepository {
   final ApiService apiService;
 
   StoreRepositoryImpl(this.apiService);
 
   @override
-  Future<Either<Failure, List<StoreModel>>> getNearbyStores(
+  Future<Either<ServerException, List<StoreModel>>> getNearbyStores(
       double? lat, double? long) async {
     try {
-      // استرجاع الـ token من CacheHelper
       String? token = CacheHelper.getToken();
 
       if (token != null) {
@@ -24,8 +23,8 @@ class StoreRepositoryImpl implements StoreRepository {
         final data = await apiService.getData(
           endpoint: '/api/v1/user/stores/nearby-stores',
           query: {
-            'latitude': 31.39327333,
-            'longitude': 31.03190087,
+            'latitude': lat,
+            'longitude': long,
             'radius': 10,
           },
           token: token,
@@ -39,12 +38,18 @@ class StoreRepositoryImpl implements StoreRepository {
         return Right(stores);
       } else {
         // إذا لم يتم العثور على الـ token
-        return Left(ServerFailure('Token is missing'));
+        return Left(ServerException(
+            errorModel: ErrorModel(message: 'Token is missing')));
       }
-    } on DioError catch (e) {
-      return Left(ServerFailure(e.message.toString()));
+    } on DioException catch (e) {
+      // التعامل مع DioException باستخدام handelDioException
+      handelDioException(e);
+      return Left(ServerException(
+          errorModel: ErrorModel.fromJson(e.response?.data)));
     } catch (e) {
-      return Left(ServerFailure('Unexpected error occurred'));
+      // التعامل مع أي خطأ غير متوقع
+      return Left(ServerException(
+          errorModel: ErrorModel(message: 'Unexpected error occurred')));
     }
   }
 }

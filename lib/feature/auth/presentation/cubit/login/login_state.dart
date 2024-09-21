@@ -9,6 +9,6 @@ class LoginError extends LoginState {
    LoginError(this.errorMassage);
 }
 
-class LoginLoding extends LoginState {}
+class LoginLoading extends LoginState {}
 
 class LoginSuccess extends LoginState {}

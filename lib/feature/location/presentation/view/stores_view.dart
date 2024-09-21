@@ -33,6 +33,7 @@ class StoreView extends StatelessWidget {
               itemCount: state.stores.length,
               itemBuilder: (context, index) {
                 final store = state.stores[index];
+               // print(state.stores.length);
                 return StoreCard(store: store);
               },
             );

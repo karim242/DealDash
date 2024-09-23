@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:equatable/equatable.dart';
 
 import 'error_model.dart';
 

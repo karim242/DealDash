@@ -7,7 +7,7 @@ class StoreInitial extends StoreState {}
 class StoreLoading extends StoreState {}
 
 class StoreLoaded extends StoreState {
-  final List<StoreModel> stores;
+  final List<Store> stores;
 
   StoreLoaded(this.stores);
 }

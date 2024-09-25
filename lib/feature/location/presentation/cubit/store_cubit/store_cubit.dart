@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../../core/error/error_model.dart';
 import '../../../data/repo/store/store_repo.dart';
 import 'store_state.dart';
 
@@ -15,7 +16,7 @@ class StoreCubit extends Cubit<StoreState> {
       final result = await storeRepository.getNearbyStores(lat! ,  long!);
 
       result.fold(
-        (failure) => emit(StoreError(failure.errorModel.message)),
+        (failure) => emit(StoreError(failure.errorModel!.message!)),
         (stores) => emit(StoreLoaded(stores)),
       );
     } catch (e) {

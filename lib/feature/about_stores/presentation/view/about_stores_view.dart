@@ -12,8 +12,8 @@ import 'package:go_router/go_router.dart';
 import 'package:dealdash/feature/location/data/model/store_model.dart';
 
 class AboutStoresView extends StatelessWidget {
-  const AboutStoresView({super.key, required this.store});
-  final StoreModel store;
+   AboutStoresView({super.key, required this.store, });
+  final Store store;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,7 +44,7 @@ class AboutStoresView extends StatelessWidget {
                   children: [
                     StoreName(name: store.name!),
                     SizedBox(height: 8.h),
-                    CategoryText(category: store.category!),
+                    CategoryText(category: store.category.toString()!),
                     SizedBox(height: 8.h),
                     const RateSection(rateNumber: 4.0, peopleRatedNum: 200),
                     SizedBox(height: 32.h),
@@ -88,7 +88,7 @@ class AboutStoresView extends StatelessWidget {
                     SizedBox(height: 32.h),
                     const HeaderText(header: "ADDRESS"),
                     SizedBox(height: 8.h),
-                    SideText(text: store.address!),
+                    SideText(text: store.address),
                     SizedBox(height: 32.h),
                     const HeaderText(header: "Offers"),
                     SizedBox(height: 8.h),
@@ -111,7 +111,7 @@ class OfferGridView extends StatelessWidget {
   const OfferGridView({
     super.key,  this.offerList,
   });
-final List<Offers>? offerList;
+final List<Offer>? offerList;
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
@@ -134,7 +134,7 @@ class OfferItem extends StatelessWidget {
   const OfferItem({
     super.key, required this.offers,
   });
-final Offers offers;
+final Offer offers;
   @override
   Widget build(BuildContext context) {
     return Column(

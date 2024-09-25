@@ -14,7 +14,7 @@ class AuthRepositoryImpl implements AuthRepository {
   AuthRepositoryImpl({required this.apiServes});
 
   @override
-  Future<Either<ServerException, UserModel>> signIn({
+  Future<Either<ServerException, AuthResponse>> signIn({
     required String email,
     required String password,
   }) async {
@@ -27,21 +27,18 @@ class AuthRepositoryImpl implements AuthRepository {
         },
       );
 
-      final userModel = UserModel.fromJson(response);
-      CacheHelper.saveToken(value: userModel.token);
-      return Right(userModel);
+      final authResponse = AuthResponse.fromJson(response);
+      CacheHelper.saveToken(value: authResponse.data.token);
+      return Right(authResponse);
     } on DioException catch (e) {
       // Handle Dio-specific exceptions
       handelDioException(e);
-      return Left(ServerException(errorModel: ErrorModel.fromJson(e.response?.data)));
-    } catch (e) {
-      // Handle any other type of exception
-      return Left(ServerException(errorModel: ErrorModel(message: 'Unknown error occurred')));
-    }
+      return Left(ServerException(errorModel: ErrorResponse.fromJson(e.response?.data)));
+    } 
   }
 
 
-  Future<Either<ServerException, UserModel>> signUp({
+  Future<Either<ServerException, AuthResponse>> signUp({
     required String email,
     required String password,
     required String phone,
@@ -59,17 +56,14 @@ class AuthRepositoryImpl implements AuthRepository {
       );
       print(response);
   
-      final userModel = UserModel.fromJson(response);
-      CacheHelper.saveToken(value: userModel.token);
-      return Right(userModel);
+      final authResponse = AuthResponse.fromJson(response);
+      CacheHelper.saveToken(value: authResponse.data.token);
+      return Right(authResponse);
     } on DioException catch (e) {
       // Handle Dio-specific exceptions
       handelDioException(e);
-      return Left(ServerException(errorModel: ErrorModel.fromJson(e.response?.data)));
-    } catch (e) {
-      // Handle any other type of exception
-      return Left(ServerException(errorModel: ErrorModel(message: 'Unknown error occurred')));
-    }
+      return Left(ServerException(errorModel: ErrorResponse.fromJson(e.response?.data)));
+    } 
   }
   
  

@@ -73,7 +73,7 @@ abstract class AppRouter {
     GoRoute(
       path: Routes.aboutStoreRoute,
       builder: (context, state) {
-        final store = state.extra as StoreModel;
+        final store = state.extra as Store;
          return AboutStoresView(store: store);
       }
     ),

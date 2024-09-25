@@ -4,10 +4,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 import '../../../../core/services/service_locator.dart';
-import '../../data/model/places_model.dart';
-import '../cubit/places_cubit/places_cubit.dart';
-import '../cubit/places_cubit/places_state.dart';
+import '../../data/model/store_model.dart';
 import '../cubit/store_cubit/store_cubit.dart';
+import '../cubit/store_cubit/store_state.dart';
 import 'stores_view.dart';
 
 class LocationView extends StatefulWidget {
@@ -21,7 +20,7 @@ class LocationView extends StatefulWidget {
 
 class _LocationViewState extends State<LocationView> {
   late LatLng userLocation;
-  Set<Marker> markers = {}; // Set لحفظ الـ Markers
+  Set<Marker> markers = {}; // لتخزين الـ Markers
 
   @override
   void initState() {
@@ -31,91 +30,53 @@ class _LocationViewState extends State<LocationView> {
       widget.currentLocation.longitude!,
     );
 
-    context.read<PlacesCubit>().fetchNearbyPlaces(
+    context.read<StoreCubit>().fetchNearbyStores(
           widget.currentLocation.latitude!,
           widget.currentLocation.longitude!,
         );
   }
 
-  // تحديث الـ Markers بناءً على الأماكن القادمة من PlacesCubit
-   void _updateMarkers(List<Place> places) {
-    final newMarkers = places.map((place) {
+  void _updateStoreMarkers(List<Store> stores) {
+    final newMarkers = stores.map((store) {
       return Marker(
-        markerId: MarkerId("${place.lat},${place.lng}"), // معرف فريد لكل Marker
-        position: LatLng(place.lat, place.lng), // إحداثيات المكان
-        infoWindow: InfoWindow(title: place.name), // نافذة معلومات
+        markerId: MarkerId("${store.latitude},${store.longitude}"),
+        position: LatLng(double.parse(store.latitude), double.parse(store.longitude)),
+        infoWindow: InfoWindow(title: store.name), // عرض اسم المتجر في النافذة
       );
     }).toSet();
 
-    // يتم تحديث markers بعد اكتمال بناء الواجهة
     WidgetsBinding.instance.addPostFrameCallback((_) {
       setState(() {
-        markers = newMarkers; // تحديث قائمة الـ Markers
+        markers.addAll(newMarkers); 
       });
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    // print("${widget.currentLocation.latitude}, ${widget.currentLocation.longitude}");
     return Scaffold(
       body: SafeArea(
-        child: BlocBuilder<PlacesCubit, PlacesState>(
+        child: BlocBuilder<StoreCubit, StoreState>(
           builder: (context, state) {
-            if (state is PlacesLoading) {
-              return Center(child: CircularProgressIndicator());
-            } else if (state is PlacesLoaded) {
-              // تحديث Markers عند تحميل الأماكن
-              _updateMarkers(state.places);
+            if (state is StoreLoading) {
+              return Center(child: CircularProgressIndicator()); // إظهار مؤشر تحميل
+            } else if (state is StoreLoaded) {
+              // تحديث Markers عند تحميل المتاجر
+              _updateStoreMarkers(state.stores);
 
-              return Stack(
-                children: [
-                  GoogleMap(
-                    initialCameraPosition: CameraPosition(
-                      target: userLocation,
-                      zoom: 16.0,
-                    ),
-                    markers: markers, // إضافة الـ Markers للخريطة
-                    myLocationEnabled: true,
-                  ),
-                  Positioned(
-                    bottom: 30,
-                    left: 20,
-                    child: Container(
-                      height: 60,
-                      width: 60,
-                      decoration: BoxDecoration(
-                        color: ColorManager.yellow,
-                        borderRadius: BorderRadius.circular(16.0),
-                      ),
-                      padding: const EdgeInsets.all(8),
-                      child: IconButton(
-                        color: ColorManager.primary,
-                        onPressed: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => BlocProvider(
-                                create: (_) => sl<StoreCubit>()
-                                  ..fetchNearbyStores(
-                                      widget.currentLocation.latitude,
-                                      widget.currentLocation.longitude),
-                                child: StoreView(
-                                    currentLocation: widget.currentLocation),
-                              ),
-                            ),
-                          );
-                        },
-                        icon: Icon(Icons.storefront_sharp),
-                      ),
-                    ),
-                  ),
-                ],
+              return GoogleMap(
+                initialCameraPosition: CameraPosition(
+                  target: userLocation,
+                  zoom: 16.0,
+                ),
+                markers: markers, // عرض جميع الـ Markers
+                myLocationEnabled: true,
               );
-            } else if (state is PlacesError) {
-              return Center(child: Text(state.message));
+            } else if (state is StoreError) {
+              return Center(child: Text(state.message)); // عرض رسالة الخطأ
             }
 
-            return Center(child: Text('No data available'));
+            return Center(child: Text('No data available')); // في حال عدم وجود بيانات
           },
         ),
       ),

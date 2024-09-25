@@ -13,43 +13,39 @@ class StoreRepositoryImpl implements StoreRepository {
   StoreRepositoryImpl(this.apiService);
 
   @override
-  Future<Either<ServerException, List<StoreModel>>> getNearbyStores(
+  Future<Either<ServerException, List<Store>>> getNearbyStores(
       double? lat, double? long) async {
     try {
       String? token = CacheHelper.getToken();
 
-      if (token != null) {
-        // طلب البيانات باستخدام الـ token
-        final data = await apiService.getData(
+     
+        
+            final data = await apiService.getData(
           endpoint: '/api/v1/user/stores/nearby-stores',
           query: {
             'latitude': lat,
             'longitude': long,
-            'radius': 10,
+            'radius': 1000,
           },
           token: token,
         );
-
-        // تحويل البيانات إلى قائمة من StoreModel
-        final List<StoreModel> stores = (data as List)
-            .map((storeJson) => StoreModel.fromJson(storeJson))
-            .toList();
+final StoreModel storesResponse = StoreModel.fromJson(data);
+print(storesResponse.success);
+print(storesResponse.message);
+print(storesResponse.data);
+     
+    final List<Store> stores = storesResponse.data
+    .map((store) => Store.fromJson(store.toJson()))
+    .toList();
 
         return Right(stores);
-      } else {
-        // إذا لم يتم العثور على الـ token
-        return Left(ServerException(
-            errorModel: ErrorModel(message: 'Token is missing')));
-      }
+      
+       
     } on DioException catch (e) {
       // التعامل مع DioException باستخدام handelDioException
       handelDioException(e);
       return Left(ServerException(
-          errorModel: ErrorModel.fromJson(e.response?.data)));
-    } catch (e) {
-      // التعامل مع أي خطأ غير متوقع
-      return Left(ServerException(
-          errorModel: ErrorModel(message: 'Unexpected error occurred')));
-    }
+          errorModel: ErrorResponse.fromJson(e.response?.data)));
+    } 
   }
 }

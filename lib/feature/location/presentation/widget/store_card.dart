@@ -6,7 +6,7 @@ import 'package:go_router/go_router.dart';
 import '../../../../core/resources/routes_manger/routes_manager.dart';
 
 class StoreCard extends StatelessWidget {
-  final StoreModel store;
+  final Store store;
 
   const StoreCard({super.key, required this.store});
 

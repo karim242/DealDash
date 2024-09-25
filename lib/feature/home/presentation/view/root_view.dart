@@ -1,10 +1,13 @@
 import 'package:dealdash/feature/home/presentation/view/home_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:location/location.dart';
 
 import '../../../../core/resources/color_manger/color_manager.dart';
 import '../../../../core/services/location_service.dart';
+import '../../../../core/services/service_locator.dart';
 import '../../../favoruite/presentation/view/favoruite_view.dart';
+import '../../../location/presentation/cubit/store_cubit/store_cubit.dart';
 import '../../../location/presentation/view/location_view.dart';
 import '../../../notification/presentation/view/notification_view.dart';
 import '../../../profile/presentation/view/profile_view.dart';
@@ -100,7 +103,10 @@ class _RootViewState extends State<RootView> {
               setState(
                 () {
                   currentLocation = locationData;
-                  _pages[2] = LocationView(currentLocation: currentLocation!);
+                  _pages[2] = BlocProvider(
+                    create: (context) => sl<StoreCubit>(),
+                    child: LocationView(currentLocation: currentLocation!),
+                  );
                   _selectedIndex = 2;
                 },
               );

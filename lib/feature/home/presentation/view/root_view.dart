@@ -37,7 +37,7 @@ class _RootViewState extends State<RootView> {
           ? LocationView(currentLocation: currentLocation!)
           : Container(),
       const NotificationView(),
-      const ProfileView(),
+       ProfileView(),
     ];
   }
 

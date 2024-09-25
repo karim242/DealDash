@@ -29,6 +29,9 @@ class AuthRepositoryImpl implements AuthRepository {
 
       final authResponse = AuthResponse.fromJson(response);
       CacheHelper.saveToken(value: authResponse.data.token);
+      CacheHelper.saveString( key: 'user_name',value: authResponse.data.user.name,);
+      CacheHelper.saveString( key: 'user_email',value: authResponse.data.user.email,);
+      CacheHelper.saveString( key: 'user_phone',value: authResponse.data.user.phone,);
       return Right(authResponse);
     } on DioException catch (e) {
       // Handle Dio-specific exceptions
@@ -57,7 +60,12 @@ class AuthRepositoryImpl implements AuthRepository {
       print(response);
   
       final authResponse = AuthResponse.fromJson(response);
+      
       CacheHelper.saveToken(value: authResponse.data.token);
+      CacheHelper.saveString( key: 'user_name',value: authResponse.data.user.name,);
+      CacheHelper.saveString( key: 'user_email',value: authResponse.data.user.email,);
+      CacheHelper.saveString( key: 'user_phone',value: authResponse.data.user.phone,);
+
       return Right(authResponse);
     } on DioException catch (e) {
       // Handle Dio-specific exceptions

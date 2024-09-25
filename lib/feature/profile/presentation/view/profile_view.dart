@@ -2,21 +2,19 @@ import 'package:dealdash/core/resources/color_manger/color_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../core/cache_helper/cache_helper.dart';
+
+
+
 
 class ProfileView extends StatelessWidget {
-  const ProfileView({super.key});
-
+   ProfileView({super.key});
+final String userName = CacheHelper.getString(key: "user_name")!;
+final String userEmail = CacheHelper.getString(key: "user_email")!;
+final String userPhone = CacheHelper.getString(key: "user_phone")!;
   @override
   Widget build(BuildContext context) {
-    return const ProfileScreen();
-  }
-}
-
-class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
+    
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -58,26 +56,26 @@ class ProfileScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 16),
-              const Text(
-                'Hend',
-                style: TextStyle(
+               Text(
+                userName,
+                style: const TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                   color: Colors.black,
                 ),
               ),
               const SizedBox(height: 8),
-              const Text(
-                '020 0100000000',
-                style: TextStyle(
+               Text(
+                userPhone,
+                style: const TextStyle(
                   fontSize: 14,
                   color: Colors.grey,
                 ),
               ),
               const SizedBox(height: 4),
-              const Text(
-                'hend@gmail.com',
-                style: TextStyle(
+               Text(
+                userEmail,
+                style: const TextStyle(
                   fontSize: 14,
                   color: Colors.grey,
                 ),

@@ -10,5 +10,12 @@ class CacheHelper{
   }
   static String? getToken(){
     return sharedPreferences.getString('auth_token');
+
   }
-}
+      static void saveString({required String key, required String value}){
+    sharedPreferences.setString(key, value);
+  }
+  static String? getString({required String key,}){
+    return sharedPreferences.getString(key);
+  }
+  }

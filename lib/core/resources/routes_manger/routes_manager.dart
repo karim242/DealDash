@@ -4,6 +4,7 @@ import 'package:dealdash/feature/auth/presentation/cubit/login/login_cubit.dart'
 import 'package:dealdash/feature/auth/presentation/views/signup_view.dart';
 import 'package:dealdash/feature/home/presentation/view/root_view.dart';
 import 'package:dealdash/feature/onbording_splash/presentation/view/onboarding_view.dart';
+import 'package:dealdash/feature/settings/presentation/view/settings_view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:go_router/go_router.dart';
@@ -25,6 +26,7 @@ class Routes {
   static const String locationRoute = '/location_view';
 
   static const String aboutStoreRoute = '/aboutStoreView';
+  static const String settingsRoute = '/settingsView';
 }
 
 
@@ -76,6 +78,10 @@ abstract class AppRouter {
         final store = state.extra as Store;
          return AboutStoresView(store: store);
       }
+    ),
+    GoRoute(
+      path: Routes.settingsRoute,
+      builder: (context, state) =>  const SettingsView(),
     ),
   ]);
 }

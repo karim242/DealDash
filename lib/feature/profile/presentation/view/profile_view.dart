@@ -1,20 +1,18 @@
 import 'package:dealdash/core/resources/color_manger/color_manager.dart';
+import 'package:dealdash/core/resources/routes_manger/routes_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../core/cache_helper/cache_helper.dart';
 
-
-
-
 class ProfileView extends StatelessWidget {
-   ProfileView({super.key});
-final String userName = CacheHelper.getString(key: "user_name")!;
-final String userEmail = CacheHelper.getString(key: "user_email")!;
-final String userPhone = CacheHelper.getString(key: "user_phone")!;
+  ProfileView({super.key});
+  final String userName = CacheHelper.getString(key: "user_name")!;
+  final String userEmail = CacheHelper.getString(key: "user_email")!;
+  final String userPhone = CacheHelper.getString(key: "user_phone")!;
   @override
   Widget build(BuildContext context) {
-    
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -35,8 +33,8 @@ final String userPhone = CacheHelper.getString(key: "user_phone")!;
         child: SingleChildScrollView(
           child: Column(
             children: [
-               SizedBox(height: 20.h),
-          
+              SizedBox(height: 20.h),
+
               // Profile Picture and Info
               CircleAvatar(
                 radius: 50,
@@ -56,7 +54,7 @@ final String userPhone = CacheHelper.getString(key: "user_phone")!;
                 ),
               ),
               const SizedBox(height: 16),
-               Text(
+              Text(
                 userName,
                 style: const TextStyle(
                   fontSize: 18,
@@ -65,7 +63,7 @@ final String userPhone = CacheHelper.getString(key: "user_phone")!;
                 ),
               ),
               const SizedBox(height: 8),
-               Text(
+              Text(
                 userPhone,
                 style: const TextStyle(
                   fontSize: 14,
@@ -73,7 +71,7 @@ final String userPhone = CacheHelper.getString(key: "user_phone")!;
                 ),
               ),
               const SizedBox(height: 4),
-               Text(
+              Text(
                 userEmail,
                 style: const TextStyle(
                   fontSize: 14,
@@ -81,14 +79,36 @@ final String userPhone = CacheHelper.getString(key: "user_phone")!;
                 ),
               ),
               const SizedBox(height: 30),
-          
+
               // Menu Items
-              _buildMenuItem(Icons.lock_outline, 'Privacy Policy'),
-              _buildMenuItem(Icons.info_outline, 'About'),
-              _buildMenuItem(Icons.help_outline, 'Help'),
-              _buildMenuItem(Icons.settings_outlined, 'Settings'),
-              _buildMenuItem(Icons.logout_outlined, 'Log out'),
-          
+              _buildMenuItem(
+                icon: Icons.lock_outline,
+                title: "Privacy Policy",
+                onTap: () {},
+              ),
+              _buildMenuItem(
+                icon: Icons.info_outline,
+                title: 'About',
+                onTap: () {},
+              ),
+              _buildMenuItem(
+                icon: Icons.help_outline,
+                title: 'Help',
+                onTap: () {},
+              ),
+              _buildMenuItem(
+                icon: Icons.settings_outlined,
+                title: 'Settings',
+                onTap: () {
+                  GoRouter.of(context).push(Routes.settingsRoute);
+                },
+              ),
+              _buildMenuItem(
+                icon: Icons.logout_outlined,
+                title: 'Log out',
+                onTap: () {},
+              ),
+
               // const Spacer(),
             ],
           ),
@@ -97,36 +117,41 @@ final String userPhone = CacheHelper.getString(key: "user_phone")!;
     );
   }
 
-  Widget _buildMenuItem(IconData icon, String title) {
+  Widget _buildMenuItem(
+      {required IconData icon,
+      required String title,
+      required final VoidCallback onTap}) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 12),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Row(
+        padding: const EdgeInsets.symmetric(vertical: 12),
+        child: InkWell(
+          onTap: onTap,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Container(
-                padding: const EdgeInsets.all(12),
-                decoration: BoxDecoration(
-                  color: ColorManager.yellow,
-                  shape: BoxShape.circle,
-                ),
-                child: Icon(icon, color: ColorManager.red, size: 24),
+              Row(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(12),
+                    decoration: BoxDecoration(
+                      color: ColorManager.yellow,
+                      shape: BoxShape.circle,
+                    ),
+                    child: Icon(icon, color: ColorManager.red, size: 24),
+                  ),
+                  const SizedBox(width: 8),
+                  Text(
+                    title,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      color: Colors.black,
+                    ),
+                  ),
+                ],
               ),
-              const SizedBox(width: 8),
-              Text(
-                title,
-                style: const TextStyle(
-                  fontSize: 16,
-                  color: Colors.black,
-                ),
-              ),
+              const SizedBox(width: 16),
+              const Icon(Icons.chevron_right, color: Colors.grey, size: 24),
             ],
           ),
-          const SizedBox(width: 16),
-          const Icon(Icons.chevron_right, color: Colors.grey, size: 24),
-        ],
-      ),
-    );
+        ));
   }
 }

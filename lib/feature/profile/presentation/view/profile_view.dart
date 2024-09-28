@@ -91,7 +91,9 @@ class ProfileView extends StatelessWidget {
               _buildMenuItem(
                 icon: Icons.info_outline,
                 title: 'About',
-                onTap: () {},
+                onTap: () {
+                  GoRouter.of(context).push(Routes.aboutUsRoute);
+                },
               ),
               _buildMenuItem(
                 icon: Icons.help_outline,

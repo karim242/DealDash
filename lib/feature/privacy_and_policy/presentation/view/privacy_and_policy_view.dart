@@ -1,5 +1,5 @@
 import 'package:dealdash/core/resources/color_manger/color_manager.dart';
-import 'package:dealdash/core/widget/custome_appbar.dart';
+import 'package:dealdash/core/widget/custom_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -81,12 +81,10 @@ We are not responsible for external sites linked through the app. Review their p
 10. Policy Updates
 We may update this policy periodically. Changes will be posted in the app or communicated to you.
 
-This version is streamlined for readability on a mobile app screen and easy navigation. Key sections are separated by line breaks, ensuring clarity and smooth scrolling
-
 ''',
             style: TextStyle(
               fontWeight: FontWeight.w400,
-              fontSize: 14,
+              fontSize: 14.sp,
               color: ColorManager.primary
             ),
           ),

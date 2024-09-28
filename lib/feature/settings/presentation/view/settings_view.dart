@@ -1,4 +1,4 @@
-import 'package:dealdash/core/widget/custome_appbar.dart';
+import 'package:dealdash/core/widget/custom_appbar.dart';
 import 'package:dealdash/feature/settings/presentation/widgets/language_drop_down.dart';
 import 'package:dealdash/feature/settings/presentation/widgets/setting_item.dart';
 import 'package:dealdash/feature/settings/presentation/widgets/switch_button.dart';

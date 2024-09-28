@@ -84,7 +84,9 @@ class ProfileView extends StatelessWidget {
               _buildMenuItem(
                 icon: Icons.lock_outline,
                 title: "Privacy Policy",
-                onTap: () {},
+                onTap: () {
+                  GoRouter.of(context).push(Routes.privacyAndPolicyRoute);
+                },
               ),
               _buildMenuItem(
                 icon: Icons.info_outline,

@@ -25,7 +25,7 @@ class _LanguageDropDownState extends State<LanguageDropDown> {
       value: selectedLanguage,
       icon: const Icon(Icons.arrow_drop_down),
       iconSize: 24,
-      style:  TextStyle(color: Colors.black, fontSize: 18.sp),
+      style:  TextStyle(fontSize: 18.sp),
       onChanged: (String? newValue) {
         setState(() {
           selectedLanguage = newValue!;

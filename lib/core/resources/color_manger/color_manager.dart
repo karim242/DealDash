@@ -7,7 +7,40 @@ class ColorManager{
   static Color yellow = const Color(0XFFf9bc60);
   static Color red = const Color(0XFFe16162);
   
+}
 
+class ThemeManager {
+    static final ValueNotifier<ThemeMode> themeNotifier = ValueNotifier(ThemeMode.light);
 
+  static ThemeData lightTheme = ThemeData(
+    brightness: Brightness.light,
+    primaryColor: ColorManager.primary,
+    scaffoldBackgroundColor: ColorManager.gray,
+    appBarTheme: AppBarTheme(
+      backgroundColor: ColorManager.primary,
+      foregroundColor: Colors.white,
+    ),
+    
+    buttonTheme: ButtonThemeData(
+      buttonColor: ColorManager.yellow,
+      textTheme: ButtonTextTheme.primary,
+    ),
+    
+  );
 
+  static ThemeData darkTheme = ThemeData(
+    brightness: Brightness.dark,
+    primaryColor: ColorManager.primary,
+    scaffoldBackgroundColor: ColorManager.gray.withOpacity(0.1),
+    appBarTheme: AppBarTheme(
+      backgroundColor: ColorManager.primary,
+      foregroundColor: Colors.white,
+    ),
+   
+    buttonTheme: ButtonThemeData(
+      buttonColor: ColorManager.red,
+      textTheme: ButtonTextTheme.primary,
+    ),
+  
+  );
 }

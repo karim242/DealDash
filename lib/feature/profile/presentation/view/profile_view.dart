@@ -14,7 +14,7 @@ class ProfileView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      // backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -22,7 +22,7 @@ class ProfileView extends StatelessWidget {
         title: const Text(
           'Profile',
           style: TextStyle(
-            color: Colors.black,
+            // color: Colors.black,
             fontSize: 20,
             fontWeight: FontWeight.bold,
           ),
@@ -46,7 +46,7 @@ class ProfileView extends StatelessWidget {
                   child: Align(
                     alignment: Alignment.bottomRight,
                     child: CircleAvatar(
-                      backgroundColor: Colors.white,
+                     // backgroundColor: Colors.white,
                       radius: 12,
                       child: Icon(Icons.edit, size: 15, color: Colors.orange),
                     ),
@@ -59,7 +59,7 @@ class ProfileView extends StatelessWidget {
                 style: const TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
-                  color: Colors.black,
+                 // color: Colors.black,
                 ),
               ),
               const SizedBox(height: 8),
@@ -67,7 +67,7 @@ class ProfileView extends StatelessWidget {
                 userPhone,
                 style: const TextStyle(
                   fontSize: 14,
-                  color: Colors.grey,
+                //  color: Colors.grey,
                 ),
               ),
               const SizedBox(height: 4),
@@ -75,7 +75,7 @@ class ProfileView extends StatelessWidget {
                 userEmail,
                 style: const TextStyle(
                   fontSize: 14,
-                  color: Colors.grey,
+                 // color: Colors.grey,
                 ),
               ),
               const SizedBox(height: 30),
@@ -147,7 +147,7 @@ class ProfileView extends StatelessWidget {
                     title,
                     style: const TextStyle(
                       fontSize: 16,
-                      color: Colors.black,
+                      //color: Colors.black,
                     ),
                   ),
                 ],

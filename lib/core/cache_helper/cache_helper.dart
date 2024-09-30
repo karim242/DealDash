@@ -18,4 +18,12 @@ class CacheHelper{
   static String? getString({required String key,}){
     return sharedPreferences.getString(key);
   }
+
+  static Future<void> saveThemeMode(bool isDarkMode) async {
+    await sharedPreferences.setBool('is_dark_mode', isDarkMode);
+  }
+
+  static bool? getThemeMode() {
+    return sharedPreferences.getBool('is_dark_mode');
+  }
   }

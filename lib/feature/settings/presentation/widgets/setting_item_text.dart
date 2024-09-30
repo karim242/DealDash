@@ -11,7 +11,7 @@ class SettingItemText extends StatelessWidget {
     return Text(
       title,
       style: TextStyle(
-          fontSize: 16.sp, color: Colors.black, fontWeight: FontWeight.w600),
+          fontSize: 16.sp, fontWeight: FontWeight.w600),
     );
   }
 }

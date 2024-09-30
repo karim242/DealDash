@@ -205,20 +205,25 @@ class _RootViewState extends State<RootView> {
 
   @override
   Widget build(BuildContext context) {
+       final isDarkMode = Theme.of(context).brightness == Brightness.dark;
+
+    final backgroundColor = isDarkMode ? ColorManager.gray.withOpacity(0.2) : ColorManager.gray;
+    final color = isDarkMode ? ColorManager.whitGreen : ColorManager.primary;
+    final activeColor = isDarkMode ? ColorManager.red : ColorManager.yellow;
+
     return Scaffold(
       body: _pages[_selectedIndex],
       bottomNavigationBar: ConvexAppBar(
         style: TabStyle.fixedCircle,
-       // height:60,
-     //  curveSize:10,
-       cornerRadius:16,
-        backgroundColor: ColorManager.gray,
-        color: ColorManager.primary,
-        activeColor: ColorManager.yellow,
+        cornerRadius: 16,
+        backgroundColor: backgroundColor, 
+        color: color, 
+        activeColor: activeColor,
+        shadowColor:ColorManager.primary,
         items: const [
           TabItem(icon: Icons.home, title: 'Home'),
           TabItem(icon: Icons.favorite, title: 'Favorite'),
-          TabItem(icon: Icons.location_on),  // أيقونة الموقع في المنتصف
+          TabItem(icon: Icons.location_on,),  
           TabItem(icon: Icons.notifications, title: 'Notify'),
           TabItem(icon: Icons.person, title: 'Profile'),
         ],

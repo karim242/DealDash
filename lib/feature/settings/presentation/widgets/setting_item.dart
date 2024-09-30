@@ -12,22 +12,28 @@ class SettingItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  SizedBox(
-      width: double.infinity,
-      child: Row(
-        children: [
-          if(isPreIcon)
-            Row(
-              children: [
-                Icon(iconData),
-                SizedBox(width: 4.w),
-              ],
-            ),
-          SettingItemText(title: itemTitle),
-          const Spacer(),
-          sideSettingWidget,
-        ],
-      ),
+    return  Column(
+      children: [
+        Container(
+          width: double.infinity,
+          padding: EdgeInsetsDirectional.symmetric(vertical: 8.h),
+          child: Row(
+            children: [
+              if(isPreIcon)
+                Row(
+                  children: [
+                    Icon(iconData),
+                    SizedBox(width: 4.w),
+                  ],
+                ),
+              SettingItemText(title: itemTitle),
+              const Spacer(),
+              sideSettingWidget,
+            ],
+          ),
+        ),
+        const Divider(),
+      ],
     );
   }
 }

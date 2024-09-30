@@ -38,8 +38,8 @@ class _LanguageDropDownState extends State<LanguageDropDown> {
             children: [
               Image.asset(
                 language['flag']!,
-                width: 26,
-                height: 24,
+                width: 26.w,
+                height: 24.h,
                 fit: BoxFit.contain,
               ),
               SizedBox(width: 10.w), // Space between flag and text

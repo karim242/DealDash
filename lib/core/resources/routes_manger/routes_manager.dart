@@ -1,8 +1,9 @@
 import 'package:dealdash/core/services/service_locator.dart';
-import 'package:dealdash/feature/about/presentation/view/about_us_view.dart';
 import 'package:dealdash/feature/about_stores/presentation/view/about_stores_view.dart';
+import 'package:dealdash/feature/about_us/presentation/view/about_us_view.dart';
 import 'package:dealdash/feature/auth/presentation/cubit/login/login_cubit.dart';
 import 'package:dealdash/feature/auth/presentation/views/signup_view.dart';
+import 'package:dealdash/feature/change_password/presentation/view/change_password_view.dart';
 import 'package:dealdash/feature/home/presentation/view/root_view.dart';
 import 'package:dealdash/feature/onbording_splash/presentation/view/onboarding_view.dart';
 import 'package:dealdash/feature/privacy_and_policy/presentation/view/privacy_and_policy_view.dart';
@@ -31,6 +32,7 @@ class Routes {
   static const String settingsRoute = '/settingsView';
   static const String privacyAndPolicyRoute = '/privacyAndPolicyView';
   static const String aboutUsRoute = '/aboutUsView';
+  static const String changePasswordRoute = '/changePasswordView';
 }
 
 
@@ -94,6 +96,10 @@ abstract class AppRouter {
     GoRoute(
       path: Routes.aboutUsRoute,
       builder: (context, state) =>  const AboutUsView(),
+    ),
+    GoRoute(
+      path: Routes.changePasswordRoute,
+      builder: (context, state) =>   ChangePasswordView(),
     ),
   ]);
 }

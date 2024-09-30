@@ -16,23 +16,20 @@ class StoreRepositoryImpl implements StoreRepository {
   Future<Either<ServerException, List<Store>>> getNearbyStores(
       double? lat, double? long) async {
     try {
-      String? token = CacheHelper.getToken();
-
-     
-        
+      String? token = CacheHelper.getToken();  
             final data = await apiService.getData(
           endpoint: '/api/v1/user/stores/nearby-stores',
           query: {
-            'latitude': lat,
+            'latitude':lat ,
             'longitude': long,
-            'radius': 1000,
+            'radius': 2,
           },
           token: token,
         );
 final StoreModel storesResponse = StoreModel.fromJson(data);
-print(storesResponse.success);
-print(storesResponse.message);
-print(storesResponse.data);
+        // print(storesResponse.success);
+        // print(storesResponse.message);
+        // print(storesResponse.data);
      
     final List<Store> stores = storesResponse.data
     .map((store) => Store.fromJson(store.toJson()))

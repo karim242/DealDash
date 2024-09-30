@@ -1,6 +1,9 @@
+import 'package:dealdash/feature/home/presentation/control/category/category_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/resources/strings_manger/strings_manager.dart';
+import '../../../../core/services/service_locator.dart';
 import '../../data/data.dart';
 import '../widget/all_category_widget.dart';
 import '../widget/custom_baner.dart';

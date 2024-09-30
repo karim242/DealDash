@@ -1,11 +1,11 @@
 import 'package:dealdash/core/resources/color_manger/color_manager.dart';
-import 'package:dealdash/feature/home/presentation/control/category_model.dart';
+import 'package:dealdash/feature/home/presentation/control/category_static_model.dart';
 import 'package:flutter/material.dart';
 
 import 'list_top_offer_addis_details_widget.dart';
 
 class CategoryWidget extends StatelessWidget {
-  final CategoryModel categoryModel;
+  final CategoryStaticModel categoryModel;
   final List list;
 
   const CategoryWidget({super.key, required this.categoryModel, required this.list});

@@ -1,8 +1,12 @@
+import 'package:dealdash/core/services/service_locator.dart';
+import 'package:dealdash/feature/home/presentation/control/category/category_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/resources/color_manger/color_manager.dart';
 import '../../data/data.dart';
 import '../view/category_screen.dart';
+
 class AllCategoryWidget extends StatelessWidget {
   const AllCategoryWidget({
     super.key,
@@ -15,16 +19,16 @@ class AllCategoryWidget extends StatelessWidget {
         Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (_) => CategoryScreen(
-                  list: listCategory,
-                )));
+                builder: (_) => BlocProvider(
+                        create: (context) => sl<CategoryCubit>()..fetchCategories(),
+                      child: CategoryScreen(),
+                    )));
       },
       child: Container(
         margin: const EdgeInsets.symmetric(horizontal: 5),
         width: MediaQuery.of(context).size.width * .3,
         height: MediaQuery.of(context).size.width * .28,
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(12)),
+        decoration: BoxDecoration(borderRadius: BorderRadius.circular(12)),
         child: Column(
           children: [
             Icon(Icons.view_cozy, color: ColorManager.primary, size: 60),

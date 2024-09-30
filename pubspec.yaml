@@ -13,12 +13,13 @@ dependencies:
   card_swiper: ^3.0.1
   carousel_slider: ^5.0.0
   conditional_builder_null_safety: ^0.0.6
+  convex_bottom_bar: ^3.2.0
   cupertino_icons: ^1.0.2
   dartz: ^0.10.1
   dio: ^5.7.0
   easy_localization: ^3.0.7
   equatable: ^2.0.5
-  firebase_core: 
+  firebase_core: null
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.6

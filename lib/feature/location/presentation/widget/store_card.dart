@@ -33,7 +33,7 @@ class StoreCard extends StatelessWidget {
                     topRight: Radius.circular(15),
                   ),
                   child: Image.network(
-                    store.image ?? 'https://media.istockphoto.com/id/681622484/photo/concrete-wall-shiny-smooth-backgrounds-white-textured.jpg?s=2048x2048&w=is&k=20&c=87J5-OznIqEEKD923thUgWZBNIiAD4oDVAmHSQYLr1o=',
+                     store.image?? 'https://media.istockphoto.com/id/681622484/photo/concrete-wall-shiny-smooth-backgrounds-white-textured.jpg?s=2048x2048&w=is&k=20&c=87J5-OznIqEEKD923thUgWZBNIiAD4oDVAmHSQYLr1o=',
                      height: 200,
                     width: double.infinity,
                     fit: BoxFit.fill,
@@ -57,7 +57,7 @@ class StoreCard extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(10.0),
               child: Text(
-                store.name!,
+                store.name,
                 style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
@@ -77,7 +77,7 @@ class StoreCard extends StatelessWidget {
                   ),
                   // Offers
                   Text(
-                    'Offer: ${store.offers!.length}',
+                    'Offer: ${store.offers.length}',
                     style: TextStyle(fontSize: 16, color: ColorManager.red),
                   ),
                 ],

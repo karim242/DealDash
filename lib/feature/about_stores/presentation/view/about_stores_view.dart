@@ -5,7 +5,6 @@ import 'package:dealdash/feature/about_stores/presentation/widgets/rate_section.
 import 'package:dealdash/feature/about_stores/presentation/widgets/side_text.dart';
 import 'package:dealdash/feature/about_stores/presentation/widgets/store_icon_buttons.dart';
 import 'package:dealdash/feature/about_stores/presentation/widgets/store_name.dart';
-import 'package:dealdash/generated/assets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -26,7 +25,7 @@ class AboutStoresView extends StatelessWidget {
               Stack(
                 children: [
                   Image.network(
-                    store.image ??
+                     store.image ??
                         'https://media.istockphoto.com/id/681622484/photo/concrete-wall-shiny-smooth-backgrounds-white-textured.jpg?s=2048x2048&w=is&k=20&c=87J5-OznIqEEKD923thUgWZBNIiAD4oDVAmHSQYLr1o=',
                   ),
                   IconButton(
@@ -50,7 +49,7 @@ class AboutStoresView extends StatelessWidget {
                     SizedBox(height: 32.h),
                     const HeaderText(header: "About"),
                     SizedBox(height: 8.h),
-                    SideText(text: store.about!),
+                    SideText(text: store.about),
                     SizedBox(height: 32.h),
                     SizedBox(
                       height: 85.h,
@@ -120,9 +119,9 @@ final List<Offer>? offerList;
         gridDelegate:
             SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2, // Number of columns
-          crossAxisSpacing: 10.0.w, // Spacing between columns
-          mainAxisSpacing: 10.0.h, // Spacing between rows
-          childAspectRatio: 1.0.w /
+          crossAxisSpacing: 12.0.w, // Spacing between columns
+          mainAxisSpacing: .0.h, // Spacing between rows
+          childAspectRatio: 1.6.w /
               2.3.h, // Aspect ratio of each item (width/height)
         ),
         itemCount: offerList!.length,
@@ -138,12 +137,19 @@ final Offer offers;
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Image.network( offers.image!),
+            ClipRRect(
+              borderRadius: BorderRadius.circular(8.0),
+              child: Image.network( 
+                //offers.image??   
+                                   'https://media.istockphoto.com/id/681622484/photo/concrete-wall-shiny-smooth-backgrounds-white-textured.jpg?s=2048x2048&w=is&k=20&c=87J5-OznIqEEKD923thUgWZBNIiAD4oDVAmHSQYLr1o=',
+              ),
+            ),
             SizedBox(height: 8.h),
             Text(
-              offers.name!,
+              offers.name,
               style: TextStyle(
                   fontWeight: FontWeight.w400,
                   fontSize: 15.sp,

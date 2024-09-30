@@ -1,6 +1,6 @@
 import '../../../core/resources/image_manger/image_manger.dart';
 import '../../../core/resources/strings_manger/strings_manager.dart';
-import '../presentation/control/category_model.dart';
+import '../presentation/control/category_static_model.dart';
 import '../presentation/control/product_model.dart';
 
 //لازم يكون عدد لايست الكاتوجرى مساوى لعدد ليست المنتجات
@@ -10,20 +10,20 @@ List<String> imageListTopAddis = [
   ImageManger.imageMold,
 
 ];
-List<CategoryModel> listCategory = [
-  CategoryModel(
+List<CategoryStaticModel> listCategory = [
+  CategoryStaticModel(
     title:AppStrings.superMarket,
     image: ImageManger.imageSm1,
   ),
-  CategoryModel(
+  CategoryStaticModel(
     title: AppStrings.clothes,
     image: ImageManger.imageCloth,
   ),
-  CategoryModel(
+  CategoryStaticModel(
     title: AppStrings.deviceHome,
     image: ImageManger.imageHomeDevice,
   ),
-  CategoryModel(
+  CategoryStaticModel(
     title: AppStrings.mobile,
     image: ImageManger.imageMobil,
   ),

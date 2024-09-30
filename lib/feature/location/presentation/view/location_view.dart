@@ -64,13 +64,48 @@ class _LocationViewState extends State<LocationView> {
               // تحديث Markers عند تحميل المتاجر
               _updateStoreMarkers(state.stores);
 
-              return GoogleMap(
-                initialCameraPosition: CameraPosition(
-                  target: userLocation,
-                  zoom: 16.0,
-                ),
-                markers: markers, // عرض جميع الـ Markers
-                myLocationEnabled: true,
+              return Stack(
+                children: [
+                  GoogleMap(
+                    initialCameraPosition: CameraPosition(
+                      target: userLocation,
+                      zoom: 16.0,
+                    ),
+                    markers: markers, // عرض جميع الـ Markers
+                    myLocationEnabled: true,
+                  ),
+                   Positioned(
+                    bottom: 30,
+                    left: 20,
+                    child: Container(
+                      height: 60,
+                      width: 60,
+                      decoration: BoxDecoration(
+                        color: ColorManager.yellow,
+                        borderRadius: BorderRadius.circular(16.0),
+                      ),
+                      padding: const EdgeInsets.all(8),
+                      child: IconButton(
+                        color: ColorManager.primary,
+                        onPressed: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => BlocProvider(
+                                create: (_) => sl<StoreCubit>()
+                                   ..fetchNearbyStores(
+                                      widget.currentLocation.latitude,
+                                      widget.currentLocation.longitude),
+                                child: StoreView(
+                                    currentLocation: widget.currentLocation),
+                              ),
+                            ),
+                          );
+                        },
+                        icon: Icon(Icons.storefront_sharp),
+                      ),
+                    ),
+                  ),
+                ],
               );
             } else if (state is StoreError) {
               return Center(child: Text(state.message)); // عرض رسالة الخطأ

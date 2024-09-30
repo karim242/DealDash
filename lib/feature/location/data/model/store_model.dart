@@ -34,7 +34,7 @@ class Store {
   final int id;
   final String name;
   final String category;
-  final String image;
+   String? image;
   final String address;
   final String about;
   final String? phone;
@@ -48,7 +48,7 @@ class Store {
     required this.id,
     required this.name,
     required this.category,
-    required this.image,
+     this.image,
     required this.address,
     required this.about,
     this.phone,
@@ -98,7 +98,7 @@ class Offer {
   final int id;
   final String name;
   final int storeId;
-  final String image;
+   String? image;
   final String address;
   final String about;
   final String latitude;
@@ -113,7 +113,7 @@ class Offer {
     required this.id,
     required this.name,
     required this.storeId,
-    required this.image,
+     this.image,
     required this.address,
     required this.about,
     required this.latitude,

@@ -3,7 +3,7 @@ import 'package:dio/dio.dart';
 
 class ApiService {
  
-  final _baseUrl = 'https://deal-dash-demo-4635067e93c3.herokuapp.com';
+  final _baseUrl = 'https://dealdash-demo-v2-131caca18fa1.herokuapp.com';
   final Dio _dio;
 
   ApiService(this._dio) {
@@ -37,6 +37,7 @@ class ApiService {
           headers: {
             'Authorization': 'Bearer $token',
             'Content-Type': 'application/json',
+            'Accept':'application/json'
           },
         ),
       );

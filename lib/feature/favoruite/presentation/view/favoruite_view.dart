@@ -8,12 +8,12 @@ class FavoriteView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return favList.isEmpty
-        ? const Center(child: Text("No Data"))
-        : CustomScrollView(slivers: [
-            SliverGridWidget(
-              list: favList,
-            ),
-          ]);
+    return const Center(child: Text("No Data"));
+    // : CustomScrollView(slivers: [
+    //     SliverGridWidget(
+    //       list: favList,
+    //     ),
+    //  ]
+    // );
   }
 }

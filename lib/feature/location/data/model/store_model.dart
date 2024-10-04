@@ -1,121 +1,123 @@
 class StoreModel {
   final bool success;
   final String message;
-  final List<dynamic> errors;
+  final List<String> errors;
   final List<Store> data;
+  final Meta meta;
+  final Links links;
+
 
   StoreModel({
-    required this.success,
+     required this.success,
     required this.message,
     required this.errors,
     required this.data,
+    required this.meta,
+    required this.links,
   });
 
   factory StoreModel.fromJson(Map<String, dynamic> json) {
     return StoreModel(
-      success: json['success'],
+       success: json['success'],
       message: json['message'],
-      errors: List<dynamic>.from(json['errors']),
+      errors: List<String>.from(json['errors']),
       data: List<Store>.from(json['data'].map((store) => Store.fromJson(store))),
+      meta: Meta.fromJson(json['meta']),
+      links: Links.fromJson(json['links']),
     );
   }
 
-  Map<String, dynamic> toJson() {
-    return {
-      'success': success,
-      'message': message,
-      'errors': errors,
-      'data': data.map((store) => store.toJson()).toList(),
-    };
-  }
 }
 
 class Store {
   final int id;
   final String name;
-  final String category;
-   String? image;
+  final int categoryId;
+  final String? image;
   final String address;
-  final String about;
+  final String? about;
   final String? phone;
   final String latitude;
   final String longitude;
-   final double distance;
+  final String placeId;
+  final DateTime createdAt;
+  final DateTime updatedAt;
+  final DateTime? deletedAt;
+  final String distance;
   final int favoritesCount;
   final List<Offer> offers;
+  final Category category;
 
   Store({
     required this.id,
     required this.name,
-    required this.category,
-     this.image,
+    required this.categoryId,
+    this.image,
     required this.address,
-    required this.about,
+    this.about,
     this.phone,
     required this.latitude,
     required this.longitude,
-     required this.distance,
+    required this.placeId,
+    required this.createdAt,
+    required this.updatedAt,
+    this.deletedAt,
+    required this.distance,
     required this.favoritesCount,
     required this.offers,
+    required this.category,
   });
 
   factory Store.fromJson(Map<String, dynamic> json) {
     return Store(
       id: json['id'],
       name: json['name'],
-      category: json['category'],
+      categoryId: json['category_id'],
       image: json['image'],
       address: json['address'],
       about: json['about'],
       phone: json['phone'],
       latitude: json['latitude'],
       longitude: json['longitude'],
-       distance: json['distance'].toDouble(),
+      placeId: json['place_id'],
+      createdAt: DateTime.parse(json['created_at']),
+      updatedAt: DateTime.parse(json['updated_at']),
+      deletedAt: json['deleted_at'] != null ? DateTime.parse(json['deleted_at']) : null,
+      distance: json['distance'],
       favoritesCount: json['favorites_count'],
       offers: List<Offer>.from(json['offers'].map((offer) => Offer.fromJson(offer))),
+      category: Category.fromJson(json['category']),
     );
   }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'name': name,
-      'category': category,
-      'image': image,
-      'address': address,
-      'about': about,
-      'phone': phone,
-      'latitude': latitude,
-      'longitude': longitude,
-       'distance': distance,
-      'favorites_count': favoritesCount,
-      'offers': offers.map((offer) => offer.toJson()).toList(),
-    };
-  }
 }
+
+
+ 
 
 class Offer {
   final int id;
   final String name;
   final int storeId;
-   String? image;
+  final String image;
   final String address;
   final String about;
+  final String price;
   final String latitude;
   final String longitude;
-  final String startDate;
-  final String endDate;
-  final String createdAt;
-  final String updatedAt;
-  final String? deletedAt;
+  final DateTime startDate;
+  final DateTime endDate;
+  final DateTime createdAt;
+  final DateTime updatedAt;
+  final DateTime? deletedAt;
 
   Offer({
     required this.id,
     required this.name,
     required this.storeId,
-     this.image,
+    required this.image,
     required this.address,
     required this.about,
+    required this.price,
     required this.latitude,
     required this.longitude,
     required this.startDate,
@@ -133,31 +135,80 @@ class Offer {
       image: json['image'],
       address: json['address'],
       about: json['about'],
+      price: json['price'],
       latitude: json['latitude'],
       longitude: json['longitude'],
-      startDate: json['start_date'],
-      endDate: json['end_date'],
-      createdAt: json['created_at'],
-      updatedAt: json['updated_at'],
-      deletedAt: json['deleted_at'],
+      startDate: DateTime.parse(json['start_date']),
+      endDate: DateTime.parse(json['end_date']),
+      createdAt: DateTime.parse(json['created_at']),
+      updatedAt: DateTime.parse(json['updated_at']),
+      deletedAt: json['deleted_at'] != null ? DateTime.parse(json['deleted_at']) : null,
     );
   }
+}
 
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'name': name,
-      'store_id': storeId,
-      'image': image,
-      'address': address,
-      'about': about,
-      'latitude': latitude,
-      'longitude': longitude,
-      'start_date': startDate,
-      'end_date': endDate,
-      'created_at': createdAt,
-      'updated_at': updatedAt,
-      'deleted_at': deletedAt,
-    };
+class Category {
+  final int id;
+  final String name;
+
+  Category({
+    required this.id,
+    required this.name,
+  });
+
+  factory Category.fromJson(Map<String, dynamic> json) {
+    return Category(
+      id: json['id'],
+      name: json['name'],
+    );
+  }
+}
+
+class Meta {
+  final int currentPage;
+  final int totalCount;
+  final int perPage;
+  final int totalPages;
+  final bool hasMorePages;
+
+  Meta({
+    required this.currentPage,
+    required this.totalCount,
+    required this.perPage,
+    required this.totalPages,
+    required this.hasMorePages,
+  });
+
+  factory Meta.fromJson(Map<String, dynamic> json) {
+    return Meta(
+      currentPage: json['current_page'],
+      totalCount: json['total_count'],
+      perPage: json['per_page'],
+      totalPages: json['total_pages'],
+      hasMorePages: json['has_more_pages'],
+    );
+  }
+}
+
+class Links {
+  final String? nextPageUrl;
+  final String? prevPageUrl;
+  final String firstPageUrl;
+  final String lastPageUrl;
+
+  Links({
+    this.nextPageUrl,
+    this.prevPageUrl,
+    required this.firstPageUrl,
+    required this.lastPageUrl,
+  });
+
+  factory Links.fromJson(Map<String, dynamic> json) {
+    return Links(
+      nextPageUrl: json['next_page_url'],
+      prevPageUrl: json['prev_page_url'],
+      firstPageUrl: json['first_page_url'],
+      lastPageUrl: json['last_page_url'],
+    );
   }
 }

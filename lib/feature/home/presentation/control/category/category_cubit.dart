@@ -16,7 +16,7 @@ class CategoryCubit extends Cubit<CategoryState> {
       emit(CategoryLoading());
 
       // Fetch categories from repository
-      final Either<ServerException, List<CategoryModel>> response =
+      final Either<ServerException, CategoryModel> response =
           await categoryRepository.fetchCategories();
   print("response : $response");
       response.fold(

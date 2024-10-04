@@ -5,5 +5,5 @@ import '../model/category_model.dart';
 
 
 abstract class CategoryRepository {
-Future<Either<ServerException,List<CategoryModel>>> fetchCategories();
+Future<Either<ServerException,CategoryModel>> fetchCategories();
 }

@@ -1,4 +1,5 @@
 import 'package:dealdash/core/resources/color_manger/color_manager.dart';
+import 'package:dealdash/feature/home/data/model/category_model.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/resources/image_manger/image_manger.dart';
@@ -7,9 +8,9 @@ import '../control/product_model.dart';
 import '../../data/data.dart';
 
 class ItemOfListBottomWidget extends StatefulWidget {
-  final ProductModel? productModel;
+  final StoreInCategory? store;
 
-  const ItemOfListBottomWidget({super.key, this.productModel});
+  const ItemOfListBottomWidget({super.key, this.store});
 
   @override
   State<ItemOfListBottomWidget> createState() => _ItemOfListBottomWidgetState();
@@ -31,8 +32,8 @@ class _ItemOfListBottomWidgetState extends State<ItemOfListBottomWidget> {
               SizedBox(
                 height: MediaQuery.of(context).size.height * .22,
                 width: double.infinity,
-                child: Image.asset(
-                  widget.productModel?.imagePath ?? ImageManger.imageMobil2,
+                child: Image.network(
+                  widget.store!.image!,
                   fit: BoxFit.fill,
                 ),
               ),
@@ -43,7 +44,7 @@ class _ItemOfListBottomWidgetState extends State<ItemOfListBottomWidget> {
               Text(
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
-                widget.productModel?.title ?? AppStrings.appelMob,
+                widget.store?.name ?? AppStrings.appelMob,
               ),
               const SizedBox(height: 12),
               Expanded(
@@ -55,7 +56,7 @@ class _ItemOfListBottomWidgetState extends State<ItemOfListBottomWidget> {
                     FittedBox(
                       fit: BoxFit.scaleDown,
                       child: Text(
-                        '${widget.productModel?.oldPrice} E ',
+                        '${widget.store?.phone} E ',
                         style: const TextStyle(
                           fontSize: 10,
                             decoration: TextDecoration.lineThrough),
@@ -64,7 +65,7 @@ class _ItemOfListBottomWidgetState extends State<ItemOfListBottomWidget> {
                     FittedBox(
                       fit: BoxFit.scaleDown,
                       child: Text(
-                        "${widget.productModel?.newPrice} E",
+                        "${widget.store?.phone} E",
                         style: TextStyle(
                           fontSize: 14,
                           color: ColorManager.red,
@@ -117,7 +118,7 @@ class _ItemOfListBottomWidgetState extends State<ItemOfListBottomWidget> {
               child: Row(
                 children: [
                   Text(
-                    widget.productModel?.rate ?? "3.5",
+                     "3.5",
                     style: TextStyle(
                       color: ColorManager.primary,
                     ),
@@ -135,27 +136,5 @@ class _ItemOfListBottomWidgetState extends State<ItemOfListBottomWidget> {
     );
   }
 
-  void addDeleteListFav() {
-    bool found = true;
-    if (isFav) {
-      if (favList.isEmpty) {
-        favList.add(widget.productModel ?? mobileList[0]);
-      } else {
-        String img = widget.productModel!.imagePath;
-        for (ProductModel i in favList) {
-          print(img);
-          print(i.imagePath);
-          if (img == i.imagePath) {
-            found = false;
-          }
-        }
-        print(found);
-        if (found) {
-          favList.add(widget.productModel ?? mobileList[0]);
-        } else {
-          favList.remove(widget.productModel);
-        }
-      }
-    }
-  }
+ 
 }

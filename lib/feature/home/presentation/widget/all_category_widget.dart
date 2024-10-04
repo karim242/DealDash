@@ -1,17 +1,17 @@
 import 'package:dealdash/core/services/service_locator.dart';
+import 'package:dealdash/feature/home/data/model/category_model.dart';
 import 'package:dealdash/feature/home/presentation/control/category/category_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/resources/color_manger/color_manager.dart';
-import '../../data/data.dart';
 import '../view/category_screen.dart';
 
 class AllCategoryWidget extends StatelessWidget {
   const AllCategoryWidget({
-    super.key,
+    super.key, required this.category,
   });
-
+final CategoryModel category;
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -21,7 +21,7 @@ class AllCategoryWidget extends StatelessWidget {
             MaterialPageRoute(
                 builder: (_) => BlocProvider(
                         create: (context) => sl<CategoryCubit>()..fetchCategories(),
-                      child: CategoryScreen(),
+                      child: CategoryScreen(category: category,),
                     )));
       },
       child: Container(

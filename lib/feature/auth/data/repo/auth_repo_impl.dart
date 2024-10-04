@@ -20,7 +20,7 @@ class AuthRepositoryImpl implements AuthRepository {
   }) async {
     try {
       final response = await apiServes.post(
-       endpoint:  '/api/auth/signin',
+       endpoint:  '/api/auth/login',
         data: {
           'email': email,
           'password': password,
@@ -44,6 +44,7 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<Either<ServerException, AuthResponse>> signUp({
     required String email,
     required String password,
+    required String confirmPassword,
     required String phone,
     required String name,
   }) async {
@@ -53,6 +54,7 @@ class AuthRepositoryImpl implements AuthRepository {
         data: {
           'email': email,
           'password': password,
+          'password_confirmation':confirmPassword,
           'phone': phone,
           'name': name,
         },

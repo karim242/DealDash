@@ -12,6 +12,10 @@ class CacheHelper{
     return sharedPreferences.getString('auth_token');
 
   }
+   static Future<bool> removeToken(){
+    return sharedPreferences.remove('auth_token');
+
+  }
       static void saveString({required String key, required String value}){
     sharedPreferences.setString(key, value);
   }

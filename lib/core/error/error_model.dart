@@ -1,16 +1,16 @@
 
 
 class ErrorResponse {
-  final bool success;
+  final bool? success;
   final String? message;
-  final Errors errors;
-  final List<dynamic> data;
+  final Errors? errors;
+  final List<dynamic>? data;
 
   ErrorResponse({
-    required this.success,
+     this.success,
     this.message,
-    required this.errors,
-    required this.data,
+     this.errors,
+     this.data,
   });
 
   factory ErrorResponse.fromJson(Map<String, dynamic> json) {
@@ -22,23 +22,16 @@ class ErrorResponse {
     );
   }
 
-  Map<String, dynamic> toJson() {
-    return {
-      'success': success,
-      'message': message,
-      'errors': errors.toJson(),
-      'data': data,
-    };
-  }
+ 
 }
 
 class Errors {
-  final List<String> email;
-  final List<String> phone;
+  final List<String>? email;
+  final List<String>? phone;
 
   Errors({
-    required this.email,
-    required this.phone,
+     this.email,
+     this.phone,
   });
 
   factory Errors.fromJson(Map<String, dynamic> json) {

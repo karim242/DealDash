@@ -49,7 +49,7 @@ class AboutStoresView extends StatelessWidget {
                     SizedBox(height: 32.h),
                     const HeaderText(header: "About"),
                     SizedBox(height: 8.h),
-                    SideText(text: store.about),
+                    SideText(text: store.about!),
                     SizedBox(height: 32.h),
                     SizedBox(
                       height: 85.h,

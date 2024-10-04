@@ -1,17 +1,15 @@
+import 'package:dealdash/feature/home/data/model/category_model.dart';
 import 'package:flutter/material.dart';
 
 import '../control/product_model.dart';
 import '../../data/data.dart';
 import 'item_of_list_bottom_widget.dart';
 class SliverGridWidget extends StatelessWidget {
-   SliverGridWidget({super.key, required this.list});
-late  List list;
+   const SliverGridWidget({super.key, required this.categoryModel});
+   final CategoryData categoryModel;
   @override
   Widget build(BuildContext context) {
-    List<ProductModel> productListModel = productList.expand((x) => x).toList();
-if(list is List<List<ProductModel>>){
-  list=list.expand((x) => x).toList();
-}
+
     return  SliverGrid.builder(
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           
@@ -20,9 +18,9 @@ if(list is List<List<ProductModel>>){
           mainAxisSpacing: 12,
           childAspectRatio: 1 / 1.3,
         ),
-        itemCount:  list.length,
+        itemCount:  categoryModel.stores.length,
         itemBuilder: (BuildContext context, int index) {
-          return  ItemOfListBottomWidget(productModel:list[index]);
+          return  ItemOfListBottomWidget(store:categoryModel.stores[index]);
         }
     );
   }

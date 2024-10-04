@@ -1,14 +1,11 @@
+import 'package:dealdash/feature/home/data/model/category_model.dart';
 import 'package:dealdash/feature/home/presentation/widget/sliver_grid_widget.dart';
 import 'package:flutter/material.dart';
 
 class ListTopOfferAddisDetailsWidget extends StatelessWidget {
-  // final int index;
-List list;
-//اما يختار  عروض اديدس يفتح معاه الملابس
-//اما يختار الحلويات  عروض يفتح معاه محلات الحلويات
-//اما يختار فاليوه  يفتح معاه الاجهزة و الموبيلات
+final CategoryData categoryModel;
 
-  ListTopOfferAddisDetailsWidget({super.key, required this.list});
+ const ListTopOfferAddisDetailsWidget({super.key, required this.categoryModel, });
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +21,7 @@ List list;
               height: 5,
             ),
           ),
-          SliverGridWidget(list: list,)
+          SliverGridWidget(categoryModel: categoryModel,)
         ],
       ),
     );

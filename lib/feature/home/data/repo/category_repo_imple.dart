@@ -7,24 +7,31 @@ import 'package:dio/dio.dart';
 
 import '../../../../core/network_helper/dio_helper.dart.dart';
 import 'category_repo.dart';
-
 class CategoryRepoImple extends CategoryRepository {
   final ApiService apiService;
 
   CategoryRepoImple(this.apiService);
-  @override
-  Future<Either<ServerException, List<CategoryModel>>> fetchCategories() async {
-    try {
-       String? token = CacheHelper.getToken();
-      final result = await apiService.getData(
-          endpoint: '/api/v1/user/categories/list-all',
-          token:token 
-          );
 
-      final List<CategoryModel> categories =
-          (result['data'] as List).map((e) => CategoryModel.fromJson(e)).toList();
-          print(categories);
-      return Right(categories);
+  @override
+  Future<Either<ServerException, CategoryModel>> fetchCategories() async {
+    try {
+      String? token = CacheHelper.getToken();
+
+      final result = await apiService.getData(
+        endpoint: '/api/v1/user/categories/list-all',
+        token: token,
+      );
+
+      if (result['data'] != null) {
+        final categoryResponse = CategoryModel.fromJson(result);
+
+        print(categoryResponse);
+
+        return Right(categoryResponse);
+      } else {
+        return Left(ServerException(
+            errorModel: ErrorResponse(message: "No data found")));
+      }
     } on DioException catch (e) {
       handelDioException(e);
       return Left(ServerException(

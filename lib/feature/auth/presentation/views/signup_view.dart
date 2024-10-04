@@ -14,6 +14,7 @@ class SignUpView extends StatelessWidget {
   SignUpView({super.key});
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _confirmPassword = TextEditingController();
 
   final TextEditingController _phoneController = TextEditingController();
   final TextEditingController _nameController = TextEditingController();
@@ -85,6 +86,14 @@ class SignUpView extends StatelessWidget {
                             controller: _passwordController,
                             prefixIcon: const Icon(Icons.lock),
                           ),
+                                                    const SizedBox(height: 22),
+
+                          CustomTextField(
+                            labelText: 'confirmPassword ',
+                            obscureText: true,
+                            controller: _confirmPassword,
+                            prefixIcon: const Icon(Icons.lock),
+                          ),
 
                           const SizedBox(height: 22),
                           CustomTextField(
@@ -107,6 +116,8 @@ class SignUpView extends StatelessWidget {
                                               email: _emailController.text,
                                               password:
                                                   _passwordController.text,
+                                              confirmPassword:
+                                                  _confirmPassword.text,
                                               phone: _phoneController.text,
                                               userName: _nameController.text);
                                     }

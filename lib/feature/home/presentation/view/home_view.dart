@@ -1,16 +1,9 @@
-import 'package:dealdash/feature/home/presentation/control/category/category_cubit.dart';
+import 'package:dealdash/feature/home/presentation/widget/category_row.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../../../core/resources/strings_manger/strings_manager.dart';
-import '../../../../core/services/service_locator.dart';
-import '../../data/data.dart';
-import '../widget/all_category_widget.dart';
 import '../widget/custom_baner.dart';
-import '../widget/custom_list_view_category.dart';
 import '../widget/custom_search_form.dart';
 import '../widget/list_top_offer_Addis_widget.dart';
-import '../widget/sliver_grid_widget.dart';
 import '../widget/text_widget.dart';
 
 class HomeView extends StatelessWidget {
@@ -49,20 +42,8 @@ class HomeView extends StatelessWidget {
           ),
           SliverToBoxAdapter(child: SizedBox(height: h * .02)),
           //Category super market
-          SliverToBoxAdapter(
-            child: Row(
-              children: [
-                const AllCategoryWidget(),
-                Expanded(
-                  child: SizedBox(
-                    height: 100,
-                    child: ListViewCategoryWidget(
-                      list: listCategory,
-                    ),
-                  ),
-                ),
-              ],
-            ),
+          const SliverToBoxAdapter(
+            child: CategoryRow(),
           ),
           SliverToBoxAdapter(child: SizedBox(height: h * .02)),
           SliverToBoxAdapter(
@@ -75,11 +56,12 @@ class HomeView extends StatelessWidget {
           ),
           SliverToBoxAdapter(child: SizedBox(height: h * .01)),
           //list bottom
-          SliverGridWidget(
-            list: productList,
-          ),
+          // SliverGridWidget(categoryModel: null,
+
+          // ),
         ],
       ),
     );
   }
 }
+

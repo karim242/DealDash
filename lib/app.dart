@@ -7,6 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 
 import '../core/resources/routes_manger/routes_manager.dart';
+import 'core/check_connect_internet/cubit/connect_internet_cubit.dart';
 
 
 class MyApp extends StatelessWidget {
@@ -25,6 +26,9 @@ class MyApp extends StatelessWidget {
           ),
           BlocProvider(
             create: (context) => ThemeCubit(), 
+                      ),
+          BlocProvider(
+            create: (context) => ConnectInternetCubit()..checkConnection(),
                       ),
         ],
         child: BlocBuilder<ThemeCubit, ThemeMode>(

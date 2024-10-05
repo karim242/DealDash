@@ -1,9 +1,6 @@
 import 'package:dealdash/feature/home/data/model/category_model.dart';
-import 'package:dealdash/feature/home/presentation/control/category/category_cubit.dart';
-import 'package:dealdash/feature/home/presentation/control/category/category_state.dart';
 import 'package:dealdash/feature/home/presentation/widget/list_top_offer_addis_details_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/resources/color_manger/color_manager.dart';
 
@@ -21,7 +18,7 @@ class CategoryScreen extends StatelessWidget {
         child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),
             child: GridView.builder(
-              physics: const NeverScrollableScrollPhysics(),
+              // physics: const NeverScrollableScrollPhysics(),
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
                 crossAxisSpacing: 12,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../core/resources/color_manger/color_manager.dart';
+import '../../../../../../../core/resources/color_manger/color_manager.dart';
 
 class CategoryText extends StatelessWidget {
   const CategoryText({super.key, required this.category});

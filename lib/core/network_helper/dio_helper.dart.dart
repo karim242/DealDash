@@ -6,7 +6,11 @@ class ApiService {
   final _baseUrl = 'https://dealdash-demo-v2-131caca18fa1.herokuapp.com';
   final Dio _dio;
 
-  ApiService(this._dio) {
+ApiService(Dio dio)
+    : _dio = dio..options = BaseOptions(
+        connectTimeout: const Duration(seconds: 30),
+     receiveTimeout: const Duration(seconds: 30), 
+      ) {
     _dio.interceptors.add(InterceptorsWrapper(
       onRequest: (options, handler) {
         print('طلب: ${options.method} ${options.path}');

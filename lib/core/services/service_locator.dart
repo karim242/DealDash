@@ -1,4 +1,7 @@
 import 'package:dealdash/feature/auth/presentation/cubit/login/login_cubit.dart';
+import 'package:dealdash/feature/favourite/data/repo/favourite_repo.dart';
+import 'package:dealdash/feature/favourite/data/repo/favourite_repo_impl.dart';
+import 'package:dealdash/feature/favourite/logic/favourite_cubit.dart';
 import 'package:dealdash/feature/home/data/repo/category_repo.dart';
 import 'package:dealdash/feature/home/data/repo/category_repo_imple.dart';
 import 'package:dealdash/feature/home/presentation/control/category/category_cubit.dart';
@@ -47,5 +50,12 @@ class ServiceLocator {
     sl.registerLazySingleton<CategoryRepository>(
         () => CategoryRepoImple(sl()));
     sl.registerFactory<CategoryCubit>(() => CategoryCubit(sl<CategoryRepository>()));
+
+    sl.registerLazySingleton<FavouriteRepoImpl>(
+        () => FavouriteRepoImpl(apiService: sl.get<ApiService>() ));
+
+            sl.registerFactory<FavouriteCubit>(() => FavouriteCubit(favouriteRepo: sl<FavouriteRepoImpl>()));
+
+
   }
 }

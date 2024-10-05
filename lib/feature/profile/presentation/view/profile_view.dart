@@ -25,88 +25,6 @@ class ProfileView extends StatelessWidget {
           return const UINotConnectInterNetWidget();
         }
 
-<<<<<<< HEAD
-              // Profile Picture and Info
-              CircleAvatar(
-                radius: 50,
-                backgroundColor: Colors.orange.shade100,
-                child: const CircleAvatar(
-                  radius: 45,
-                  backgroundImage: AssetImage(
-                      'assets/images/h_anonymous.png'), // Replace with user image
-                  child: Align(
-                    alignment: Alignment.bottomRight,
-                    child: CircleAvatar(
-                      // backgroundColor: Colors.white,
-                      radius: 12,
-                      child: Icon(Icons.edit, size: 15, color: Colors.orange),
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 16),
-              Text(
-                userName,
-                style: const TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  // color: Colors.black,
-                ),
-              ),
-              const SizedBox(height: 8),
-              Text(
-                userPhone,
-                style: const TextStyle(
-                  fontSize: 14,
-                  //  color: Colors.grey,
-                ),
-              ),
-              const SizedBox(height: 4),
-              Text(
-                userEmail,
-                style: const TextStyle(
-                  fontSize: 14,
-                  // color: Colors.grey,
-                ),
-              ),
-              const SizedBox(height: 30),
-
-              // Menu Items
-              _buildMenuItem(
-                icon: Icons.lock_outline,
-                title: "Privacy Policy",
-                onTap: () {
-                  GoRouter.of(context).push(Routes.privacyAndPolicyRoute);
-                },
-              ),
-              _buildMenuItem(
-                icon: Icons.info_outline,
-                title: 'About',
-                onTap: () {
-                  GoRouter.of(context).push(Routes.aboutUsRoute);
-                },
-              ),
-              _buildMenuItem(
-                icon: Icons.help_outline,
-                title: 'Help',
-                onTap: () {},
-              ),
-              _buildMenuItem(
-                icon: Icons.settings_outlined,
-                title: 'Settings',
-                onTap: () {
-                  GoRouter.of(context).push(Routes.settingsRoute);
-                },
-              ),
-              _buildMenuItem(
-                icon: Icons.logout_outlined,
-                title: 'Log out',
-                onTap: () async {
-                  GoRouter.of(context).go(Routes.welcomeRoute);
-                  await CacheHelper.removeToken();
-                },
-              ),
-=======
         return Scaffold(
           // backgroundColor: Colors.white,
           appBar: AppBar(
@@ -208,7 +126,6 @@ class ProfileView extends StatelessWidget {
                     title: 'Log out',
                     onTap: () {},
                   ),
->>>>>>> d638833e13bba387e2c3987a829a45d1d20f2b08
 
                   // const Spacer(),
                 ],

@@ -1,18 +1,36 @@
 import 'package:dealdash/core/resources/color_manger/color_manager.dart';
-import 'package:dealdash/feature/about_stores/presentation/widgets/category_text.dart';
-import 'package:dealdash/feature/about_stores/presentation/widgets/header_text.dart';
-import 'package:dealdash/feature/about_stores/presentation/widgets/rate_section.dart';
-import 'package:dealdash/feature/about_stores/presentation/widgets/side_text.dart';
-import 'package:dealdash/feature/about_stores/presentation/widgets/store_icon_buttons.dart';
-import 'package:dealdash/feature/about_stores/presentation/widgets/store_name.dart';
+import 'package:dealdash/feature/favourite/logic/favourite_cubit.dart';
+import 'package:dealdash/feature/favourite/logic/favourite_state.dart';
+import 'package:dealdash/feature/location/presentation/view/about_stores/presentation/widgets/category_text.dart';
+import 'package:dealdash/feature/location/presentation/view/about_stores/presentation/widgets/header_text.dart';
+import 'package:dealdash/feature/location/presentation/view/about_stores/presentation/widgets/rate_section.dart';
+import 'package:dealdash/feature/location/presentation/view/about_stores/presentation/widgets/side_text.dart';
+import 'package:dealdash/feature/location/presentation/view/about_stores/presentation/widgets/store_icon_buttons.dart';
+import 'package:dealdash/feature/location/presentation/view/about_stores/presentation/widgets/store_name.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:dealdash/feature/location/data/model/store_model.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class AboutStoresView extends StatelessWidget {
-   AboutStoresView({super.key, required this.store, });
+   const AboutStoresView({super.key, required this.store, });
   final Store store;
+
+
+  Future<void> makePhoneCall(String phoneNumber) async {
+    final Uri launchUri = Uri(
+      scheme: 'tel',
+      path: phoneNumber,
+    );
+    if (await canLaunchUrl(launchUri)) {
+      await launchUrl(launchUri);
+    } else {
+      throw 'Could not launch $phoneNumber';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,9 +59,9 @@ class AboutStoresView extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    StoreName(name: store.name!),
+                    StoreName(name: store.name),
                     SizedBox(height: 8.h),
-                    CategoryText(category: store.category.toString()!),
+                    CategoryText(category: store.category.name),
                     SizedBox(height: 8.h),
                     const RateSection(rateNumber: 4.0, peopleRatedNum: 200),
                     SizedBox(height: 32.h),
@@ -71,16 +89,40 @@ class AboutStoresView extends StatelessWidget {
                             thickness: 1,
                           ),
                           SizedBox(width: 10.w),
-                          Row(
-                            children: [
-                              StoreIconButtons(
-                                  iconData: Icons.favorite_border,
-                                  onTap: () {}),
-                              SizedBox(width: 16.w),
-                              StoreIconButtons(
-                                  iconData: Icons.call, onTap: () {}),
-                            ],
-                          )
+                           BlocBuilder<FavouriteCubit, FavouriteState>(
+                            builder: (context, state) {
+                              bool isFavourite = false;
+                              if (state is FavouriteToggled) {
+                                isFavourite = state.isFavourite;
+                              }
+
+                              return Row(
+                                children: [
+                                  StoreIconButtons(
+                                    iconData: isFavourite
+                                        ? Icons.favorite
+                                        : Icons.favorite_border,
+                                    onTap: () {
+                                      final cubit = context.read<FavouriteCubit>();
+
+                                      if (isFavourite) {
+                                        cubit.removeFavourite(store.id.toString());
+                                      } else {
+                                        cubit.addFavourite(store.id.toString());
+                                      }
+                                    },
+                                  ),
+                                  SizedBox(width: 16.w),
+                                  StoreIconButtons(
+                                    iconData: Icons.call,
+                                    onTap: () {
+                                      makePhoneCall(store.phone!);
+                                    },
+                                  ),
+                                ],
+                              );
+                            },
+                          ),
                         ],
                       ),
                     ),

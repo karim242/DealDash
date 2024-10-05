@@ -1,5 +1,5 @@
 import 'package:dealdash/core/services/service_locator.dart';
-import 'package:dealdash/feature/about_stores/presentation/view/about_stores_view.dart';
+import 'package:dealdash/feature/location/presentation/view/about_stores/presentation/view/about_stores_view.dart';
 import 'package:dealdash/feature/about_us/presentation/view/about_us_view.dart';
 import 'package:dealdash/feature/auth/presentation/cubit/login/login_cubit.dart';
 import 'package:dealdash/feature/auth/presentation/views/signup_view.dart';

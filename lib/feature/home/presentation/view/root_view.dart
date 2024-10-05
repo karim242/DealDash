@@ -137,7 +137,7 @@ import 'package:location/location.dart';
 import '../../../../core/resources/color_manger/color_manager.dart';
 import '../../../../core/services/location_service.dart';
 import '../../../../core/services/service_locator.dart';
-import '../../../favoruite/presentation/view/favoruite_view.dart';
+import '../../../favourite/presentation/view/favoruite_view.dart';
 import '../../../location/presentation/cubit/store_cubit/store_cubit.dart';
 import '../../../location/presentation/view/location_view.dart';
 import '../../../notification/presentation/view/notification_view.dart';

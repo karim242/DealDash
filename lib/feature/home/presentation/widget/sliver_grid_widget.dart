@@ -1,8 +1,5 @@
 import 'package:dealdash/feature/home/data/model/category_model.dart';
 import 'package:flutter/material.dart';
-
-import '../control/product_model.dart';
-import '../../data/data.dart';
 import 'item_of_list_bottom_widget.dart';
 class SliverGridWidget extends StatelessWidget {
    const SliverGridWidget({super.key, required this.categoryModel});
@@ -20,8 +17,12 @@ class SliverGridWidget extends StatelessWidget {
         ),
         itemCount:  categoryModel.stores.length,
         itemBuilder: (BuildContext context, int index) {
+          if(categoryModel.stores.isEmpty){
+            return const Center(child: Text("No Data"));
+          }else{
           return  ItemOfListBottomWidget(store:categoryModel.stores[index]);
-        }
+          }
+          }
     );
   }
 }

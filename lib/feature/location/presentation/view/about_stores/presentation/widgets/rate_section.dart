@@ -1,8 +1,8 @@
-import 'package:dealdash/feature/about_stores/presentation/widgets/category_text.dart';
+import 'package:dealdash/feature/location/presentation/view/about_stores/presentation/widgets/category_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../core/resources/color_manger/color_manager.dart';
+import '../../../../../../../core/resources/color_manger/color_manager.dart';
 
 class RateSection extends StatelessWidget {
   const RateSection({super.key, required this.rateNumber, required this.peopleRatedNum});

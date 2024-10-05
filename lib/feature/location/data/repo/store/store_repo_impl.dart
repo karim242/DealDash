@@ -23,7 +23,7 @@ class StoreRepositoryImpl implements StoreRepository {
         query: {
           'latitude': lat,  
           'longitude': long,
-          'radius': 500,       
+          'radius': 5000,       
         },
         token: token,
       );

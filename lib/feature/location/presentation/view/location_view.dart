@@ -1,6 +1,8 @@
 import 'package:dealdash/core/resources/color_manger/color_manager.dart';
+import 'package:dealdash/core/resources/routes_manger/routes_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 import '../../../../core/check_connect_internet/cubit/connect_internet_cubit.dart';
@@ -42,6 +44,9 @@ class _LocationViewState extends State<LocationView> {
   void _updateStoreMarkers(List<Store> stores) {
     final newMarkers = stores.map((store) {
       return Marker(
+        onTap: () {
+         GoRouter.of(context).push(Routes.aboutStoreRoute, extra: store);
+        },
         markerId: MarkerId("${store.latitude},${store.longitude}"),
         position:
             LatLng(double.parse(store.latitude), double.parse(store.longitude)),
@@ -69,7 +74,7 @@ class _LocationViewState extends State<LocationView> {
             child: BlocBuilder<StoreCubit, StoreState>(
               builder: (context, state) {
                 if (state is StoreLoading) {
-                  return Center(
+                  return const Center(
                       child: CircularProgressIndicator()); // إظهار مؤشر تحميل
                 } else if (state is StoreLoaded) {
                   // تحديث Markers عند تحميل المتاجر
@@ -80,7 +85,7 @@ class _LocationViewState extends State<LocationView> {
                       GoogleMap(
                         initialCameraPosition: CameraPosition(
                           target: userLocation,
-                          zoom: 16.0,
+                          zoom: 12.0,
                         ),
                         markers: markers, // عرض جميع الـ Markers
                         myLocationEnabled: true,
@@ -113,7 +118,7 @@ class _LocationViewState extends State<LocationView> {
                                 ),
                               );
                             },
-                            icon: Icon(Icons.storefront_sharp),
+                            icon:const Icon(Icons.storefront_sharp),
                           ),
                         ),
                       ),
@@ -123,7 +128,7 @@ class _LocationViewState extends State<LocationView> {
                   return Center(child: Text(state.message)); // عرض رسالة الخطأ
                 }
             
-                return Center(
+                return const Center(
                     child: Text('No data available')); // في حال عدم وجود بيانات
               },
             ),

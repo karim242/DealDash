@@ -34,7 +34,7 @@ class FavoriteStore {
   final String phone;
   final String latitude;
   final String longitude;
-  final String placeId;
+  // final String placeId;
   final DateTime createdAt;
   final DateTime updatedAt;
 
@@ -48,7 +48,7 @@ class FavoriteStore {
     required this.phone,
     required this.latitude,
     required this.longitude,
-    required this.placeId,
+    // required this.placeId,
     required this.createdAt,
     required this.updatedAt,
   });
@@ -64,7 +64,7 @@ class FavoriteStore {
       phone: json['phone'],
       latitude: json['latitude'],
       longitude: json['longitude'],
-      placeId: json['place_id'],
+      // placeId: json['place_id'],
       createdAt: DateTime.parse(json['created_at']),
       updatedAt: DateTime.parse(json['updated_at']),
     );

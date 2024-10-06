@@ -37,7 +37,7 @@ class FavoriteView extends StatelessWidget {
       );
       
     } else if (state is FavouriteFailure) {
-      return Center(child: Text('Error: ${state.errorMessage}'));
+      return Center(child: Text('No Favourite yet: ${state.errorMessage}'));
     } else {
       return Container(); // الحالة الأولية
     }

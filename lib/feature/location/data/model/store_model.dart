@@ -39,7 +39,7 @@ class Store {
   final String? phone;
   final String latitude;
   final String longitude;
-  final String placeId;
+//  final String placeId;
   final DateTime createdAt;
   final DateTime updatedAt;
   final DateTime? deletedAt;
@@ -58,7 +58,7 @@ class Store {
     this.phone,
     required this.latitude,
     required this.longitude,
-    required this.placeId,
+    //required this.placeId,
     required this.createdAt,
     required this.updatedAt,
     this.deletedAt,
@@ -79,7 +79,7 @@ class Store {
       phone: json['phone'],
       latitude: json['latitude'],
       longitude: json['longitude'],
-      placeId: json['place_id'],
+     // placeId: json['place_id'],
       createdAt: DateTime.parse(json['created_at']),
       updatedAt: DateTime.parse(json['updated_at']),
       deletedAt: json['deleted_at'] != null ? DateTime.parse(json['deleted_at']) : null,

@@ -66,7 +66,7 @@ class StoreInCategory {
   final String? phone;
   final String latitude;
   final String longitude;
-  final String placeId;
+  // String placeId;
   final DateTime createdAt;
   final DateTime updatedAt;
   final DateTime? deletedAt;
@@ -82,7 +82,7 @@ class StoreInCategory {
     this.phone,
     required this.latitude,
     required this.longitude,
-    required this.placeId,
+    //required this.placeId,
     required this.createdAt,
     required this.updatedAt,
     this.deletedAt,
@@ -100,7 +100,7 @@ class StoreInCategory {
       phone: json['phone'],
       latitude: json['latitude'],
       longitude: json['longitude'],
-      placeId: json['place_id'],
+      //placeId: json['place_id'],
       createdAt: DateTime.parse(json['created_at']),
       updatedAt: DateTime.parse(json['updated_at']),
       deletedAt: json['deleted_at'] != null ? DateTime.parse(json['deleted_at']) : null,

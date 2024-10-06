@@ -41,7 +41,8 @@ ApiService(Dio dio)
           headers: {
             'Authorization': 'Bearer $token',
             'Content-Type': 'application/json',
-            'Accept':'application/json'
+            'Accept-Language':'en',
+            'Accept':'application/json',
           },
         ),
       );

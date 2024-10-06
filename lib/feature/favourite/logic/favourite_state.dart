@@ -18,8 +18,13 @@ class FavouriteToggled extends FavouriteState {
   FavouriteToggled({required this.isFavourite});
 }
 
+
 class FavouriteFailure extends FavouriteState {
   final String errorMessage;
-
   FavouriteFailure({required this.errorMessage});
+}
+
+ class FavouriteAddSuccess extends FavouriteState {
+//   final bool isFavorite;
+//   FavouriteCheckState({required this.isFavorite});
 }

@@ -15,9 +15,11 @@ import 'package:dealdash/feature/location/data/model/store_model.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class AboutStoresView extends StatelessWidget {
-   const AboutStoresView({super.key, required this.store, });
+  const AboutStoresView({
+    super.key,
+    required this.store,
+  });
   final Store store;
-
 
   Future<void> makePhoneCall(String phoneNumber) async {
     final Uri launchUri = Uri(
@@ -43,7 +45,7 @@ class AboutStoresView extends StatelessWidget {
               Stack(
                 children: [
                   Image.network(
-                     store.image ??
+                    store.image ??
                         'https://media.istockphoto.com/id/681622484/photo/concrete-wall-shiny-smooth-backgrounds-white-textured.jpg?s=2048x2048&w=is&k=20&c=87J5-OznIqEEKD923thUgWZBNIiAD4oDVAmHSQYLr1o=',
                   ),
                   IconButton(
@@ -89,34 +91,29 @@ class AboutStoresView extends StatelessWidget {
                             thickness: 1,
                           ),
                           SizedBox(width: 10.w),
-                           BlocBuilder<FavouriteCubit, FavouriteState>(
+                          BlocBuilder<FavouriteCubit, FavouriteState>(
                             builder: (context, state) {
-                              bool isFavourite = false;
-                              if (state is FavouriteToggled) {
-                                isFavourite = state.isFavourite;
-                              }
-
+                              // if (state is FavouriteAddSuccess) {}
                               return Row(
                                 children: [
                                   StoreIconButtons(
-                                    iconData: isFavourite
-                                        ? Icons.favorite
-                                        : Icons.favorite_border,
+                                    iconData: store.favoritesCount == 1
+                                        ? Icons
+                                            .favorite // أيقونة ممتلئة إذا كانت مفضلة.
+                                        : Icons
+                                            .favorite_border, // أيقونة فارغة إذا لم تكن مفضلة.
                                     onTap: () {
                                       final cubit = context.read<FavouriteCubit>();
-
-                                      if (isFavourite) {
-                                        cubit.removeFavourite(store.id.toString());
-                                      } else {
-                                        cubit.addFavourite(store.id.toString());
-                                      }
+                                      cubit
+                                          .toggleFavourite(store.id.toString());
                                     },
                                   ),
                                   SizedBox(width: 16.w),
                                   StoreIconButtons(
                                     iconData: Icons.call,
                                     onTap: () {
-                                      makePhoneCall(store.phone!);
+                                      makePhoneCall(store
+                                          .phone!); 
                                     },
                                   ),
                                 ],
@@ -133,9 +130,9 @@ class AboutStoresView extends StatelessWidget {
                     SizedBox(height: 32.h),
                     const HeaderText(header: "Offers"),
                     SizedBox(height: 8.h),
-                     SizedBox(
+                    SizedBox(
                       width: double.infinity,
-                      child:  OfferGridView(offerList:store.offers ),
+                      child: OfferGridView(offerList: store.offers),
                     )
                   ],
                 ),
@@ -150,87 +147,87 @@ class AboutStoresView extends StatelessWidget {
 
 class OfferGridView extends StatelessWidget {
   const OfferGridView({
-    super.key,  this.offerList,
+    super.key,
+    this.offerList,
   });
-final List<Offer>? offerList;
+  final List<Offer>? offerList;
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
-        gridDelegate:
-            SliverGridDelegateWithFixedCrossAxisCount(
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2, // Number of columns
           crossAxisSpacing: 12.0.w, // Spacing between columns
           mainAxisSpacing: .0.h, // Spacing between rows
-          childAspectRatio: 1.6.w /
-              2.3.h, // Aspect ratio of each item (width/height)
+          childAspectRatio:
+              1.6.w / 2.3.h, // Aspect ratio of each item (width/height)
         ),
         itemCount: offerList!.length,
-        itemBuilder: (context, index) =>  OfferItem(offers:offerList![index] ,));
+        itemBuilder: (context, index) => OfferItem(
+              offers: offerList![index],
+            ));
   }
 }
 
 class OfferItem extends StatelessWidget {
   const OfferItem({
-    super.key, required this.offers,
+    super.key,
+    required this.offers,
   });
-final Offer offers;
+  final Offer offers;
   @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        ClipRRect(
+          borderRadius: BorderRadius.circular(8.0),
+          child: Image.network(
+            //offers.image??
+            'https://media.istockphoto.com/id/681622484/photo/concrete-wall-shiny-smooth-backgrounds-white-textured.jpg?s=2048x2048&w=is&k=20&c=87J5-OznIqEEKD923thUgWZBNIiAD4oDVAmHSQYLr1o=',
+          ),
+        ),
+        SizedBox(height: 8.h),
+        Text(
+          offers.name,
+          style: TextStyle(
+              fontWeight: FontWeight.w400,
+              fontSize: 15.sp,
+              color: ColorManager.primary),
+        ),
+        SizedBox(height: 6.h),
+        Text(
+          "209 EGP",
+          style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w500),
+        ),
+        Row(
           children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(8.0),
-              child: Image.network( 
-                //offers.image??   
-                                   'https://media.istockphoto.com/id/681622484/photo/concrete-wall-shiny-smooth-backgrounds-white-textured.jpg?s=2048x2048&w=is&k=20&c=87J5-OznIqEEKD923thUgWZBNIiAD4oDVAmHSQYLr1o=',
+            Text(
+              "299 EGP",
+              style: TextStyle(
+                fontSize: 14.sp,
+                fontWeight: FontWeight.w500,
+                color: Colors.black.withOpacity(0.4),
+                decoration:
+                    TextDecoration.lineThrough, // Add strikethrough effect
+                decorationColor: Colors.grey, // Set decoration color
+                decorationThickness: 2, // Se
               ),
             ),
-            SizedBox(height: 8.h),
+            SizedBox(width: 8.w),
             Text(
-              offers.name,
+              "30% Off",
               style: TextStyle(
-                  fontWeight: FontWeight.w400,
-                  fontSize: 15.sp,
-                  color: ColorManager.primary),
+                fontSize: 16.sp,
+                fontWeight: FontWeight.w400,
+                color: ColorManager.red,
+              ),
             ),
-            SizedBox(height: 6.h),
-            Text(
-              "209 EGP",
-              style: TextStyle(
-                  fontSize: 14.sp,
-                  fontWeight: FontWeight.w500),
-            ),
-            Row(
-              children: [
-                Text(
-                  "299 EGP",
-                  style: TextStyle(
-                    fontSize: 14.sp,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.black.withOpacity(0.4),
-                    decoration: TextDecoration
-                        .lineThrough, // Add strikethrough effect
-                    decorationColor: Colors
-                        .grey, // Set decoration color
-                    decorationThickness: 2, // Se
-                  ),
-                ),
-                SizedBox(width: 8.w),
-                Text(
-                  "30% Off",
-                  style: TextStyle(
-                    fontSize: 16.sp,
-                    fontWeight: FontWeight.w400,
-                    color: ColorManager.red,
-                  ),
-                ),
-              ],
-            )
           ],
-        );
+        )
+      ],
+    );
   }
 }

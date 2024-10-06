@@ -3,13 +3,13 @@
 class ErrorResponse {
   final bool? success;
   final String? message;
-  final Errors? errors;
+  // final Errors? errors;
   final List<dynamic>? data;
 
   ErrorResponse({
      this.success,
     this.message,
-     this.errors,
+      // this.errors,
      this.data,
   });
 
@@ -17,7 +17,7 @@ class ErrorResponse {
     return ErrorResponse(
       success: json['success'],
       message: json['message'],
-      errors: Errors.fromJson(json['errors']),
+      //  errors: Errors.fromJson(json['errors']),
       data: List<dynamic>.from(json['data']),
     );
   }

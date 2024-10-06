@@ -1,4 +1,6 @@
+import 'package:dartz/dartz.dart';
 import 'package:dealdash/core/cache_helper/cache_helper.dart';
+import 'package:dealdash/core/error/error_model.dart';
 import 'package:dealdash/core/network_helper/dio_helper.dart.dart';
 import 'package:dealdash/feature/favourite/data/model/favourite_model.dart';
 
@@ -43,16 +45,23 @@ class FavouriteRepoImpl extends FavouriteRepo {
   }
 
   @override
-  Future<FavoriteStoresResponse> getFavoriteStores() async {
+
+  Future<Either<ErrorResponse, FavoriteStoresResponse>> getFavoriteStores() async {
     String? token = CacheHelper.getToken();
     try {
       final response = await apiService.getData(
-        endpoint: '/api/v1/user/stores/favorite-stores',
+        endpoint: '/api/v1/user/stores/favorite-stores?per_page=15&page=1',
         token: token,
       );
-      return FavoriteStoresResponse.fromJson(response);
+
+      if (response['success'] == true) {
+        return Right(FavoriteStoresResponse.fromJson(response));
+      } else {
+        return Left(ErrorResponse.fromJson(response));
+      }
     } catch (e) {
-      rethrow;
+      return Left(ErrorResponse(message: 'An error occurred: $e'));
     }
   }
+
 }

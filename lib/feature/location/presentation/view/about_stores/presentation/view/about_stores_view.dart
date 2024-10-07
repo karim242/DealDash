@@ -1,8 +1,10 @@
 import 'package:dealdash/core/resources/color_manger/color_manager.dart';
+import 'package:dealdash/core/widget/formate_date.dart';
 import 'package:dealdash/feature/favourite/logic/favourite_cubit.dart';
 import 'package:dealdash/feature/favourite/logic/favourite_state.dart';
 import 'package:dealdash/feature/location/presentation/view/about_stores/presentation/widgets/category_text.dart';
 import 'package:dealdash/feature/location/presentation/view/about_stores/presentation/widgets/header_text.dart';
+import 'package:dealdash/feature/location/presentation/view/about_stores/presentation/widgets/offer_grid_view.dart';
 import 'package:dealdash/feature/location/presentation/view/about_stores/presentation/widgets/rate_section.dart';
 import 'package:dealdash/feature/location/presentation/view/about_stores/presentation/widgets/side_text.dart';
 import 'package:dealdash/feature/location/presentation/view/about_stores/presentation/widgets/store_icon_buttons.dart';
@@ -72,7 +74,7 @@ class AboutStoresView extends StatelessWidget {
                     SideText(text: store.about!),
                     SizedBox(height: 32.h),
                     SizedBox(
-                      height: 85.h,
+                      height: 88.h,
                       child: Row(
                         children: [
                           Expanded(
@@ -80,9 +82,11 @@ class AboutStoresView extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                const HeaderText(header: "Opening Hours"),
+                                const HeaderText(header: "The show is on"),
                                 SizedBox(height: 8.h),
-                                const SideText(text: "(10:00 am - 11:00 pm)"),
+                                SideText(
+                                    text:
+                                        "(${formatDate(store.createdAt.toString())} - ${formatDate(store.updatedAt.toString())} )"),
                               ],
                             ),
                           ),
@@ -98,12 +102,11 @@ class AboutStoresView extends StatelessWidget {
                                 children: [
                                   StoreIconButtons(
                                     iconData: store.favoritesCount == 1
-                                        ? Icons
-                                            .favorite // أيقونة ممتلئة إذا كانت مفضلة.
-                                        : Icons
-                                            .favorite_border, // أيقونة فارغة إذا لم تكن مفضلة.
+                                        ? Icons.favorite
+                                        : Icons.favorite_border,
                                     onTap: () {
-                                      final cubit = context.read<FavouriteCubit>();
+                                      final cubit =
+                                          context.read<FavouriteCubit>();
                                       cubit
                                           .toggleFavourite(store.id.toString());
                                     },
@@ -112,8 +115,7 @@ class AboutStoresView extends StatelessWidget {
                                   StoreIconButtons(
                                     iconData: Icons.call,
                                     onTap: () {
-                                      makePhoneCall(store
-                                          .phone!); 
+                                      makePhoneCall(store.phone!);
                                     },
                                   ),
                                 ],
@@ -141,93 +143,6 @@ class AboutStoresView extends StatelessWidget {
           ),
         ),
       ),
-    );
-  }
-}
-
-class OfferGridView extends StatelessWidget {
-  const OfferGridView({
-    super.key,
-    this.offerList,
-  });
-  final List<Offer>? offerList;
-  @override
-  Widget build(BuildContext context) {
-    return GridView.builder(
-        shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2, // Number of columns
-          crossAxisSpacing: 12.0.w, // Spacing between columns
-          mainAxisSpacing: .0.h, // Spacing between rows
-          childAspectRatio:
-              1.6.w / 2.3.h, // Aspect ratio of each item (width/height)
-        ),
-        itemCount: offerList!.length,
-        itemBuilder: (context, index) => OfferItem(
-              offers: offerList![index],
-            ));
-  }
-}
-
-class OfferItem extends StatelessWidget {
-  const OfferItem({
-    super.key,
-    required this.offers,
-  });
-  final Offer offers;
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        ClipRRect(
-          borderRadius: BorderRadius.circular(8.0),
-          child: Image.network(
-            //offers.image??
-            'https://media.istockphoto.com/id/681622484/photo/concrete-wall-shiny-smooth-backgrounds-white-textured.jpg?s=2048x2048&w=is&k=20&c=87J5-OznIqEEKD923thUgWZBNIiAD4oDVAmHSQYLr1o=',
-          ),
-        ),
-        SizedBox(height: 8.h),
-        Text(
-          offers.name,
-          style: TextStyle(
-              fontWeight: FontWeight.w400,
-              fontSize: 15.sp,
-              color: ColorManager.primary),
-        ),
-        SizedBox(height: 6.h),
-        Text(
-          "209 EGP",
-          style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w500),
-        ),
-        Row(
-          children: [
-            Text(
-              "299 EGP",
-              style: TextStyle(
-                fontSize: 14.sp,
-                fontWeight: FontWeight.w500,
-                color: Colors.black.withOpacity(0.4),
-                decoration:
-                    TextDecoration.lineThrough, // Add strikethrough effect
-                decorationColor: Colors.grey, // Set decoration color
-                decorationThickness: 2, // Se
-              ),
-            ),
-            SizedBox(width: 8.w),
-            Text(
-              "30% Off",
-              style: TextStyle(
-                fontSize: 16.sp,
-                fontWeight: FontWeight.w400,
-                color: ColorManager.red,
-              ),
-            ),
-          ],
-        )
-      ],
     );
   }
 }

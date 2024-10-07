@@ -24,27 +24,25 @@ class FavoriteView extends StatelessWidget {
         return const UINotConnectInterNetWidget();
       }
       return BlocBuilder<FavouriteCubit, FavouriteState>(
-  builder: (context, state) {
-    if (state is FavouriteLoading) {
-      return const Center(child: CircularProgressIndicator());
-    } else if (state is FavouriteSuccess) {
-      return ListView.builder(
-        itemCount: state.response.data.length,
-        itemBuilder: (context, index) {
-          final store = state.response.data[index];
-          return    FavouriteStoreCard(store: store);
+        builder: (context, state) {
+          if (state is FavouriteLoading) {
+            return const Center(child: CircularProgressIndicator());
+          } else if (state is FavouriteSuccess) {
+            return ListView.builder(
+              itemCount: state.response.data.length,
+              itemBuilder: (context, index) {
+                final store = state.response.data[index];
+                return FavouriteStoreCard(store: store);
+              },
+            );
+          } else if (state is FavouriteFailure) {
+            return Center(
+                child: Text('No Favourite yet: ${state.errorMessage}'));
+          } else {
+            return Container(); // الحالة الأولية
+          }
         },
       );
-      
-    } else if (state is FavouriteFailure) {
-      return Center(child: Text('No Favourite yet: ${state.errorMessage}'));
-    } else {
-      return Container(); // الحالة الأولية
-    }
-  },
-);
-     
-         
     });
   }
 }
@@ -57,9 +55,9 @@ class FavouriteStoreCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        GoRouter.of(context).push(Routes.aboutStoreRoute, extra: store);
-      },
+      // onTap: () {
+      //   GoRouter.of(context).push(Routes.aboutStoreRoute, extra: store);
+      // },
       child: Card(
         margin: const EdgeInsets.all(10),
         shape: RoundedRectangleBorder(
@@ -77,8 +75,9 @@ class FavouriteStoreCard extends StatelessWidget {
                     topRight: Radius.circular(15),
                   ),
                   child: Image.network(
-                     store.image?? 'https://media.istockphoto.com/id/681622484/photo/concrete-wall-shiny-smooth-backgrounds-white-textured.jpg?s=2048x2048&w=is&k=20&c=87J5-OznIqEEKD923thUgWZBNIiAD4oDVAmHSQYLr1o=',
-                     height: 200,
+                    store.image ??
+                        'https://media.istockphoto.com/id/681622484/photo/concrete-wall-shiny-smooth-backgrounds-white-textured.jpg?s=2048x2048&w=is&k=20&c=87J5-OznIqEEKD923thUgWZBNIiAD4oDVAmHSQYLr1o=',
+                    height: 200,
                     width: double.infinity,
                     fit: BoxFit.fill,
                   ),
@@ -88,11 +87,8 @@ class FavouriteStoreCard extends StatelessWidget {
                   top: 10,
                   right: 10,
                   child: Icon(
-                    
-                        Icons.favorite,
-                    
-                    color:
-                        Colors.red ,
+                    Icons.favorite,
+                    color: Colors.red,
                     size: 30,
                   ),
                 ),
@@ -111,9 +107,9 @@ class FavouriteStoreCard extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Text(
-              //  ${store.distance!.toStringAsFixed(1)}
+                //  ${store.distance!.toStringAsFixed(1)}
                 '${store.address}  ',
-                overflow:TextOverflow.ellipsis ,
+                overflow: TextOverflow.ellipsis,
                 style: TextStyle(fontSize: 16, color: ColorManager.yellow),
               ),
             ),

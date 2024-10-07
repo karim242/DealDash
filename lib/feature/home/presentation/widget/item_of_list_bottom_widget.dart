@@ -1,14 +1,13 @@
 import 'package:dealdash/core/resources/color_manger/color_manager.dart';
+import 'package:dealdash/core/widget/formate_date.dart';
 import 'package:dealdash/feature/home/data/model/category_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../core/resources/image_manger/image_manger.dart';
 import '../../../../core/resources/strings_manger/strings_manager.dart';
-import '../control/product_model.dart';
-import '../../data/data.dart';
 
 class ItemOfListBottomWidget extends StatefulWidget {
-  final StoreInCategory? store;
+  final OfferModel? store;
 
   const ItemOfListBottomWidget({super.key, this.store});
 
@@ -33,7 +32,7 @@ class _ItemOfListBottomWidgetState extends State<ItemOfListBottomWidget> {
                 height: MediaQuery.of(context).size.height * .22,
                 width: double.infinity,
                 child: Image.network(
-                  widget.store!.image!,
+                  widget.store!.image,
                   fit: BoxFit.fill,
                 ),
               ),
@@ -49,29 +48,25 @@ class _ItemOfListBottomWidgetState extends State<ItemOfListBottomWidget> {
               const SizedBox(height: 12),
               Expanded(
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     FittedBox(
-                        fit: BoxFit.scaleDown, child: const Text("Price ")),
-                    FittedBox(
-                      fit: BoxFit.scaleDown,
-                      child: Text(
-                        '${widget.store?.phone} E ',
-                        style: const TextStyle(
-                          fontSize: 10,
-                            decoration: TextDecoration.lineThrough),
+                        fit: BoxFit.scaleDown,
+                        child: Text(
+                          "${widget.store!.price} E",
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: ColorManager.primary,
+                          ),
+                        )),
+                    Text(
+                      "30% Off",
+                      style: TextStyle(
+                        fontSize: 16.sp,
+                        fontWeight: FontWeight.w400,
+                        color: ColorManager.red,
                       ),
                     ),
-                    FittedBox(
-                      fit: BoxFit.scaleDown,
-                      child: Text(
-                        "${widget.store?.phone} E",
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: ColorManager.red,
-                        ),
-                      ),
-                    ),
+                    const SizedBox(),
                   ],
                 ),
               ),
@@ -118,7 +113,7 @@ class _ItemOfListBottomWidgetState extends State<ItemOfListBottomWidget> {
               child: Row(
                 children: [
                   Text(
-                     "3.5",
+                    "3.5",
                     style: TextStyle(
                       color: ColorManager.primary,
                     ),
@@ -135,6 +130,4 @@ class _ItemOfListBottomWidgetState extends State<ItemOfListBottomWidget> {
       ),
     );
   }
-
- 
 }

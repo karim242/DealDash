@@ -11,7 +11,7 @@ class StoreCubit extends Cubit<StoreState> {
     try {
       emit(StoreLoading());
 
-      final result = await storeRepository.getNearbyStores(31.034883! ,  31.372013!);
+      final result = await storeRepository.getNearbyStores(lat ,  long!);
 
       result.fold(
         (failure) => emit(StoreError(failure.errorModel.message!)),

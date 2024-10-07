@@ -12,9 +12,10 @@ final CategoryData categoryModel;
     return Scaffold(
       body: CustomScrollView(
         slivers: [
-          const SliverAppBar(
+           SliverAppBar(
             floating: true,
             toolbarHeight: 35,
+            title: Text(categoryModel.name),
           ),
           const SliverToBoxAdapter(
             child: SizedBox(

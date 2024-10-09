@@ -1,6 +1,6 @@
 
 import 'package:dealdash/core/resources/color_manger/color_manager.dart';
-import 'package:dealdash/feature/location/data/model/store_model.dart';
+import 'package:dealdash/feature/search/data/model/offer_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

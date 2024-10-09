@@ -1,4 +1,7 @@
 import 'package:dealdash/app.dart';
+import 'package:dealdash/core/network_helper/dio_helper.dart.dart';
+import 'package:dealdash/feature/search/data/repo/search_repo_impl.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
 import 'core/cache_helper/cache_helper.dart';
@@ -11,6 +14,8 @@ void main() async{
   ServiceLocator().init();
 //  await dotenv.load();
  // DioHelper.init();
+
+ SearchRepoImpl(ApiService(Dio())).searchForOffer("desire");
   runApp(const MyApp());
 }
 

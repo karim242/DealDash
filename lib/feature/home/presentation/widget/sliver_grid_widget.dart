@@ -20,7 +20,7 @@ class SliverGridWidget extends StatelessWidget {
           if(categoryModel.stores.isEmpty){
             return const Center(child: Text("No Data"));
           }else{
-          return  ItemOfListBottomWidget(store:categoryModel.stores[index].offers[index]);
+          return  ItemOfListBottomWidget(store:categoryModel.stores[index]);
           }
           }
     );

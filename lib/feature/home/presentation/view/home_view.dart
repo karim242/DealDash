@@ -1,7 +1,9 @@
 import 'package:dealdash/core/check_connect_internet/cubit/connect_internet_cubit.dart';
 import 'package:dealdash/core/check_connect_internet/cubit/connect_internet_state.dart';
+import 'package:dealdash/core/services/service_locator.dart';
 import 'package:dealdash/core/widget/ui_not_connectinternet_widget.dart';
 import 'package:dealdash/feature/home/presentation/widget/category_row.dart';
+import 'package:dealdash/feature/search/logic/search_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -29,7 +31,10 @@ class HomeView extends StatelessWidget {
               //form search
               SliverAppBar(
                 automaticallyImplyLeading: false,
-                flexibleSpace: const CustomSearchForm(),
+                flexibleSpace: BlocProvider(
+                  create: (context) => sl<SearchCubit>(),
+                  child: const CustomSearchForm(),
+                ),
                 toolbarHeight: h * .12,
                 floating: true,
               ),

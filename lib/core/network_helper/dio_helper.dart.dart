@@ -49,7 +49,11 @@ ApiService(Dio dio)
       if (response.statusCode == 200 || response.statusCode == 201) {
       
       return response.data;
-    } else {
+      
+    } else if(response.statusCode == 404){
+      return response.data['message'];
+    }
+    else {
       throw DioException(
         requestOptions: response.requestOptions,
         response: response,

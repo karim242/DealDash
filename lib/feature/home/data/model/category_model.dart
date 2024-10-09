@@ -1,3 +1,5 @@
+import 'package:dealdash/feature/search/data/model/offer_model.dart';
+
 class CategoryModel {
   final bool success;
   final String message;
@@ -70,7 +72,7 @@ class StoreInCategory {
   final DateTime createdAt;
   final DateTime updatedAt;
   final DateTime? deletedAt;
-  final List<OfferModel> offers; // القوائم تكون فارغة حالياً
+  final List<Offer> offers; // القوائم تكون فارغة حالياً
 
   StoreInCategory({
     required this.id,
@@ -104,60 +106,62 @@ class StoreInCategory {
       createdAt: DateTime.parse(json['created_at']),
       updatedAt: DateTime.parse(json['updated_at']),
       deletedAt: json['deleted_at'] != null ? DateTime.parse(json['deleted_at']) : null,
-     offers: List<OfferModel>.from(
-        json['offers'].map((offer) => OfferModel.fromJson(offer)),
+     offers: List<Offer>.from(
+        json['offers'].map((offer) => Offer.fromJson(offer)),
       ),    );
   }
-}
-class OfferModel {
-  final int id;
-  final String name;
-  final int storeId;
-  final String image;
-  final String address;
-  final String about;
-  final String price;
-  final String latitude;
-  final String longitude;
-  final DateTime startDate;
-  final DateTime endDate;
-  final DateTime createdAt;
-  final DateTime updatedAt;
-  final DateTime? deletedAt;
 
-  OfferModel({
-    required this.id,
-    required this.name,
-    required this.storeId,
-    required this.image,
-    required this.address,
-    required this.about,
-    required this.price,
-    required this.latitude,
-    required this.longitude,
-    required this.startDate,
-    required this.endDate,
-    required this.createdAt,
-    required this.updatedAt,
-    this.deletedAt,
-  });
+  get price => null;
+// }
+// class OfferModel {
+//   final int id;
+//   final String name;
+//   final int storeId;
+//   final String image;
+//   final String address;
+//   final String about;
+//   final String price;
+//   final String latitude;
+//   final String longitude;
+//   final DateTime startDate;
+//   final DateTime endDate;
+//   final DateTime createdAt;
+//   final DateTime updatedAt;
+//   final DateTime? deletedAt;
 
-  factory OfferModel.fromJson(Map<String, dynamic> json) {
-    return OfferModel(
-      id: json['id'],
-      name: json['name'],
-      storeId: json['store_id'],
-      image: json['image'],
-      address: json['address'],
-      about: json['about'],
-      price: json['price'],
-      latitude: json['latitude'],
-      longitude: json['longitude'],
-      startDate: DateTime.parse(json['start_date']),
-      endDate: DateTime.parse(json['end_date']),
-      createdAt: DateTime.parse(json['created_at']),
-      updatedAt: DateTime.parse(json['updated_at']),
-      deletedAt: json['deleted_at'] != null ? DateTime.parse(json['deleted_at']) : null,
-    );
-}
+//   OfferModel({
+//     required this.id,
+//     required this.name,
+//     required this.storeId,
+//     required this.image,
+//     required this.address,
+//     required this.about,
+//     required this.price,
+//     required this.latitude,
+//     required this.longitude,
+//     required this.startDate,
+//     required this.endDate,
+//     required this.createdAt,
+//     required this.updatedAt,
+//     this.deletedAt,
+//   });
+
+//   factory OfferModel.fromJson(Map<String, dynamic> json) {
+//     return OfferModel(
+//       id: json['id'],
+//       name: json['name'],
+//       storeId: json['store_id'],
+//       image: json['image'],
+//       address: json['address'],
+//       about: json['about'],
+//       price: json['price'],
+//       latitude: json['latitude'],
+//       longitude: json['longitude'],
+//       startDate: DateTime.parse(json['start_date']),
+//       endDate: DateTime.parse(json['end_date']),
+//       createdAt: DateTime.parse(json['created_at']),
+//       updatedAt: DateTime.parse(json['updated_at']),
+//       deletedAt: json['deleted_at'] != null ? DateTime.parse(json['deleted_at']) : null,
+//     );
+// }
 }

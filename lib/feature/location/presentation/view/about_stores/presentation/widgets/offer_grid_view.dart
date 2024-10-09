@@ -1,6 +1,6 @@
 
-import 'package:dealdash/feature/location/data/model/store_model.dart';
 import 'package:dealdash/feature/location/presentation/view/about_stores/presentation/widgets/offer_item.dart';
+import 'package:dealdash/feature/search/data/model/offer_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

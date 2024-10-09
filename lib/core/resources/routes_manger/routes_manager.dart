@@ -15,6 +15,7 @@ import 'package:dealdash/feature/settings/presentation/view/settings_view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:go_router/go_router.dart';
+import '../../../feature/home/presentation/control/product_model.dart';
 import '../../../feature/location/data/model/store_model.dart';
 import '../../../feature/auth/presentation/cubit/signup/signup_cubit.dart';
 import '../../../feature/auth/presentation/views/forget_password.dart';
@@ -113,8 +114,9 @@ abstract class AppRouter {
      GoRoute(
         path: Routes.productDetails,
         builder: (context, state) {
-          final store = state.extra as StoreInCategory;
-          return ProductDetails(product: store,);
+          // final store = state.extra as StoreInCategory;
+          ProductModel? productModel;
+          return ProductDetails(productModel:productModel ,);
         })
   ]);
 }

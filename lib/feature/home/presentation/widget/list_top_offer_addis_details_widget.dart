@@ -22,7 +22,7 @@ final CategoryData categoryModel;
               height: 5,
             ),
           ),
-          SliverGridWidget(categoryModel: categoryModel,)
+          SliverGridWidget( list: [],)
         ],
       ),
     );

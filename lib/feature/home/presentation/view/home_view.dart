@@ -3,11 +3,13 @@ import 'package:dealdash/core/check_connect_internet/cubit/connect_internet_stat
 import 'package:dealdash/core/services/service_locator.dart';
 import 'package:dealdash/core/widget/ui_not_connectinternet_widget.dart';
 import 'package:dealdash/feature/home/presentation/widget/category_row.dart';
+import 'package:dealdash/feature/home/presentation/widget/sliver_grid_widget.dart';
 import 'package:dealdash/feature/search/logic/search_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/resources/strings_manger/strings_manager.dart';
+import '../../data/data.dart';
 import '../widget/custom_baner.dart';
 import '../widget/custom_search_form.dart';
 import '../widget/list_top_offer_Addis_widget.dart';
@@ -70,10 +72,10 @@ class HomeView extends StatelessWidget {
                 ),
               ),
               SliverToBoxAdapter(child: SizedBox(height: h * .01)),
-              //list bottom
-              // SliverGridWidget(categoryModel: null,
-
-              // ),
+              // list bottom
+              SliverGridWidget(
+                list: productList,
+              ),
             ],
           ),
         );

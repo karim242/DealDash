@@ -8,9 +8,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/resources/strings_manger/strings_manager.dart';
+import '../../data/data.dart';
 import '../widget/custom_baner.dart';
 import '../widget/custom_search_form.dart';
 import '../widget/list_top_offer_Addis_widget.dart';
+import '../widget/sliver_grid_list_static_data_widget.dart';
+import '../widget/sliver_grid_widget.dart';
 import '../widget/text_widget.dart';
 
 class HomeView extends StatelessWidget {
@@ -71,9 +74,11 @@ class HomeView extends StatelessWidget {
               ),
               SliverToBoxAdapter(child: SizedBox(height: h * .01)),
               //list bottom
-              // SliverGridWidget(categoryModel: null,
+              // SliverGridWidget(categoryModel: null),
 
-              // ),
+              SliverGridListStaticDataWidget(
+                list: productList,
+              ),
             ],
           ),
         );

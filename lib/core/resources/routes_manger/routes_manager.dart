@@ -1,5 +1,7 @@
 import 'package:dealdash/core/services/service_locator.dart';
 import 'package:dealdash/core/widget/product_details.dart';
+import 'package:dealdash/feature/favourite/data/model/favourite_model.dart';
+import 'package:dealdash/feature/favourite/presentation/view/store_details_view.dart';
 import 'package:dealdash/feature/home/data/model/category_model.dart';
 import 'package:dealdash/feature/location/presentation/view/about_stores/presentation/view/about_stores_view.dart';
 import 'package:dealdash/feature/about_us/presentation/view/about_us_view.dart';
@@ -37,6 +39,7 @@ class Routes {
   static const String settingsRoute = '/settingsView';
   static const String privacyAndPolicyRoute = '/privacyAndPolicyView';
   static const String aboutUsRoute = '/aboutUsView';
+  static const String favouriteStore = '/favouriteStore';
   static const String changePasswordRoute = '/changePasswordView';
 
   static const String searchRoute = '/searchingView';
@@ -99,6 +102,14 @@ abstract class AppRouter {
       builder: (context, state) => const AboutUsView(),
     ),
     GoRoute(
+        path: Routes.favouriteStore,
+        builder: (context, state) {
+          final favouriteStore = state.extra as FavoriteStore;
+          return StoreFavouriteDetails(
+            store: favouriteStore,
+          );
+        }),
+    GoRoute(
       path: Routes.changePasswordRoute,
       builder: (context, state) => ChangePasswordView(),
     ),
@@ -111,11 +122,13 @@ abstract class AppRouter {
             child: const SearchView(),
           );
         }),
-     GoRoute(
+    GoRoute(
         path: Routes.productDetails,
         builder: (context, state) {
           final store = state.extra as StoreInCategory;
-          return ProductDetails(product: store,);
+          return ProductDetails(
+            product: store,
+          );
         }),
   ]);
 }

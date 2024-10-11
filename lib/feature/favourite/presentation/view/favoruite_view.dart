@@ -55,9 +55,9 @@ class FavouriteStoreCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      // onTap: () {
-      //   GoRouter.of(context).push(Routes.aboutStoreRoute, extra: store);
-      // },
+      onTap: () {
+        GoRouter.of(context).push(Routes.favouriteStore, extra: store);
+      },
       child: Card(
         margin: const EdgeInsets.all(10),
         shape: RoundedRectangleBorder(

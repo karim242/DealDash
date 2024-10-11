@@ -15,7 +15,6 @@ void main() async{
 //  await dotenv.load();
  // DioHelper.init();
 
- SearchRepoImpl(ApiService(Dio())).searchForOffer("desire");
   runApp(const MyApp());
 }
 

@@ -8,30 +8,28 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SearchView extends StatelessWidget {
-  const SearchView({Key? key}) : super(key: key);
-
+  const SearchView({Key? key,}) : super(key: key);
   @override
+
+
+ 
   Widget build(BuildContext context) {
+   //  context.read<SearchCubit>().searchForOffer("Desire");
     return Scaffold(
       appBar: AppBar(
         title: const Text('Search Result'),
       ),
-      body: BlocBuilder<SearchCubit, SearchState>(
+      body: BlocConsumer<SearchCubit, SearchState>(
+        listener: (context, state) {
+        },
         builder: (context, state) {
-        
-          if (state is SearchLoading) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          } else if (state is SearchSuccess) {
-            if (state.offer.isEmpty) {
+           if (state is SearchSuccess) {
+            if (state.searchResponse.offers.isEmpty) {
               return const Center(
                 child: Text("No offers found"),
               );
             }
-            print("Successssssssssssssss");
-             final offer = state.offer[1];
-                     // return CardOfferItem(offerData: offer);
+
             return CustomScrollView(
               slivers: [
                 SliverGrid(
@@ -43,10 +41,10 @@ class SearchView extends StatelessWidget {
                   ),
                   delegate: SliverChildBuilderDelegate(
                     (BuildContext context, int index) {
-                      final offer = state.offer[index];
-                      return SerachCardItem(offerData: offer);
+                      final offer = state.searchResponse.offers[index];
+                      return SerachCardItem(offerData: offer); // عرض كل عرض باستخدام SerachCardItem
                     },
-                    childCount: state.offer.length, // عدد العروض
+                    childCount: state.searchResponse.offers.length, // عدد العروض
                   ),
                 ),
               ],
@@ -55,9 +53,9 @@ class SearchView extends StatelessWidget {
             return Center(
               child: Text(state.errorMessage),
             );
-          } else {
+          }  else {
             return const Center(
-              child: Text('Unknown error'),
+              child: CircularProgressIndicator(),
             );
           }
         },

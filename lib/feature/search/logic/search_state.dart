@@ -5,7 +5,7 @@ abstract class SearchState extends Equatable {
   const SearchState();
 
   @override
-  List<Object> get props => [];
+  List<Object?> get props => [];
 }
 
 class SearchInitial extends SearchState {}
@@ -13,13 +13,14 @@ class SearchInitial extends SearchState {}
 class SearchLoading extends SearchState {}
 
 class SearchSuccess extends SearchState {
-  final List<Offer> offer;
+  final SearchResponse searchResponse;
 
-  const SearchSuccess(this.offer);
+  const SearchSuccess(this.searchResponse);
 
   @override
-  List<Object> get props => [offer];
+  List<Object> get props => [searchResponse];
 }
+
 class SearchFailure extends SearchState {
   final String errorMessage;
 

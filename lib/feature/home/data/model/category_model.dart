@@ -1,11 +1,11 @@
+import 'package:dealdash/feature/location/data/model/store_model.dart';
 import 'package:dealdash/feature/search/data/model/offer_model.dart';
 
 class CategoryModel {
   final bool success;
   final String message;
   final List<String> errors;
-  final List<CategoryData> data; // هنا نستخدم List لأنها قائمة من الفئات
-
+  final List<CategoryData> data; 
   CategoryModel({
     required this.success,
     required this.message,
@@ -111,57 +111,5 @@ class StoreInCategory {
       ),    );
   }
 
-  get price => null;
-// }
-// class OfferModel {
-//   final int id;
-//   final String name;
-//   final int storeId;
-//   final String image;
-//   final String address;
-//   final String about;
-//   final String price;
-//   final String latitude;
-//   final String longitude;
-//   final DateTime startDate;
-//   final DateTime endDate;
-//   final DateTime createdAt;
-//   final DateTime updatedAt;
-//   final DateTime? deletedAt;
-
-//   OfferModel({
-//     required this.id,
-//     required this.name,
-//     required this.storeId,
-//     required this.image,
-//     required this.address,
-//     required this.about,
-//     required this.price,
-//     required this.latitude,
-//     required this.longitude,
-//     required this.startDate,
-//     required this.endDate,
-//     required this.createdAt,
-//     required this.updatedAt,
-//     this.deletedAt,
-//   });
-
-//   factory OfferModel.fromJson(Map<String, dynamic> json) {
-//     return OfferModel(
-//       id: json['id'],
-//       name: json['name'],
-//       storeId: json['store_id'],
-//       image: json['image'],
-//       address: json['address'],
-//       about: json['about'],
-//       price: json['price'],
-//       latitude: json['latitude'],
-//       longitude: json['longitude'],
-//       startDate: DateTime.parse(json['start_date']),
-//       endDate: DateTime.parse(json['end_date']),
-//       createdAt: DateTime.parse(json['created_at']),
-//       updatedAt: DateTime.parse(json['updated_at']),
-//       deletedAt: json['deleted_at'] != null ? DateTime.parse(json['deleted_at']) : null,
-//     );
-// }
+  
 }

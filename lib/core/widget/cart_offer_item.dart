@@ -1,11 +1,10 @@
 
 import 'package:dealdash/core/resources/color_manger/color_manager.dart';
-import 'package:dealdash/core/resources/routes_manger/routes_manager.dart';
 import 'package:dealdash/core/resources/strings_manger/strings_manager.dart';
 import 'package:dealdash/feature/home/data/model/category_model.dart';
+import 'package:dealdash/feature/location/data/model/store_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 
 class CardOfferItem extends StatelessWidget {
   const CardOfferItem({
@@ -18,11 +17,7 @@ class CardOfferItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-   onTap:(){
-      // navigate to product de and ProductDetails
-      GoRouter.of(context).push(Routes.productDetails ,extra: offerData);
-
-     },
+  
       child: Card(
      
         elevation: 0,
@@ -56,7 +51,7 @@ class CardOfferItem extends StatelessWidget {
                       FittedBox(
                           fit: BoxFit.scaleDown,
                           child: Text(
-                            "${offerData!.price} E",
+                            "${offerData!.offers[0].price} E",
                             style: TextStyle(
                               fontSize: 14,
                               color: ColorManager.primary,

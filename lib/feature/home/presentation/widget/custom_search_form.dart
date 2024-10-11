@@ -48,12 +48,12 @@ class CustomSearchFormState extends State<CustomSearchForm> {
                           onTap: () {
                             if (_formKey.currentState?.validate() ?? false) {
                               // Process data
-                              print('Input: ${_controller.text}');
-                              BlocProvider.of<SearchCubit>(context).searchForOffer(_controller.text);
-                              context
-                                  .read<SearchCubit>()
-                                  .searchForOffer(_controller.text);
-                                  GoRouter.of(context).push(Routes.searchRoute);
+                            //  print('Input: ${_controller.text}');
+                              //BlocProvider.of<SearchCubit>(context).searchForOffer(_controller.text);
+                              // context
+                              //     .read<SearchCubit>()
+                              //     .searchForOffer(_controller.text);
+                                  GoRouter.of(context).push(Routes.searchRoute, extra: _controller.text );
                             }
                           },
                           child: const Icon(

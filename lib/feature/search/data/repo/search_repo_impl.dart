@@ -14,9 +14,9 @@ class SearchRepoImpl implements SearchRepo {
 
 
   @override
- Future<Either<ErrorResponse, List<Offer>>> searchForOffer(String query) async {
+   @override
+  Future<Either<ErrorResponse, SearchResponse>> searchForOffer(String query) async {
     try {
-      print("//////////////////////////////////////////////////");
       String? token = CacheHelper.getToken();
       final response = await apiService.getData(
         endpoint: '/api/v1/user/search',
@@ -26,19 +26,14 @@ class SearchRepoImpl implements SearchRepo {
         },
         token: token,
       );
-     if (response['success'] == true) {
-       print(response['data']);
-      final List data = response['data']; 
 
-      final List<Offer> offers = data.map((item) {
-          return Offer.fromJson(item as Map<String, dynamic>);
-      }).toList();
-        print(" offerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr");
-        return Right(offers);
+      if (response['success'] == true && response['data'] != null) {
+        final searchResponse = SearchResponse.fromJson(response);
+        return Right(searchResponse);
       } else {
         return Left(ErrorResponse(
           message: response['message'],
-          data: List<String>.from(response['errors']),
+          data: List<String>.from(response['errors'] ?? []),
         ));
       }
     } on DioException catch (e) {

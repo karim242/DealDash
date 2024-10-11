@@ -1,3 +1,23 @@
+class SearchResponse {
+  final List<Offer> offers;
+  final Meta meta;
+
+  SearchResponse({
+    required this.offers,
+    required this.meta,
+  });
+
+  factory SearchResponse.fromJson(Map<String, dynamic> json) {
+    // تحويل `data` إلى قائمة من `Offer`
+    final List data = json['data'];
+    final List<Offer> offers = data.map((item) => Offer.fromJson(item as Map<String, dynamic>)).toList();
+
+    return SearchResponse(
+      offers: offers,
+      meta: Meta.fromJson(json['meta']),
+    );
+  }
+}
 class Offer {
   final int id;
   final String name;
@@ -31,7 +51,7 @@ class Offer {
     this.deletedAt,
   });
 
-   factory Offer.fromJson(Map<String, dynamic> json) {
+  factory Offer.fromJson(Map<String, dynamic> json) {
     return Offer(
       id: json['id'],
       name: json['name'],
@@ -49,5 +69,30 @@ class Offer {
       deletedAt: json['deleted_at'] != null ? DateTime.parse(json['deleted_at']) : null,
     );
   }
+}
 
+class Meta {
+  final int currentPage;
+  final int totalCount;
+  final int perPage;
+  final int totalPages;
+  final bool hasMorePages;
+
+  Meta({
+    required this.currentPage,
+    required this.totalCount,
+    required this.perPage,
+    required this.totalPages,
+    required this.hasMorePages,
+  });
+
+  factory Meta.fromJson(Map<String, dynamic> json) {
+    return Meta(
+      currentPage: json['current_page'],
+      totalCount: json['total_count'],
+      perPage: json['per_page'],
+      totalPages: json['total_pages'],
+      hasMorePages: json['has_more_pages'],
+    );
+  }
 }

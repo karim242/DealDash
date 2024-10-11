@@ -41,7 +41,7 @@ class Routes {
 
   static const String searchRoute = '/searchingView';
 
-  static const String  productDetails = '/productDetails';
+  static const String productDetails = '/productDetails';
 }
 
 abstract class AppRouter {
@@ -103,18 +103,19 @@ abstract class AppRouter {
       builder: (context, state) => ChangePasswordView(),
     ),
     GoRoute(
-      path: Routes.searchRoute,
-      builder: (context, state) => BlocProvider(
-                  create: (context) => sl<SearchCubit>(),
-        child: const SearchView(),
-      ),
-    ),
-
+        path: Routes.searchRoute,
+        builder: (context, state) {
+          final String query = state.extra as String;
+          return BlocProvider(
+            create: (context) => sl<SearchCubit>()..searchForOffer(query),
+            child: const SearchView(),
+          );
+        }),
      GoRoute(
         path: Routes.productDetails,
         builder: (context, state) {
           final store = state.extra as StoreInCategory;
           return ProductDetails(product: store,);
-        })
+        }),
   ]);
 }

@@ -1,11 +1,12 @@
 
 
+import 'package:dealdash/core/resources/routes_manger/routes_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../core/resources/color_manger/color_manager.dart';
 import '../../../../core/resources/strings_manger/strings_manager.dart';
-import '../../../../core/widget/product_details.dart';
 import '../control/product_model.dart';
 
 class CardOfferItemOfListStaticDataWidget extends StatelessWidget {
@@ -23,7 +24,7 @@ class CardOfferItemOfListStaticDataWidget extends StatelessWidget {
     return GestureDetector(
    onTap:(){
       // navigate to product de and ProductDetails
-      // GoRouter.of(context).push(Routes.productDetails);
+     GoRouter.of(context).push(Routes.productStaticDetails, extra: productModel);
 
      },
       child: Card(

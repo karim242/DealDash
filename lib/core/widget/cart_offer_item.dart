@@ -20,7 +20,7 @@ class CardOfferItem extends StatelessWidget {
   
       child: Card(
      
-        elevation: 0,
+        elevation: 2,
         child: Stack(
           children: [
             Column(
@@ -39,10 +39,13 @@ class CardOfferItem extends StatelessWidget {
                   height: 5,
                 ),
                 //title
-                Text(
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  offerData?.name ?? AppStrings.appelMob,
+               Padding(
+                  padding: const EdgeInsets.only(left: 8.0).r,
+                  child: Text(
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    offerData?.name ?? AppStrings.appelMob,
+                  ),
                 ),
                 const SizedBox(height: 12),
                 Expanded(
@@ -50,15 +53,18 @@ class CardOfferItem extends StatelessWidget {
                     children: [
                       FittedBox(
                           fit: BoxFit.scaleDown,
-                          child: Text(
-                            "${offerData!.offers[0].price} E",
+                          child: 
+                           Padding(
+                            padding: const EdgeInsets.only(left: 8.0).r,
+                            child:Text(
+                            "discount ",
                             style: TextStyle(
                               fontSize: 14,
-                              color: ColorManager.primary,
-                            ),
+                              color: ColorManager.yellow,
+                            ),),
                           )),
                       Text(
-                        "30% Off",
+                        (offerData?.offers.length ?? 0) % 2 == 1 ? "30% Off" : "10% Off",
                         style: TextStyle(
                           fontSize: 16.sp,
                           fontWeight: FontWeight.w400,

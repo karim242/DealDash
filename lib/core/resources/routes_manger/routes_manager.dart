@@ -1,8 +1,10 @@
 import 'package:dealdash/core/services/service_locator.dart';
 import 'package:dealdash/core/widget/product_details.dart';
+import 'package:dealdash/core/widget/product_static_details.dart';
 import 'package:dealdash/feature/favourite/data/model/favourite_model.dart';
 import 'package:dealdash/feature/favourite/presentation/view/store_details_view.dart';
 import 'package:dealdash/feature/home/data/model/category_model.dart';
+import 'package:dealdash/feature/home/presentation/control/product_model.dart';
 import 'package:dealdash/feature/location/presentation/view/about_stores/presentation/view/about_stores_view.dart';
 import 'package:dealdash/feature/about_us/presentation/view/about_us_view.dart';
 import 'package:dealdash/feature/auth/presentation/cubit/login/login_cubit.dart';
@@ -45,6 +47,7 @@ class Routes {
   static const String searchRoute = '/searchingView';
 
   static const String productDetails = '/productDetails';
+  static const String productStaticDetails = '/productStaticDetails';
 }
 
 abstract class AppRouter {
@@ -130,5 +133,13 @@ abstract class AppRouter {
             product: store,
           );
         }),
+
+          GoRoute(
+        path: Routes.productStaticDetails,
+        builder: (context, state) {
+           final productModel = state.extra as ProductModel;
+         
+          return ProductStaticDetails(productModel:productModel ,);
+        })
   ]);
 }

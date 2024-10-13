@@ -128,12 +128,12 @@ class StoreFavouriteDetails extends StatelessWidget {
                     SizedBox(height: 8.h),
                     SideText(text: store.address),
                     SizedBox(height: 32.h),
-                    const HeaderText(header: "Offers"),
-                    SizedBox(height: 8.h),
-                    SizedBox(
-                      width: double.infinity,
-                  //    child: OfferGridView(offerList: store.offers),
-                    )
+                  //   const HeaderText(header: "Offers"),
+                  //   SizedBox(height: 8.h),
+                  //   SizedBox(
+                  //     width: double.infinity,
+                  // //    child: OfferGridView(offerList: store.offers),
+                  //   )
                   ],
                 ),
               )

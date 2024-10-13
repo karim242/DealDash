@@ -80,6 +80,7 @@ class LoginView extends StatelessWidget {
                             alignment: Alignment.centerRight,
                             child: InkWell(
                               onTap: () {
+                                
                                 GoRouter.of(context)
                                     .push(Routes.forgetPasswordRoute);
                               },

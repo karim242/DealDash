@@ -1,5 +1,9 @@
+import 'package:dealdash/feature/auth/data/repo/auth_repo.dart';
+import 'package:dealdash/feature/auth/presentation/cubit/forgot_password/forgot_password_cubit.dart';
 import 'package:dealdash/feature/auth/presentation/cubit/login/login_cubit.dart';
-import 'package:dealdash/feature/favourite/data/repo/favourite_repo.dart';
+import 'package:dealdash/feature/change_password/data/repo/change_password_repo.dart';
+import 'package:dealdash/feature/change_password/data/repo/change_password_repo_impl.dart';
+import 'package:dealdash/feature/change_password/logic/change_password_cubit.dart';
 import 'package:dealdash/feature/favourite/data/repo/favourite_repo_impl.dart';
 import 'package:dealdash/feature/favourite/logic/favourite_cubit.dart';
 import 'package:dealdash/feature/home/data/repo/category_repo.dart';
@@ -28,18 +32,21 @@ class ServiceLocator {
     sl.registerLazySingleton<Dio>(() => Dio());
     sl.registerLazySingleton<ApiService>(() => ApiService(sl.get<Dio>()));
 
-    sl.registerLazySingleton<AuthRepositoryImpl>(
+    sl.registerLazySingleton<AuthRepository>(
         () => AuthRepositoryImpl(apiServes: sl.get<ApiService>()));
 
     sl.registerFactory<LoginCubit>(
-        () => LoginCubit(sl<AuthRepositoryImpl>()));
+        () => LoginCubit(sl<AuthRepository>()));
     sl.registerFactory<SignupCubit>(
-        () => SignupCubit(sl<AuthRepositoryImpl>()));
+        () => SignupCubit(sl<AuthRepository>()));
+  
+    sl.registerFactory<ForgotPasswordCubit>(
+        () => ForgotPasswordCubit(sl<AuthRepository>()));
+   
 
-    // Register Repository
+
     sl.registerLazySingleton<StoreRepository>(() => StoreRepositoryImpl(sl()));
 
-    // Register Cubit
     sl.registerFactory(() => StoreCubit(sl()));
 
 // تسجيل PlacesCubit
@@ -63,5 +70,13 @@ class ServiceLocator {
         () => SearchRepoImpl( sl.get<ApiService>()));
 
     sl.registerFactory<SearchCubit>(() => SearchCubit(sl<SearchRepoImpl>()));
+
+
+    // change password 
+    sl.registerLazySingleton<ChangePasswordRepo>(
+        () => ChangePasswordRepoImpl(apiService: sl.get<ApiService>()));
+    sl.registerFactory<ChangePasswordCubit>(
+        () => ChangePasswordCubit(sl<ChangePasswordRepo>()));
+
   }
 }

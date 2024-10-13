@@ -1,17 +1,18 @@
 import 'package:dealdash/core/resources/color_manger/color_manager.dart';
-import 'package:dealdash/feature/home/data/model/category_model.dart';
+import 'package:dealdash/core/widget/formate_date.dart';
+import 'package:dealdash/feature/location/presentation/view/about_stores/presentation/widgets/side_text.dart';
+import 'package:dealdash/feature/search/data/model/offer_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 class ProductDetails extends StatelessWidget {
-const ProductDetails({super.key, required this.product});
-  final StoreInCategory product;
+  const ProductDetails({super.key, required this.product});
+  final Offer product;
 
-@override
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
@@ -23,10 +24,10 @@ const ProductDetails({super.key, required this.product});
               Stack(
                 children: [
                   Image.network(
-                    product.image!,
-                    height: 250.h,
+                    product.image,
+                    height: 300.h,
                     width: double.infinity,
-                    fit: BoxFit.cover,
+                    fit: BoxFit.fill,
                   ),
                   Positioned(
                     right: 16,
@@ -39,7 +40,8 @@ const ProductDetails({super.key, required this.product});
                       ),
                       child: Row(
                         children: [
-                          Icon(Icons.timer, color: ColorManager.whitGreen, size: 16),
+                          Icon(Icons.timer,
+                              color: ColorManager.whitGreen, size: 16),
                           const SizedBox(width: 4),
                           Text(
                             timeago.format(product.createdAt),
@@ -57,42 +59,76 @@ const ProductDetails({super.key, required this.product});
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     // Offer price
-                    Text(
-                      product.price ?? 'Free',
-                      style: TextStyle(
-                        fontSize: 24.sp,
-                        color: ColorManager.yellow,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    const SizedBox(height: 16),
-                    // Offer text
-                    Text(
-                      product.name,
-                      style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.grey[800],
-                        fontWeight: FontWeight.bold,
-                      ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          width: 248.w,
+                          child: Text(
+                            product.name,
+                            style: TextStyle(
+                              fontSize: 24.sp,
+                              color: ColorManager.primary,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(),
+                        // Offer text
+                        Text(
+                          "${product.price} E ",
+                          style: TextStyle(
+                            fontSize: 20,
+                            color: ColorManager.red,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
                     ),
                     const SizedBox(height: 16),
 
                     // About offer section
+
                     Text(
-                      'DESCRIPTION',
+                      'About',
                       style: TextStyle(
                         fontSize: 16,
-                        color: ColorManager.yellow,
+                        color: ColorManager.primary,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      product.about!,
+                      product.about,
                       style: TextStyle(color: Colors.grey[600], height: 1.5),
                     ),
                     const SizedBox(height: 16),
 
+                    SizedBox(
+                      height: 40.h,
+                      child: Row(
+                        children: [
+                          Text(
+                            'The show is on',
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: ColorManager.primary,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          SizedBox(width: 16.h),
+                          VerticalDivider(
+                            color: ColorManager.red,
+                            thickness: 1,
+                          ),
+                          SizedBox(width: 16.h),
+                          SideText(
+                              text:
+                                  "${formatDate(product.createdAt.toString())} - ${formatDate(product.updatedAt.toString())} "),
+                        ],
+                      ),
+                    ),
                     // People interested and button
                     // Row(
                     //   children: [
@@ -113,44 +149,44 @@ const ProductDetails({super.key, required this.product});
                     //     ),
                     //   ],
                     // ),
-                    // const SizedBox(height: 16),
-
                     // Offer by and Address
-                    Text(
-                      'OFFER BY',
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: ColorManager.yellow,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'The Johnson Shop',
-                              style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.grey[700],
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            Text(
-                              'Fashion Store',
-                              style: TextStyle(color: Colors.grey[600]),
-                            ),
-                          ],
-                        ),
-                        TextButton(
-                          onPressed: () {},
-                          child: Text('View store', style: TextStyle(color: ColorManager.yellow)),
-                        )
-                      ],
-                    ),
+                    // Text(
+                    //   'OFFER BY',
+                    //   style: TextStyle(
+                    //     fontSize: 16,
+                    //     color: ColorManager.primary,
+                    //     fontWeight: FontWeight.bold,
+                    //   ),
+                    // ),
+                    // const SizedBox(height: 8),
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    //   children: [
+                    //     Column(
+                    //       crossAxisAlignment: CrossAxisAlignment.start,
+                    //       children: [
+                    //         Text(
+                    //           'The Johnson Shop',
+                    //           style: TextStyle(
+                    //             fontSize: 16,
+                    //             color: Colors.grey[700],
+                    //             fontWeight: FontWeight.bold,
+                    //           ),
+                    //         ),
+                    //         Text(
+                    //           'Fashion Store',
+                    //           style: TextStyle(color: Colors.grey[600]),
+                    //         ),
+                    //       ],
+                    //     ),
+                    //     TextButton(
+                    //       onPressed: () {},
+                    //       child: Text('View store',
+                    //           style: TextStyle(color: ColorManager.yellow)),
+                    //     )
+                    //   ],
+                    // ),
+                    // const SizedBox(height: 16),
                     const SizedBox(height: 16),
 
                     // Address
@@ -158,7 +194,7 @@ const ProductDetails({super.key, required this.product});
                       'ADDRESS',
                       style: TextStyle(
                         fontSize: 16,
-                        color: ColorManager.yellow,
+                        color: ColorManager.primary,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -169,7 +205,7 @@ const ProductDetails({super.key, required this.product});
                         Flexible(
                           child: Text(
                             product.address,
-                            style: TextStyle(color: Colors.grey[600]),
+                            style: TextStyle(color: ColorManager.primary),
                             // softWrap: true,
                             // overflow: TextOverflow.visible,
                           ),
@@ -185,51 +221,38 @@ const ProductDetails({super.key, required this.product});
 
                     // Map Section
                     SizedBox(
-                      height: 200,
+                      height: 300,
                       child: FlutterMap(
                         options: MapOptions(
-                          initialCenter: LatLng(double.parse(product.latitude),
-                              double.parse(product.longitude)), // Center the map over London
-                          // initialZoom: 3.2,
+                          initialCenter: LatLng(product.latitude,
+                              product.longitude), // Center the map over London
+                          initialZoom: 15.2,
                         ),
                         children: [
                           TileLayer(
                             // Display map tiles from any source
-                            urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png', // OSMF's Tile Server
+                            urlTemplate:
+                                'https://tile.openstreetmap.org/{z}/{x}/{y}.png', // OSMF's Tile Server
                             userAgentPackageName: 'com.example.app',
                             // And many more recommended properties!
                           ),
                           MarkerLayer(
                             markers: [
                               Marker(
-                                point: LatLng(double.parse(product.latitude), double.parse(product.longitude)),
-                                width: 80,
-                                height: 80,
-                                child: FlutterLogo(),
+                                point: LatLng(
+                                   product.latitude,
+                                    product.longitude),
+                                width: 40,
+                                height: 40,
+                                child: const Icon(
+                                  Icons.location_on,
+                                  color: Colors.red,
+                                ),
                               ),
                             ],
                           )
                         ],
                       ),
-
-                      // child: GoogleMap(
-                      //   initialCameraPosition: CameraPosition(
-                      //     target: LatLng(double.parse(product.latitude), double.parse(product.longitude)),
-                      //     zoom: 15.0,
-                      //   ),
-                      //   markers: {
-                      //     Marker(
-                      //       markerId: MarkerId('shopLocation'),
-                      //       position: LatLng(double.parse(product.latitude), double.parse(product.longitude)),
-                      //       infoWindow: InfoWindow(title: 'The Johnson Shop'),
-                      //       icon: BitmapDescriptor.defaultMarkerWithHue(
-                      //           BitmapDescriptor.hueOrange),
-                      //     ),
-                      //   },
-                      //   onMapCreated: (GoogleMapController controller) {
-                      //     mapController = controller;
-                      //   },
-                      // ),
                     ),
                   ],
                 ),

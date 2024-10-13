@@ -26,8 +26,8 @@ class Offer {
   final String address;
   final String about;
   final String price;
-  final String latitude;
-  final String longitude;
+  final double latitude;
+  final double longitude;
   final DateTime startDate;
   final DateTime endDate;
   final DateTime createdAt;

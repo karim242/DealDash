@@ -1,10 +1,12 @@
 import 'package:dealdash/core/services/service_locator.dart';
 import 'package:dealdash/core/widget/product_details.dart';
 import 'package:dealdash/core/widget/product_static_details.dart';
+import 'package:dealdash/feature/auth/presentation/cubit/forgot_password/forgot_password_cubit.dart';
+import 'package:dealdash/feature/change_password/logic/change_password_cubit.dart';
 import 'package:dealdash/feature/favourite/data/model/favourite_model.dart';
 import 'package:dealdash/feature/favourite/presentation/view/store_details_view.dart';
-import 'package:dealdash/feature/home/data/model/category_model.dart';
 import 'package:dealdash/feature/home/presentation/control/product_model.dart';
+import 'package:dealdash/feature/home/presentation/widget/item_of_list_bottom_widget.dart';
 import 'package:dealdash/feature/location/presentation/view/about_stores/presentation/view/about_stores_view.dart';
 import 'package:dealdash/feature/about_us/presentation/view/about_us_view.dart';
 import 'package:dealdash/feature/auth/presentation/cubit/login/login_cubit.dart';
@@ -13,6 +15,7 @@ import 'package:dealdash/feature/change_password/presentation/view/change_passwo
 import 'package:dealdash/feature/home/presentation/view/root_view.dart';
 import 'package:dealdash/feature/onbording_splash/presentation/view/onboarding_view.dart';
 import 'package:dealdash/feature/privacy_and_policy/presentation/view/privacy_and_policy_view.dart';
+import 'package:dealdash/feature/search/data/model/offer_model.dart';
 import 'package:dealdash/feature/search/logic/search_cubit.dart';
 import 'package:dealdash/feature/search/presentation/views/search_view.dart';
 import 'package:dealdash/feature/settings/presentation/view/settings_view.dart';
@@ -48,6 +51,8 @@ class Routes {
 
   static const String productDetails = '/productDetails';
   static const String productStaticDetails = '/productStaticDetails';
+
+  static const String offerListInCategory = '/offerListInCategory';
 }
 
 abstract class AppRouter {
@@ -79,9 +84,11 @@ abstract class AppRouter {
       ),
     ),
     GoRoute(
-      path: Routes.forgetPasswordRoute,
-      builder: (context, state) => ForgetPassword(),
-    ),
+        path: Routes.forgetPasswordRoute,
+        builder: (context, state) => BlocProvider(
+              create: (context) => sl<ForgotPasswordCubit>(),
+              child: ForgetPassword(),
+            )),
     GoRoute(
       path: Routes.rootViewRoute,
       builder: (context, state) => const RootView(),
@@ -114,7 +121,10 @@ abstract class AppRouter {
         }),
     GoRoute(
       path: Routes.changePasswordRoute,
-      builder: (context, state) => ChangePasswordView(),
+      builder: (context, state) => BlocProvider(
+        create: (context) => sl<ChangePasswordCubit>(),
+        child: ChangePasswordView(),
+      ),
     ),
     GoRoute(
         path: Routes.searchRoute,
@@ -128,18 +138,27 @@ abstract class AppRouter {
     GoRoute(
         path: Routes.productDetails,
         builder: (context, state) {
-          final store = state.extra as StoreInCategory;
+          final store = state.extra as Offer;
           return ProductDetails(
             product: store,
           );
         }),
-
-          GoRoute(
+    GoRoute(
         path: Routes.productStaticDetails,
         builder: (context, state) {
-           final productModel = state.extra as ProductModel;
-         
-          return ProductStaticDetails(productModel:productModel ,);
-        })
+          final productModel = state.extra as ProductModel;
+
+          return ProductStaticDetails(
+            product: productModel,
+          );
+        }),
+    GoRoute(
+        path: Routes.offerListInCategory,
+        builder: (context, state) {
+          final offerList = state.extra as List<Offer>?;
+          return OffersListInCategory(
+            offerList: offerList,
+          );
+        }),
   ]);
 }

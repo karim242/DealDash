@@ -11,14 +11,14 @@ class StoreCubit extends Cubit<StoreState> {
     try {
       emit(StoreLoading());
 
-      final result = await storeRepository.getNearbyStores(lat ,  long!);
+      final result = await storeRepository.getNearbyStores( lat ,  long);
 
       result.fold(
         (failure) => emit(StoreError(failure.errorModel.message!)),
         (stores) => emit(StoreLoaded(stores.data)),
       );
     } catch (e) {
-      emit(StoreError('An unexpected error occurred'));
+      emit(StoreError('There are no offers near you. '));
     }
   }
 }

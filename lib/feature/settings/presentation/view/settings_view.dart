@@ -39,7 +39,8 @@ class _SettingsViewState extends State<SettingsView> {
               ),
               SettingItem(
                 itemTitle: "Change Password",
-                sideSettingWidget: CustomArrowForwardButton(onTap: () {
+                sideSettingWidget: CustomArrowForwardButton(
+                  onTap: () {
                   GoRouter.of(context).push(Routes.changePasswordRoute);
                 },),
                 isPreIcon: true,

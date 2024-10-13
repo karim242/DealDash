@@ -32,8 +32,8 @@ class FavoriteStore {
   final String address;
   final String? about;
   final String phone;
-  final String latitude;
-  final String longitude;
+  final double latitude;
+  final double longitude;
   // final String placeId;
   final DateTime createdAt;
   final DateTime updatedAt;

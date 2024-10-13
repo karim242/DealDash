@@ -36,8 +36,8 @@ class _LocationViewState extends State<LocationView> {
     );
 
     context.read<StoreCubit>().fetchNearbyStores(
-          widget.currentLocation.latitude!,
-          widget.currentLocation.longitude!,
+          widget.currentLocation?.latitude ?? 31.372013,
+          widget.currentLocation.longitude,
         );
   }
 
@@ -49,7 +49,7 @@ class _LocationViewState extends State<LocationView> {
         },
         markerId: MarkerId("${store.latitude},${store.longitude}"),
         position:
-            LatLng(double.parse(store.latitude), double.parse(store.longitude)),
+            LatLng(double.parse(store.latitude.toString()), double.parse(store.longitude.toString())),
         infoWindow: InfoWindow(title: store.name), // عرض اسم المتجر في النافذة
       );
     }).toSet();
@@ -77,7 +77,6 @@ class _LocationViewState extends State<LocationView> {
                   return const Center(
                       child: CircularProgressIndicator()); // إظهار مؤشر تحميل
                 } else if (state is StoreLoaded) {
-                  // تحديث Markers عند تحميل المتاجر
                   _updateStoreMarkers(state.stores);
             
                   return Stack(

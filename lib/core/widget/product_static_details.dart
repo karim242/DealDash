@@ -1,118 +1,263 @@
 import 'package:dealdash/core/resources/color_manger/color_manager.dart';
-import 'package:dealdash/core/resources/strings_manger/strings_manager.dart';
 import 'package:dealdash/feature/home/presentation/control/product_model.dart';
+import 'package:dealdash/feature/location/presentation/view/about_stores/presentation/widgets/side_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:latlong2/latlong.dart';
 
 class ProductStaticDetails extends StatelessWidget {
-  const ProductStaticDetails({super.key, required this.productModel});
+  const ProductStaticDetails({super.key, required this.product});
 
-  final ProductModel? productModel;
-
+  final ProductModel? product;
+ 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title:  Text(productModel?.title??' '),
-      ),
-      body: ListView(
-        
-        children: [
-          SizedBox(height: 50.h),
-          Card(
-            margin: const EdgeInsets.symmetric(horizontal:15).r,
-            elevation: 2,
-            child: Stack(
-              children: [
-                Column(
+     return Scaffold(
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Image with timer overlay
+              Stack(
+                children: [
+                  Image.asset(
+                    product?.imagePath ?? '',
+                    height: 300.h,
+                    width: double.infinity,
+                    fit: BoxFit.fill,
+                  ),
+                  Positioned(
+                    right: 16,
+                    top: 16,
+                    child: Container(
+                      padding: const EdgeInsets.all(8),
+                      decoration: BoxDecoration(
+                        color: ColorManager.primary,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Row(
+                        children: [
+                          Icon(Icons.timer,
+                              color: ColorManager.whitGreen, size: 16),
+                          const SizedBox(width: 4),
+                          Text(
+                            (product?.rate?? "4.5"),
+                            style: TextStyle(color: ColorManager.whitGreen),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    //image
-                    SizedBox(
-                      height:250.h,
-                      width: double.infinity,
-                      child: Image.asset(
-                        productModel?.imagePath ?? '',
-                        fit: BoxFit.fill,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    //title
-                    Padding(
-                      padding: const EdgeInsets.only(left: 8.0).r,
-                      child: Text(
-                        // maxLines: 1,
-                        // overflow: TextOverflow.ellipsis,
-                        productModel?.title ?? AppStrings.appelMob,
-                        style:  TextStyle(
-                          fontSize: 24.sp,
-                        ),
-                      ),
-                    ),
-                     SizedBox(height: 25.h),
+                    // Offer price
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        FittedBox(
-                            fit: BoxFit.scaleDown,
-                            child:  Padding(
-                              padding: const EdgeInsets.only(left: 8.0).r,
-                              child: Text(
-                                "${productModel!.newPrice} E ",
-                                style: TextStyle(
-                                  fontSize: 24.sp,
-                                  color: ColorManager.primary,
-                                ),
-                              ),
-                            )),
-                       Text(
-                         "30% Off",
-                         style: TextStyle(
-
-                           fontSize: 24.sp,
-                           fontWeight: FontWeight.w400,
-                           color: ColorManager.red,
-                         ),
-                       ),
+                        SizedBox(
+                          width: 248.w,
+                          child: Text(
+                            product?.title ?? '',
+                            style: TextStyle(
+                              fontSize: 24.sp,
+                              color: ColorManager.primary,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
                         const SizedBox(),
+                        // Offer text
+                        Text(
+                          "${product?.newPrice ?? 'free'} E ",
+                          style: TextStyle(
+                            fontSize: 20,
+                            color: ColorManager.red,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                       ],
+                    ),
+                    const SizedBox(height: 16),
+
+                    // About offer section
+
+                    Text(
+                      'About',
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: ColorManager.primary,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                     product?.title ?? '',
+                      style: TextStyle(color: Colors.grey[600], height: 1.5),
+                    ),
+                    const SizedBox(height: 16),
+
+                    SizedBox(
+                      height: 40.h,
+                      child: Row(
+                        children: [
+                          Text(
+                            'The show is on',
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: ColorManager.primary,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                         // SizedBox(width: 16.h),
+                          VerticalDivider(
+                            color: ColorManager.red,
+                            thickness: 1,
+                          ),
+                          SizedBox(width: 16.h),
+                          const SideText(
+                              text:
+                                  "30-10-2024 to 5-11-2024"),
+                        ],
+                      ),
+                    ),
+                    // People interested and button
+                    // Row(
+                    //   children: [
+                    //     Text(
+                    //       '126 People interested in offer',
+                    //       style: TextStyle(color: Colors.grey[400]),
+                    //     ),
+                    //     const Spacer(),
+                    //     ElevatedButton(
+                    //       style: ElevatedButton.styleFrom(
+                    //         backgroundColor: Colors.black,
+                    //         side: const BorderSide(color: Colors.orange),
+                    //         shape: RoundedRectangleBorder(
+                    //             borderRadius: BorderRadius.circular(20)),
+                    //       ),
+                    //       onPressed: () {},
+                    //       child: const Text('I am interested'),
+                    //     ),
+                    //   ],
+                    // ),
+                    // Offer by and Address
+                    // Text(
+                    //   'OFFER BY',
+                    //   style: TextStyle(
+                    //     fontSize: 16,
+                    //     color: ColorManager.primary,
+                    //     fontWeight: FontWeight.bold,
+                    //   ),
+                    // ),
+                    // const SizedBox(height: 8),
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    //   children: [
+                    //     Column(
+                    //       crossAxisAlignment: CrossAxisAlignment.start,
+                    //       children: [
+                    //         Text(
+                    //           'The Johnson Shop',
+                    //           style: TextStyle(
+                    //             fontSize: 16,
+                    //             color: Colors.grey[700],
+                    //             fontWeight: FontWeight.bold,
+                    //           ),
+                    //         ),
+                    //         Text(
+                    //           'Fashion Store',
+                    //           style: TextStyle(color: Colors.grey[600]),
+                    //         ),
+                    //       ],
+                    //     ),
+                    //     TextButton(
+                    //       onPressed: () {},
+                    //       child: Text('View store',
+                    //           style: TextStyle(color: ColorManager.yellow)),
+                    //     )
+                    //   ],
+                    // ),
+                    // const SizedBox(height: 16),
+                    const SizedBox(height: 16),
+
+                    // Address
+                    Text(
+                      'ADDRESS',
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: ColorManager.primary,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Flexible(
+                          child: Text(
+                            "",
+                            style: TextStyle(color: ColorManager.primary),
+                            // softWrap: true,
+                            // overflow: TextOverflow.visible,
+                          ),
+                        ),
+                        TextButton(
+                          onPressed: () {},
+                          child: Text('Get Direction',
+                              style: TextStyle(color: ColorManager.yellow)),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 16),
+
+                    // Map Section
+                    SizedBox(
+                      height: 300,
+                      child: FlutterMap(
+                        options: MapOptions(
+                          initialCenter: LatLng(double.parse("31.034883" ),
+                                    double.parse("31.372013"),), // Center the map over London
+                           initialZoom: 15.2,
+                        ),
+                        children: [
+                          TileLayer(
+                            // Display map tiles from any source
+                            urlTemplate:
+                                'https://tile.openstreetmap.org/{z}/{x}/{y}.png', // OSMF's Tile Server
+                            userAgentPackageName: 'com.example.app',
+                            // And many more recommended properties!
+                          ),
+                          MarkerLayer(
+                            markers: [
+                              Marker(
+                                point: LatLng(double.parse("31.034883" ),
+                                    double.parse("31.372013"),),
+                                    
+                                width: 40,
+                                height: 40,
+                                child: const Icon(Icons.location_on,color: Colors.red,),
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
+
+                  
                     ),
                   ],
                 ),
-
-                Positioned(
-                  top: 5,
-                  right: 5,
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 4),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(12),
-                      color: ColorManager.whitGreen,
-                    ),
-                    child: Row(
-                      children: [
-                        Text(
-                          "3.5",
-                          style: TextStyle(
-                            color: ColorManager.primary,
-                          ),
-                        ),
-                        Icon(
-                          Icons.star,
-                          color: ColorManager.yellow,
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
-
-        ],
+        ),
       ),
     );
   }

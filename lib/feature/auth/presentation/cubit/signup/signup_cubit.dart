@@ -1,11 +1,11 @@
+import 'package:dealdash/feature/auth/data/repo/auth_repo.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../data/repo/auth_repo_impl.dart';
 import 'signup_state.dart';
 
 class SignupCubit extends Cubit<SignupState> {
   SignupCubit(this.authRepository) : super(SignupInitial());
-  final AuthRepositoryImpl authRepository;
+  final AuthRepository authRepository;
 
   Future<void> signUp({
     required String email,

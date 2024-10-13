@@ -76,5 +76,25 @@ class AuthRepositoryImpl implements AuthRepository {
     } 
   }
   
+  @override
+  Future<Either<String, String>> forgetPassword({required String email}) async{
+
+     try {
+      final response = await apiServes.post(
+        endpoint: '/api/auth/forgot-password',
+        data: {
+          'email': email,
+        },
+      );
+      print(response);
+      return const Right('Email has been sent to your email address');
+    } on DioException catch (e) {
+      handelDioException(e);
+      return const Left('Email address is not true');
+    }
+
+   
+  }
+  
  
 }

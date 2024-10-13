@@ -8,6 +8,7 @@ version: 1.0.0+1
 
 environment:
   sdk: '>=3.2.3 <4.0.0'
+ 
 
 dependencies:
   card_swiper: ^3.0.1
@@ -46,6 +47,8 @@ dependencies:
   latlong2: ^0.9.0
   flutter_map: ^6.0.0
   timeago: ^3.2.2
+
+
 
 
 dev_dependencies:

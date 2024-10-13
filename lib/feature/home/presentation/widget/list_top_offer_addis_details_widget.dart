@@ -15,7 +15,7 @@ final CategoryData categoryModel;
            SliverAppBar(
             floating: true,
             toolbarHeight: 35,
-            title: Text(categoryModel.name),
+            title: Text("${categoryModel.name} Stores"),
           ),
           const SliverToBoxAdapter(
             child: SizedBox(

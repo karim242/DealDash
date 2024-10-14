@@ -25,6 +25,7 @@ class AuthRepositoryImpl implements AuthRepository {
           'email': email,
           'password': password,
         },
+        fcmToken: CacheHelper.getFCMToken(),
       );
 
       final authResponse = AuthResponse.fromJson(response);

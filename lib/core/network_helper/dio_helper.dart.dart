@@ -32,6 +32,7 @@ ApiService(Dio dio)
     required String endpoint,
     Map<String, dynamic>? query,
     String? token,
+    String? fcmToken,
   }) async {
     try {
       final response = await _dio.get(
@@ -43,6 +44,7 @@ ApiService(Dio dio)
             'Content-Type': 'application/json',
             'Accept-Language':'en',
             'Accept':'application/json',
+            'FCM-Token': fcmToken,
           },
         ),
       );
@@ -69,6 +71,7 @@ ApiService(Dio dio)
     required String endpoint,
     required Map<String, dynamic> data,
     String? token,
+   String? fcmToken,
   }) async {
     try {
       var response = await _dio.post(
@@ -78,6 +81,7 @@ ApiService(Dio dio)
           headers: {
             'authorization': 'Bearer $token',
             'Content-Type': 'application/json',
+            'FCM-Token': fcmToken,
           },
         ),
       );

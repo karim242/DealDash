@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 
-import '../../data/notification_item_model.dart';
 
-Widget buildNotificationCard(NotificationItem item) {
+class NotificationCard extends StatelessWidget {
+
+  final Offer offerDetails;
+  const NotificationCard({super.key, required this.offerDetails});
+
+  @override
+  Widget build(BuildContext context) {
   return Padding(
     padding: const EdgeInsets.symmetric(vertical: 8.0),
     child: Row(
@@ -11,10 +16,11 @@ Widget buildNotificationCard(NotificationItem item) {
         // Notification Image
         ClipRRect(
           borderRadius: BorderRadius.circular(8.0),
-          child: Image.asset(
-            item.imageUrl,
+            child: Image.network(
+              offerDetails.image ??
+                  'https://media.istockphoto.com/id/681622484/photo/concrete-wall-shiny-smooth-backgrounds-white-textured.jpg?s=2048x2048&w=is&k=20&c=87J5-OznIqEEKD923thUgWZBNIiAD4oDVAmHSQYLr1o=',
+              height: 70,
             width: 70,
-            height: 70,
             fit: BoxFit.fill,
           ),
         ),
@@ -26,7 +32,7 @@ Widget buildNotificationCard(NotificationItem item) {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                item.title,
+                  offerDetails.name,
                 style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
@@ -34,7 +40,7 @@ Widget buildNotificationCard(NotificationItem item) {
               ),
               const SizedBox(height: 4),
               Text(
-                item.description,
+                  offerDetails.about,
                 style: TextStyle(
                   color: Colors.grey[600],
                 ),
@@ -44,17 +50,18 @@ Widget buildNotificationCard(NotificationItem item) {
         ),
 
         // Tag (New or Hot)
-        Padding(
-          padding: const EdgeInsets.only(left: 8.0),
-          child: Text(
-            item.tag,
-            style: TextStyle(
-              color: item.tagColor,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
+          // Padding(
+          //   padding: const EdgeInsets.only(left: 8.0),
+          //   child: Text(
+          //     item.tag,
+          //     style: TextStyle(
+          //       color: item.tagColor,
+          //       fontWeight: FontWeight.bold,
+          //     ),
+          //   ),
+          // ),
       ],
     ),
   );
+}
 }

@@ -16,7 +16,16 @@ class CacheHelper{
     return sharedPreferences.remove('auth_token');
 
   }
-      static void saveString({required String key, required String value}){
+
+  static void saveFCMToken({required String value}) {
+    sharedPreferences.setString('fcm_token', value);
+  }
+
+  static String? getFCMToken() {
+    return sharedPreferences.getString('fcm_token');
+  }
+
+  static void saveString({required String key, required String value}){
     sharedPreferences.setString(key, value);
   }
   static String? getString({required String key,}){

@@ -10,9 +10,12 @@ import 'package:dealdash/feature/favourite/logic/favourite_cubit.dart';
 import 'package:dealdash/feature/home/data/repo/category_repo.dart';
 import 'package:dealdash/feature/home/data/repo/category_repo_imple.dart';
 import 'package:dealdash/feature/home/presentation/control/category/category_cubit.dart';
+import 'package:dealdash/feature/notification/data/repo/notification_repo_impl.dart';
+import 'package:dealdash/feature/notification/logic/notification_cubit.dart';
 import 'package:dealdash/feature/search/data/repo/search_repo_impl.dart';
 import 'package:dealdash/feature/search/logic/search_cubit.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get_it/get_it.dart';
 
 import '../../feature/auth/data/repo/auth_repo_impl.dart';
@@ -66,7 +69,13 @@ class ServiceLocator {
     sl.registerLazySingleton<FavouriteRepoImpl>(
         () => FavouriteRepoImpl(apiService: sl.get<ApiService>() ));
 
-            sl.registerFactory<FavouriteCubit>(() => FavouriteCubit(favouriteRepo: sl<FavouriteRepoImpl>()));
+    sl.registerFactory<FavouriteCubit>(() => FavouriteCubit(favouriteRepo: sl<FavouriteRepoImpl>()));
+
+    // Notification
+    sl.registerLazySingleton<NotificationRepoImpl>(
+            () => NotificationRepoImpl(apiService: sl.get<ApiService>() ));
+
+    sl.registerFactory<NotificationCubit>(() => NotificationCubit(notificationRepo: sl<NotificationRepoImpl>()));
 
 //search
     sl.registerLazySingleton<SearchRepoImpl>(

@@ -25,24 +25,24 @@ class NotificationView extends StatelessWidget {
             if (state is NotificationLoading) {
               return const Center(child: CircularProgressIndicator());
             } else if (state is NotificationSuccess) {
-        return Scaffold(
-          appBar: AppBar(
-            title: const Text('Notification'),
-            centerTitle: true,
-            elevation: 0,
-            backgroundColor: Colors.transparent,
-            foregroundColor: Colors.black,
-          ),
-          body: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: ListView.builder(
+              return Scaffold(
+                appBar: AppBar(
+                  title: const Text('Notification'),
+                  centerTitle: true,
+                  elevation: 0,
+                  backgroundColor: Colors.transparent,
+                  foregroundColor: Colors.black,
+                ),
+                body: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: ListView.builder(
                     itemCount: state.response.data.length,
-              itemBuilder: (context, index) {
+                    itemBuilder: (context, index) {
                       return NotificationCard(offerDetails: state.response.data[index].data);
-              },
-            ),
-          ),
-        );
+                    },
+                  ),
+                ),
+              );
             } else if (state is NotificationFailure) {
               return Center(
                   child: Text('No Notification yet: ${state.errorMessage}'));

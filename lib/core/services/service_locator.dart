@@ -15,7 +15,6 @@ import 'package:dealdash/feature/notification/logic/notification_cubit.dart';
 import 'package:dealdash/feature/search/data/repo/search_repo_impl.dart';
 import 'package:dealdash/feature/search/logic/search_cubit.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:get_it/get_it.dart';
 
 import '../../feature/auth/data/repo/auth_repo_impl.dart';

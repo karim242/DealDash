@@ -2,15 +2,15 @@ import 'package:dealdash/core/error/failure.dart';
 import 'package:dio/dio.dart';
 
 class ApiService {
- 
   final _baseUrl = 'https://dealdash-demo-v2-131caca18fa1.herokuapp.com';
   final Dio _dio;
 
-ApiService(Dio dio)
-    : _dio = dio..options = BaseOptions(
-        connectTimeout: const Duration(seconds: 30),
-     receiveTimeout: const Duration(seconds: 30), 
-      ) {
+  ApiService(Dio dio)
+      : _dio = dio
+          ..options = BaseOptions(
+            connectTimeout: const Duration(seconds: 30),
+            receiveTimeout: const Duration(seconds: 30),
+          ) {
     _dio.interceptors.add(InterceptorsWrapper(
       onRequest: (options, handler) {
         print('طلب: ${options.method} ${options.path}');
@@ -42,36 +42,33 @@ ApiService(Dio dio)
           headers: {
             'Authorization': 'Bearer $token',
             'Content-Type': 'application/json',
-            'Accept-Language':'en',
-            'Accept':'application/json',
+            'Accept-Language': 'en',
+            'Accept': 'application/json',
             'FCM-Token': fcmToken,
           },
         ),
       );
       if (response.statusCode == 200 || response.statusCode == 201) {
-      
-      return response.data;
-      
-    } else if(response.statusCode == 404){
-      return response.data['message'];
+        return response.data;
+      } else if (response.statusCode == 404) {
+        return response.data['message'];
+      } else {
+        throw DioException(
+          requestOptions: response.requestOptions,
+          response: response,
+        );
+      }
+    } on DioException catch (e) {
+      handelDioException(e);
+      rethrow;
     }
-    else {
-      throw DioException(
-        requestOptions: response.requestOptions,
-        response: response,
-      );
-    }
-  } on DioException catch (e) {
-    handelDioException(e);
-    rethrow;
   }
-}
 
- Future<Map<String, dynamic>> post({
+  Future<Map<String, dynamic>> post({
     required String endpoint,
     required Map<String, dynamic> data,
     String? token,
-   String? fcmToken,
+    String? fcmToken,
   }) async {
     try {
       var response = await _dio.post(
@@ -86,18 +83,18 @@ ApiService(Dio dio)
         ),
       );
       if (response.statusCode == 200 || response.statusCode == 201) {
-      return response.data;
-    }else if(response.statusCode == 404 || response.statusCode == 400){
-      return response.data['message'];
-    } else {
-      throw DioException(
-        requestOptions: response.requestOptions,
-        response: response,
-      );
+        return response.data;
+      } else if (response.statusCode == 404 || response.statusCode == 400) {
+        return response.data['message'];
+      } else {
+        throw DioException(
+          requestOptions: response.requestOptions,
+          response: response,
+        );
+      }
+    } on DioException catch (e) {
+      handelDioException(e);
+      rethrow;
     }
-  } on DioException catch (e) {
-    handelDioException(e);
-    rethrow;
   }
-}
 }

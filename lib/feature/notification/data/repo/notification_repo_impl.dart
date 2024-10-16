@@ -1,6 +1,5 @@
 
 import 'package:dartz/dartz.dart';
-
 import 'package:dealdash/core/error/error_model.dart';
 import 'package:dealdash/core/network_helper/dio_helper.dart.dart';
 

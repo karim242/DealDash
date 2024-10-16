@@ -113,7 +113,5 @@ class AuthRepositoryImpl implements AuthRepository {
       rethrow;
     }
   }
-  
-  
- 
+   
 }

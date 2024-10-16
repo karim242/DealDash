@@ -4,6 +4,7 @@ import 'package:dealdash/feature/notification/data/repo/notification_repo_impl.d
 import 'notification_state.dart';
 
 
+
 class NotificationCubit extends Cubit<NotificationState> {
   final NotificationRepoImpl notificationRepo;
   NotificationListResponse? notificationListResponse;

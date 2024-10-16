@@ -1,5 +1,6 @@
 import 'package:dealdash/feature/search/data/model/offer_model.dart';
 
+
 class NotificationListResponse {
   final bool success;
   final String message;

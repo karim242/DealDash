@@ -1,3 +1,4 @@
+import 'package:dealdash/feature/search/data/model/offer_model.dart';
 import 'package:flutter/material.dart';
 
 
@@ -8,48 +9,48 @@ class NotificationCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-  return Padding(
-    padding: const EdgeInsets.symmetric(vertical: 8.0),
-    child: Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        // Notification Image
-        ClipRRect(
-          borderRadius: BorderRadius.circular(8.0),
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Notification Image
+          ClipRRect(
+            borderRadius: BorderRadius.circular(8.0),
             child: Image.network(
               offerDetails.image ??
                   'https://media.istockphoto.com/id/681622484/photo/concrete-wall-shiny-smooth-backgrounds-white-textured.jpg?s=2048x2048&w=is&k=20&c=87J5-OznIqEEKD923thUgWZBNIiAD4oDVAmHSQYLr1o=',
               height: 70,
-            width: 70,
-            fit: BoxFit.fill,
+              width: 70,
+              fit: BoxFit.fill,
+            ),
           ),
-        ),
-        const SizedBox(width: 12),
+          const SizedBox(width: 12),
 
-        // Notification Title and Description
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
+          // Notification Title and Description
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
                   offerDetails.name,
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-              ),
-              const SizedBox(height: 4),
-              Text(
+                const SizedBox(height: 4),
+                Text(
                   offerDetails.about,
-                style: TextStyle(
-                  color: Colors.grey[600],
+                  style: TextStyle(
+                    color: Colors.grey[600],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
-        ),
 
-        // Tag (New or Hot)
+          // Tag (New or Hot)
           // Padding(
           //   padding: const EdgeInsets.only(left: 8.0),
           //   child: Text(
@@ -60,8 +61,8 @@ class NotificationCard extends StatelessWidget {
           //     ),
           //   ),
           // ),
-      ],
-    ),
-  );
-}
+        ],
+      ),
+    );
+  }
 }

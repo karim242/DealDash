@@ -21,4 +21,7 @@ abstract class AuthRepository {
   Future<Either<String, String>> forgetPassword({
     required String email,
   });
+
+  // log out
+  Future <void> logOut();
 }

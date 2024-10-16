@@ -16,9 +16,9 @@ class CategoryRepoImple extends CategoryRepository {
   Future<Either<ServerException, CategoryModel>> fetchCategories() async {
     try {
       String? token = CacheHelper.getToken();
-
+        print(token);
       final result = await apiService.getData(
-        endpoint: '/api/v1/user/categories/list-all',
+        endpoint: '/api/v1/user/categories/list-all?per_page=15&page=1',
         token: token,
       );
 

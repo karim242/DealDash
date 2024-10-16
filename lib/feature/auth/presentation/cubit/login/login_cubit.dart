@@ -20,7 +20,7 @@ class LoginCubit extends Cubit<LoginState> {
         },
       );
     } catch (e) {
-      emit(LoginError('An unexpected error occurred'));
+      emit(LoginError('The provided password or Email is incorrect'));
     }
   }
 }

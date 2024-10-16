@@ -1,6 +1,7 @@
 import 'package:dealdash/feature/auth/data/repo/auth_repo.dart';
 import 'package:dealdash/feature/auth/presentation/cubit/forgot_password/forgot_password_cubit.dart';
 import 'package:dealdash/feature/auth/presentation/cubit/login/login_cubit.dart';
+import 'package:dealdash/feature/auth/presentation/cubit/logout/logout_cubit.dart';
 import 'package:dealdash/feature/change_password/data/repo/change_password_repo.dart';
 import 'package:dealdash/feature/change_password/data/repo/change_password_repo_impl.dart';
 import 'package:dealdash/feature/change_password/logic/change_password_cubit.dart';
@@ -43,6 +44,8 @@ class ServiceLocator {
     sl.registerFactory<ForgotPasswordCubit>(
         () => ForgotPasswordCubit(sl<AuthRepository>()));
    
+    sl.registerFactory<LogoutCubit>(
+        () => LogoutCubit(sl<AuthRepository>()));
 
 
     sl.registerLazySingleton<StoreRepository>(() => StoreRepositoryImpl(sl()));

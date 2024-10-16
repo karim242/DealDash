@@ -128,6 +128,7 @@
 // }
 
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
+import 'package:dealdash/feature/auth/presentation/cubit/logout/logout_cubit.dart';
 import 'package:dealdash/feature/home/presentation/control/category/category_cubit.dart';
 import 'package:dealdash/feature/home/presentation/view/home_view.dart';
 import 'package:flutter/material.dart';
@@ -142,8 +143,6 @@ import '../../../location/presentation/cubit/store_cubit/store_cubit.dart';
 import '../../../location/presentation/view/location_view.dart';
 import '../../../notification/presentation/view/notification_view.dart';
 import '../../../profile/presentation/view/profile_view.dart';
-
-
 
 class RootView extends StatefulWidget {
   const RootView({super.key});
@@ -172,13 +171,15 @@ class _RootViewState extends State<RootView> {
           ? LocationView(currentLocation: currentLocation!)
           : Container(),
       const NotificationView(),
-      ProfileView(),
+      BlocProvider(
+        create: (context) => sl<LogoutCubit>(),
+        child: ProfileView(),
+      ),
     ];
   }
 
   void _onItemTapped(int index) async {
     if (index == 2) {
-      // إذا تم الضغط على أيقونة الموقع
       LocationData? locationData =
           await _locationService.requestLocationPermission();
       if (locationData != null) {
@@ -205,9 +206,10 @@ class _RootViewState extends State<RootView> {
 
   @override
   Widget build(BuildContext context) {
-       final isDarkMode = Theme.of(context).brightness == Brightness.dark;
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
 
-    final backgroundColor = isDarkMode ? ColorManager.gray.withOpacity(0.2) : ColorManager.gray;
+    final backgroundColor =
+        isDarkMode ? ColorManager.gray.withOpacity(0.2) : ColorManager.gray;
     final color = isDarkMode ? ColorManager.whitGreen : ColorManager.primary;
     final activeColor = isDarkMode ? ColorManager.red : ColorManager.yellow;
 
@@ -216,14 +218,16 @@ class _RootViewState extends State<RootView> {
       bottomNavigationBar: ConvexAppBar(
         style: TabStyle.fixedCircle,
         cornerRadius: 16,
-        backgroundColor: backgroundColor, 
-        color: color, 
+        backgroundColor: backgroundColor,
+        color: color,
         activeColor: activeColor,
-        shadowColor:ColorManager.primary,
+        shadowColor: ColorManager.primary,
         items: const [
           TabItem(icon: Icons.home, title: 'Home'),
           TabItem(icon: Icons.favorite, title: 'Favorite'),
-          TabItem(icon: Icons.location_on,),  
+          TabItem(
+            icon: Icons.location_on,
+          ),
           TabItem(icon: Icons.notifications, title: 'Notify'),
           TabItem(icon: Icons.person, title: 'Profile'),
         ],

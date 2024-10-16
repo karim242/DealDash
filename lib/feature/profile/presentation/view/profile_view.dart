@@ -1,5 +1,6 @@
 import 'package:dealdash/core/resources/color_manger/color_manager.dart';
 import 'package:dealdash/core/resources/routes_manger/routes_manager.dart';
+import 'package:dealdash/feature/auth/presentation/cubit/logout/logout_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -124,7 +125,12 @@ class ProfileView extends StatelessWidget {
                   _buildMenuItem(
                     icon: Icons.logout_outlined,
                     title: 'Log out',
-                    onTap: () {},
+                    onTap: () {
+                      context.read<LogoutCubit>().logOut();
+                      GoRouter.of(context).pushReplacement(Routes.loginRoute);
+
+
+                    },
                   ),
 
                   // const Spacer(),

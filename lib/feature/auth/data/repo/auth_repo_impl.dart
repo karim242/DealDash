@@ -25,6 +25,7 @@ class AuthRepositoryImpl implements AuthRepository {
           'email': email,
           'password': password,
         },
+        
       );
 
       final authResponse = AuthResponse.fromJson(response);
@@ -59,10 +60,10 @@ class AuthRepositoryImpl implements AuthRepository {
           'name': name,
         },
       );
-      print(response);
+    
   
       final authResponse = AuthResponse.fromJson(response);
-      
+        print("response $authResponse.");
       CacheHelper.saveToken(value: authResponse.data.token);
       CacheHelper.saveString( key: 'user_name',value: authResponse.data.user.name,);
       CacheHelper.saveString( key: 'user_email',value: authResponse.data.user.email,);
@@ -95,6 +96,23 @@ class AuthRepositoryImpl implements AuthRepository {
 
    
   }
+  
+  @override
+  Future<void> logOut() async{
+
+     try {
+      final response = await apiServes.post(
+        endpoint: '/api/auth/logout',
+        data: {},
+        token: CacheHelper.getToken(),
+        
+      );
+      
+    } on DioException catch (e) {
+      rethrow;
+    }
+  }
+  
   
  
 }

@@ -1,6 +1,7 @@
 import 'package:dealdash/core/services/service_locator.dart';
 import 'package:dealdash/feature/favourite/logic/favourite_cubit.dart';
 import 'package:dealdash/feature/location/presentation/cubit/places_cubit/places_cubit.dart';
+import 'package:dealdash/feature/notification/logic/notification_cubit.dart';
 import 'package:dealdash/feature/settings/presentation/cubit/theme_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -23,6 +24,7 @@ class MyApp extends StatelessWidget {
       builder: (context, index) => MultiBlocProvider(
         providers: [
           BlocProvider(create: (_) => sl<FavouriteCubit>()),
+          BlocProvider(create: (_) => sl<NotificationCubit>()),
           BlocProvider(
             create: (context) => sl<PlacesCubit>(),
           ),

@@ -26,11 +26,11 @@ class AuthRepositoryImpl implements AuthRepository {
           'password': password,
         },
 
-        fcmToken: CacheHelper.getFCMToken(),
+        fcmToken: await SecureCacheHelper.getFCMToken(),
       );
 
       final authResponse = AuthResponse.fromJson(response);
-      CacheHelper.saveToken(value: authResponse.data.token);
+      SecureCacheHelper.saveToken(value: authResponse.data.token);
       CacheHelper.saveString( key: 'user_name',value: authResponse.data.user.name,);
       CacheHelper.saveString( key: 'user_email',value: authResponse.data.user.email,);
       CacheHelper.saveString( key: 'user_phone',value: authResponse.data.user.phone,);
@@ -60,12 +60,13 @@ class AuthRepositoryImpl implements AuthRepository {
           'phone': phone,
           'name': name,
         },
+          fcmToken: await SecureCacheHelper.getFCMToken(),
       );
     
   
       final authResponse = AuthResponse.fromJson(response);
         print("response $authResponse.");
-      CacheHelper.saveToken(value: authResponse.data.token);
+      SecureCacheHelper.saveToken(value: authResponse.data.token);
       CacheHelper.saveString( key: 'user_name',value: authResponse.data.user.name,);
       CacheHelper.saveString( key: 'user_email',value: authResponse.data.user.email,);
       CacheHelper.saveString( key: 'user_phone',value: authResponse.data.user.phone,);
@@ -105,7 +106,7 @@ class AuthRepositoryImpl implements AuthRepository {
       final response = await apiServes.post(
         endpoint: '/api/auth/logout',
         data: {},
-        token: CacheHelper.getToken(),
+        token: await SecureCacheHelper.getToken(),
         
       );
       

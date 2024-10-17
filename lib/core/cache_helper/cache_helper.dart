@@ -1,29 +1,10 @@
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class CacheHelper {
   static late SharedPreferences sharedPreferences;
   static init() async {
     sharedPreferences = await SharedPreferences.getInstance();
-  }
-
-  static void saveToken({required String value}) {
-    sharedPreferences.setString('auth_token', value);
-  }
-
-  static String? getToken() {
-    return sharedPreferences.getString('auth_token');
-  }
-
-  static Future<bool> removeToken() {
-    return sharedPreferences.remove('auth_token');
-  }
-
-  static void saveFCMToken({required String value}) {
-    sharedPreferences.setString('fcm_token', value);
-  }
-
-  static String? getFCMToken() {
-    return sharedPreferences.getString('fcm_token');
   }
 
   static void saveString({required String key, required String value}) {
@@ -45,7 +26,30 @@ class CacheHelper {
   }
 }
 
-// import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+class SecureCacheHelper {
+  static const FlutterSecureStorage secureStorage = FlutterSecureStorage();
+
+  static Future<void> saveToken({required String value}) async {
+    await secureStorage.write(key: 'auth_token', value: value);
+  }
+
+  static Future<String?> getToken() async {
+    return await secureStorage.read(key: 'auth_token');
+  }
+
+  static Future<void> removeToken() async {
+    await secureStorage.delete(key: 'auth_token');
+  }
+
+  static Future<void> saveFCMToken({required String value}) async {
+    await secureStorage.write(key: 'fcm_token', value: value);
+  }
+
+  static Future<String?> getFCMToken() async {
+    return await secureStorage.read(key: 'fcm_token');
+  }
+}
+
 
 //   class CacheHelper {
 //   // إنشاء instance من FlutterSecureStorage

@@ -17,7 +17,7 @@ class SearchRepoImpl implements SearchRepo {
    @override
   Future<Either<ErrorResponse, SearchResponse>> searchForOffer(String query) async {
     try {
-      String? token = CacheHelper.getToken();
+      String? token = await SecureCacheHelper.getToken();
       final response = await apiService.getData(
         endpoint: '/api/v1/user/search',
         query: {

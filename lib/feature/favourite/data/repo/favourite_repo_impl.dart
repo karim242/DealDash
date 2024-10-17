@@ -14,7 +14,7 @@ class FavouriteRepoImpl extends FavouriteRepo {
   });
   @override
   Future<Map<String, dynamic>> addFavourite(String storeId) async {
-    String? token = CacheHelper.getToken();
+    String? token = await SecureCacheHelper.getToken();
 
     try {
       final response = await apiService.post(
@@ -30,7 +30,7 @@ class FavouriteRepoImpl extends FavouriteRepo {
 
   @override
   Future<Map<String, dynamic>> removeFavourite(String storeId) async {
-    String? token = CacheHelper.getToken();
+    String? token = await SecureCacheHelper.getToken();
 
     try {
       final response = await apiService.post(
@@ -47,7 +47,7 @@ class FavouriteRepoImpl extends FavouriteRepo {
   @override
 
   Future<Either<ErrorResponse, FavoriteStoresResponse>> getFavoriteStores() async {
-    String? token = CacheHelper.getToken();
+    String? token =await SecureCacheHelper.getToken();
     try {
       final response = await apiService.getData(
         endpoint: '/api/v1/user/stores/favorite-stores?per_page=15&page=1',

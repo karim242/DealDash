@@ -10,7 +10,7 @@ class ChangePasswordRepoImpl extends ChangePasswordRepo{
   @override
   Future<Either<String, String>> changePassword(PasswordModel password)  async {
     try {
-      final token = CacheHelper.getToken();
+      final token = await SecureCacheHelper.getToken();
 
       final response = await apiService.post( 
         endpoint: '/api/auth/change-password',

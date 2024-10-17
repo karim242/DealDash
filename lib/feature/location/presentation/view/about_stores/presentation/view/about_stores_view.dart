@@ -37,6 +37,7 @@ class AboutStoresView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isfav = false;
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -95,15 +96,18 @@ class AboutStoresView extends StatelessWidget {
                             thickness: 1,
                           ),
                           SizedBox(width: 10.w),
-                          BlocBuilder<FavouriteCubit, FavouriteState>(
-                            builder: (context, state) {
-                              // if (state is FavouriteAddSuccess) {}
-                              return Row(
+                          BlocConsumer<FavouriteCubit, FavouriteState>(
+                            
+                            listener: (context, state) {
+                             if (state is FavouriteAddSuccess) {
+                              isfav= !true;
+                             }
+
+                            }, builder: (BuildContext context, FavouriteState state) { 
+                               return Row(
                                 children: [
                                   StoreIconButtons(
-                                    iconData: store.favoritesCount == 1
-                                        ? Icons.favorite
-                                        : Icons.favorite_border,
+                                    iconData: isfav? Icons.favorite :Icons.favorite_border,
                                     onTap: () {
                                       final cubit =
                                           context.read<FavouriteCubit>();
@@ -120,7 +124,7 @@ class AboutStoresView extends StatelessWidget {
                                   ),
                                 ],
                               );
-                            },
+                             },
                           ),
                         ],
                       ),

@@ -18,7 +18,7 @@ class NotificationRepoImpl extends NotificationRepo {
 
   @override
   Future<Either<ErrorResponse, NotificationListResponse>> getNotificationsList() async {
-    String? token = CacheHelper.getToken();
+    String? token = await SecureCacheHelper.getToken();
     try {
       final response = await apiService.getData(
         endpoint: '/api/v1/user/notifications/list-all?per_page=60',

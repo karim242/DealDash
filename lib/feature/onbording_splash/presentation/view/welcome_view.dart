@@ -24,8 +24,8 @@ class _WelcomeViewState extends State<WelcomeView> {
     // checkLoginStatus(context);
   }
 
-  void checkLoginStatus(BuildContext context) {
-    String? token = CacheHelper.getToken();
+  void checkLoginStatus(BuildContext context) async{
+    String? token = await SecureCacheHelper.getToken();
     print(token);
     if (token != null) {
       context.go(Routes.rootViewRoute);

@@ -16,7 +16,7 @@ class StoreRepositoryImpl implements StoreRepository {
   Future<Either<ServerException, StoreModel>> getNearbyStores(
       double? lat, double? long) async {
     try {
-      String? token = CacheHelper.getToken();
+      String? token = await SecureCacheHelper.getToken();
 
       final data = await apiService.getData(
         endpoint: '/api/v1/user/stores/nearby-stores',

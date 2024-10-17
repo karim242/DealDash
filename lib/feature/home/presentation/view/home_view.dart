@@ -13,7 +13,6 @@ import '../widget/custom_baner.dart';
 import '../widget/custom_search_form.dart';
 import '../widget/list_top_offer_Addis_widget.dart';
 import '../widget/sliver_grid_list_static_data_widget.dart';
-import '../widget/sliver_grid_widget.dart';
 import '../widget/text_widget.dart';
 
 class HomeView extends StatelessWidget {
@@ -22,7 +21,6 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double h = MediaQuery.of(context).size.height;
-    // double w = MediaQuery.of(context).size.width;
     return BlocBuilder<ConnectInternetCubit, ConnectInternetState>(
       builder: (context, state) {
         if (state is NotConnectedState) {

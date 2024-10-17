@@ -48,9 +48,11 @@ class ApiService {
           },
         ),
       );
+      print(response.statusCode);
       if (response.statusCode == 200 || response.statusCode == 201) {
+
         return response.data;
-      } else if (response.statusCode == 404) {
+      } else if (response.statusCode == 404 || response.statusCode == 400) {
         return response.data['message'];
       } else {
         throw DioException(

@@ -1,5 +1,5 @@
 import 'package:dealdash/core/resources/color_manger/color_manager.dart';
-import 'package:dealdash/feature/home/presentation/control/product_model.dart';
+import 'package:dealdash/feature/home/logic/product_model.dart';
 import 'package:dealdash/feature/location/presentation/view/about_stores/presentation/widgets/side_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';

@@ -1,15 +1,15 @@
 import 'package:dealdash/core/services/service_locator.dart';
 import 'package:dealdash/core/widget/product_details.dart';
 import 'package:dealdash/core/widget/product_static_details.dart';
-import 'package:dealdash/feature/auth/presentation/cubit/forgot_password/forgot_password_cubit.dart';
+import 'package:dealdash/feature/auth/logic/forgot_password/forgot_password_cubit.dart';
 import 'package:dealdash/feature/change_password/logic/change_password_cubit.dart';
 import 'package:dealdash/feature/favourite/data/model/favourite_model.dart';
 import 'package:dealdash/feature/favourite/presentation/view/store_details_view.dart';
-import 'package:dealdash/feature/home/presentation/control/product_model.dart';
+import 'package:dealdash/feature/home/logic/product_model.dart';
 import 'package:dealdash/feature/home/presentation/widget/item_of_list_bottom_widget.dart';
 import 'package:dealdash/feature/location/presentation/view/about_stores/presentation/view/about_stores_view.dart';
 import 'package:dealdash/feature/about_us/presentation/view/about_us_view.dart';
-import 'package:dealdash/feature/auth/presentation/cubit/login/login_cubit.dart';
+import 'package:dealdash/feature/auth/logic/login/login_cubit.dart';
 import 'package:dealdash/feature/auth/presentation/views/signup_view.dart';
 import 'package:dealdash/feature/change_password/presentation/view/change_password_view.dart';
 import 'package:dealdash/feature/home/presentation/view/root_view.dart';
@@ -23,7 +23,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:go_router/go_router.dart';
 import '../../../feature/location/data/model/store_model.dart';
-import '../../../feature/auth/presentation/cubit/signup/signup_cubit.dart';
+import '../../../feature/auth/logic/signup/signup_cubit.dart';
 import '../../../feature/auth/presentation/views/forget_password.dart';
 import '../../../feature/auth/presentation/views/login_view.dart';
 import '../../../feature/onbording_splash/presentation/view/splash_view.dart';

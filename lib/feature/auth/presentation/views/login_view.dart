@@ -1,5 +1,5 @@
-import 'package:dealdash/feature/auth/presentation/cubit/login/login_cubit.dart';
-import 'package:dealdash/feature/auth/presentation/cubit/login/login_state.dart';
+import 'package:dealdash/feature/auth/logic/login/login_cubit.dart';
+import 'package:dealdash/feature/auth/logic/login/login_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';

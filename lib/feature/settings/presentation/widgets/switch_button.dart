@@ -1,5 +1,5 @@
 import 'package:dealdash/core/resources/color_manger/color_manager.dart';
-import 'package:dealdash/feature/settings/presentation/cubit/theme_cubit.dart';
+import 'package:dealdash/feature/settings/logic/theme_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

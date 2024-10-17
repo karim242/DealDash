@@ -1,6 +1,6 @@
 import 'package:dealdash/core/services/service_locator.dart';
 import 'package:dealdash/feature/home/data/model/category_model.dart';
-import 'package:dealdash/feature/home/presentation/control/category/category_cubit.dart';
+import 'package:dealdash/feature/home/logic/category/category_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

@@ -1,6 +1,6 @@
 
 import 'package:dealdash/feature/auth/data/repo/auth_repo.dart';
-import 'package:dealdash/feature/auth/presentation/cubit/logout/logout_state.dart';
+import 'package:dealdash/feature/auth/logic/logout/logout_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
  //create  cubit
 

@@ -1,7 +1,7 @@
 //cubit for forget password
 
 import 'package:dealdash/feature/auth/data/repo/auth_repo.dart';
-import 'package:dealdash/feature/auth/presentation/cubit/forgot_password/forgot_password_state.dart';
+import 'package:dealdash/feature/auth/logic/forgot_password/forgot_password_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ForgotPasswordCubit extends Cubit<ForgotPasswordState> {

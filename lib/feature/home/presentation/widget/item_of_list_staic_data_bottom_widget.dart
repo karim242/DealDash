@@ -1,6 +1,6 @@
 import 'package:dealdash/feature/home/presentation/widget/cart_offer_item_of_list_static_widget.dart';
 import 'package:flutter/material.dart';
-import '../control/product_model.dart';
+import '../../logic/product_model.dart';
 
 
 class ItemOfListStaticDataBottomWidget extends StatelessWidget {

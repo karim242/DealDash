@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../data/repo/places/places_repo.dart';
+import '../../data/repo/places/places_repo.dart';
 import 'places_state.dart';
 
 class PlacesCubit extends Cubit<PlacesState> {

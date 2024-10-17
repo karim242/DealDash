@@ -1,7 +1,7 @@
 import '../../../core/resources/image_manger/image_manger.dart';
 import '../../../core/resources/strings_manger/strings_manager.dart';
-import '../presentation/control/category_static_model.dart';
-import '../presentation/control/product_model.dart';
+import '../logic/category_static_model.dart';
+import '../logic/product_model.dart';
 
 //لازم يكون عدد لايست الكاتوجرى مساوى لعدد ليست المنتجات
 List<String> imageListTopAddis = [

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../control/product_model.dart';
+import '../../logic/product_model.dart';
 import '../../data/data.dart';
 import 'item_of_list_staic_data_bottom_widget.dart';
 class SliverGridListStaticDataWidget extends StatelessWidget {

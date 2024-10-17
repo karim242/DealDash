@@ -10,8 +10,8 @@ import '../../../../core/check_connect_internet/cubit/connect_internet_state.dar
 import '../../../../core/services/service_locator.dart';
 import '../../../../core/widget/ui_not_connectinternet_widget.dart';
 import '../../data/model/store_model.dart';
-import '../cubit/store_cubit/store_cubit.dart';
-import '../cubit/store_cubit/store_state.dart';
+import '../../logic/store_cubit/store_cubit.dart';
+import '../../logic/store_cubit/store_state.dart';
 import 'stores_view.dart';
 
 class LocationView extends StatefulWidget {

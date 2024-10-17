@@ -7,7 +7,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../core/resources/color_manger/color_manager.dart';
 import '../../../../core/resources/strings_manger/strings_manager.dart';
-import '../control/product_model.dart';
+import '../../logic/product_model.dart';
 
 class CardOfferItemOfListStaticDataWidget extends StatelessWidget {
   const CardOfferItemOfListStaticDataWidget({

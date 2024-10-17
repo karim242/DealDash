@@ -1,6 +1,6 @@
 
-import 'package:dealdash/feature/home/presentation/control/category/category_cubit.dart';
-import 'package:dealdash/feature/home/presentation/control/category/category_state.dart';
+import 'package:dealdash/feature/home/logic/category/category_cubit.dart';
+import 'package:dealdash/feature/home/logic/category/category_state.dart';
 import 'package:dealdash/feature/home/presentation/widget/all_category_widget.dart';
 import 'package:dealdash/feature/home/presentation/widget/custom_list_view_category.dart';
 import 'package:flutter/material.dart';

@@ -1,5 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../data/repo/store/store_repo.dart';
+import '../../data/repo/store/store_repo.dart';
 import 'store_state.dart';
 
 class StoreCubit extends Cubit<StoreState> {

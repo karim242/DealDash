@@ -5,8 +5,8 @@ import 'package:go_router/go_router.dart';
 import '../../../../core/resources/color_manger/color_manager.dart';
 import '../../../../core/resources/routes_manger/routes_manager.dart';
 import '../../../../core/widget/custom_toast.dart';
-import '../cubit/signup/signup_cubit.dart';
-import '../cubit/signup/signup_state.dart';
+import '../../logic/signup/signup_cubit.dart';
+import '../../logic/signup/signup_state.dart';
 import '../widget/custom_auth_btn.dart';
 import '../widget/custom_text_field.dart';
 

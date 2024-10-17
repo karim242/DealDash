@@ -128,8 +128,8 @@
 // }
 
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
-import 'package:dealdash/feature/auth/presentation/cubit/logout/logout_cubit.dart';
-import 'package:dealdash/feature/home/presentation/control/category/category_cubit.dart';
+import 'package:dealdash/feature/auth/logic/logout/logout_cubit.dart';
+import 'package:dealdash/feature/home/logic/category/category_cubit.dart';
 import 'package:dealdash/feature/home/presentation/view/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -139,7 +139,7 @@ import '../../../../core/resources/color_manger/color_manager.dart';
 import '../../../../core/services/location_service.dart';
 import '../../../../core/services/service_locator.dart';
 import '../../../favourite/presentation/view/favoruite_view.dart';
-import '../../../location/presentation/cubit/store_cubit/store_cubit.dart';
+import '../../../location/logic/store_cubit/store_cubit.dart';
 import '../../../location/presentation/view/location_view.dart';
 import '../../../notification/presentation/view/notification_view.dart';
 import '../../../profile/presentation/view/profile_view.dart';

@@ -42,7 +42,7 @@ class NotificationRepoImpl extends NotificationRepo {
 
   @override
   Future<Either<ErrorResponse, NotificationListResponse>> getUnreadNotifications() async {
-    String? token = CacheHelper.getToken();
+    String? token = await SecureCacheHelper.getToken();
 
     try {
       final response = await apiService.getData(
@@ -67,7 +67,7 @@ class NotificationRepoImpl extends NotificationRepo {
 
   @override
   Future<Either<ErrorResponse, NotificationListResponse>> markNotificationAsRead(String? notificationId) async {
-    String? token = CacheHelper.getToken();
+    String? token =  await SecureCacheHelper.getToken();
 
     try {
       final response = await apiService.post(
@@ -92,7 +92,7 @@ class NotificationRepoImpl extends NotificationRepo {
 
   @override
   Future<Either<ErrorResponse, NotificationListResponse>> markNotificationAsUnread(String? notificationId) async {
-    String? token = CacheHelper.getToken();
+    String? token =  await SecureCacheHelper.getToken();
 
     try {
       final response = await apiService.post(
@@ -117,7 +117,7 @@ class NotificationRepoImpl extends NotificationRepo {
 
   @override
   Future<Either<ErrorResponse, NotificationListResponse>> markAllNotificationsAsRead() async {
-    String? token = CacheHelper.getToken();
+    String? token =  await SecureCacheHelper.getToken();
 
     try {
       final response = await apiService.post(
@@ -142,7 +142,7 @@ class NotificationRepoImpl extends NotificationRepo {
 
   @override
   Future<Either<ErrorResponse, NotificationListResponse>> markAllNotificationsAsUnread() async {
-    String? token = CacheHelper.getToken();
+    String? token =  await SecureCacheHelper.getToken();
 
     try {
       final response = await apiService.post(

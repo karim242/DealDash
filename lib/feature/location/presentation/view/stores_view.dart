@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:location/location.dart';
 
 import '../../../../core/resources/color_manger/color_manager.dart';
-import '../cubit/store_cubit/store_cubit.dart';
-import '../cubit/store_cubit/store_state.dart';
+import '../../logic/store_cubit/store_cubit.dart';
+import '../../logic/store_cubit/store_state.dart';
 import '../widget/store_card.dart';
 
 class StoreView extends StatelessWidget {

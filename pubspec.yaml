@@ -46,7 +46,7 @@ dependencies:
   connectivity_plus: ^6.0.5
   latlong2: ^0.9.0
   flutter_map: ^6.0.0
-  timeago: ^3.2.2
+  timeago: ^3.7.0
 
   flutter_secure_storage: ^9.2.2
 

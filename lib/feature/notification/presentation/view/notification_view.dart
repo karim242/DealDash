@@ -34,11 +34,11 @@ class NotificationView extends StatelessWidget {
                   foregroundColor: Colors.black,
                 ),
                 body: Padding(
-                  padding: const EdgeInsets.all(16.0),
+                  padding: const EdgeInsets.all(0.0),
                   child: ListView.builder(
                     itemCount: state.response.data.length,
                     itemBuilder: (context, index) {
-                      return NotificationCard(offerDetails: state.response.data[index].data);
+                      return NotificationCard(notification: state.response.data[index]);
                     },
                   ),
                 ),

@@ -26,4 +26,20 @@ class NotificationCubit extends Cubit<NotificationState> {
       },
     );
   }
+
+  Future<void> setNotificationAsRead(String? id) async {
+    emit(NotificationLoading());
+
+    final result = await notificationRepo.markNotificationAsRead(id);
+    result.fold(
+      (error) {
+        emit(NotificationFailure(errorMessage: error.message ?? 'unknown error'));
+      },
+      (response) {
+        // notificationListResponse = response;
+        // emit(NotificationSuccess(response: response));
+        print(response.message);
+      }
+    );
+  }
 }

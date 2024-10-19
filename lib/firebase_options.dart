@@ -41,48 +41,49 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyBiFCG3UTuS9Bi1fBeBHZMXD1ku0TGsRHo',
-    appId: '1:401385978148:web:fe0e63b97a1edb4cc11bb1',
-    messagingSenderId: '401385978148',
-    projectId: 'dealdash-878ba',
-    authDomain: 'dealdash-878ba.firebaseapp.com',
-    storageBucket: 'dealdash-878ba.appspot.com',
-    measurementId: 'G-0E8SX5GE3N',
+    apiKey: 'AIzaSyDdgIqD496OT-ASJ-UHLUydxA3UagqyEmg',
+    appId: '1:709442613771:web:32b705caba117be642cd0e',
+    messagingSenderId: '709442613771',
+    projectId: 'deal-dash-cf6e3',
+    authDomain: 'deal-dash-cf6e3.firebaseapp.com',
+    storageBucket: 'deal-dash-cf6e3.appspot.com',
+    measurementId: 'G-GQTYWWY71K',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCv2As0cXtnY_piXdb_dP6gaLAOAz1a-54',
-    appId: '1:401385978148:android:8ddcd918e78efa00c11bb1',
-    messagingSenderId: '401385978148',
-    projectId: 'dealdash-878ba',
-    storageBucket: 'dealdash-878ba.appspot.com',
+    apiKey: 'AIzaSyBzDONBIsXM0R_GNyUPqB-k5iDH4g3U74I',
+    appId: '1:709442613771:android:f4f9db51d84a3fc442cd0e',
+    messagingSenderId: '709442613771',
+    projectId: 'deal-dash-cf6e3',
+    storageBucket: 'deal-dash-cf6e3.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyAOc_Cu8uiDidDOAGBMC4I4RHOjh9XYsj4',
-    appId: '1:401385978148:ios:9c30006bff52c0bbc11bb1',
-    messagingSenderId: '401385978148',
-    projectId: 'dealdash-878ba',
-    storageBucket: 'dealdash-878ba.appspot.com',
+    apiKey: 'AIzaSyBx-GKk08QXTsi3NEJZsXsXqEw0dXyhpCg',
+    appId: '1:709442613771:ios:4254dd315a52ef1b42cd0e',
+    messagingSenderId: '709442613771',
+    projectId: 'deal-dash-cf6e3',
+    storageBucket: 'deal-dash-cf6e3.appspot.com',
     iosBundleId: 'com.example.dealdash',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyAOc_Cu8uiDidDOAGBMC4I4RHOjh9XYsj4',
-    appId: '1:401385978148:ios:9c30006bff52c0bbc11bb1',
-    messagingSenderId: '401385978148',
-    projectId: 'dealdash-878ba',
-    storageBucket: 'dealdash-878ba.appspot.com',
+    apiKey: 'AIzaSyBx-GKk08QXTsi3NEJZsXsXqEw0dXyhpCg',
+    appId: '1:709442613771:ios:4254dd315a52ef1b42cd0e',
+    messagingSenderId: '709442613771',
+    projectId: 'deal-dash-cf6e3',
+    storageBucket: 'deal-dash-cf6e3.appspot.com',
     iosBundleId: 'com.example.dealdash',
   );
 
   static const FirebaseOptions windows = FirebaseOptions(
-    apiKey: 'AIzaSyBiFCG3UTuS9Bi1fBeBHZMXD1ku0TGsRHo',
-    appId: '1:401385978148:web:b1b98969ae1ca726c11bb1',
-    messagingSenderId: '401385978148',
-    projectId: 'dealdash-878ba',
-    authDomain: 'dealdash-878ba.firebaseapp.com',
-    storageBucket: 'dealdash-878ba.appspot.com',
-    measurementId: 'G-5MHLFGKD0V',
+    apiKey: 'AIzaSyDdgIqD496OT-ASJ-UHLUydxA3UagqyEmg',
+    appId: '1:709442613771:web:7797c7f1df579c6342cd0e',
+    messagingSenderId: '709442613771',
+    projectId: 'deal-dash-cf6e3',
+    authDomain: 'deal-dash-cf6e3.firebaseapp.com',
+    storageBucket: 'deal-dash-cf6e3.appspot.com',
+    measurementId: 'G-L4QMZMTGCH',
   );
+
 }

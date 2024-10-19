@@ -24,7 +24,10 @@ class NotificationRepoImpl extends NotificationRepo {
     String? token = await SecureCacheHelper.getToken();
     try {
       final response = await apiService.getData(
-        endpoint: '/api/v1/user/notifications/list-all?per_page=60',
+        endpoint: '/api/v1/user/notifications/list-all',
+        query: {
+          'per_page': 10
+        },
         token: token,
       );
 
@@ -33,10 +36,14 @@ class NotificationRepoImpl extends NotificationRepo {
         print(response['data']);
         return Right(NotificationListResponse.fromJson(response));
       } else {
-        return Left(ErrorResponse.fromJson(response));
+        return Left(ErrorResponse(
+          message: response['message'],
+          data: List<String>.from(response['errors'] ?? []),
+        ));
       }
-    } catch (e) {
-      return Left(ErrorResponse(message: 'An error occurred: $e'));
+    } on DioException catch (e) {
+      handelDioException(e);
+      return Left(ErrorResponse.fromJson(e.response?.data ?? {}));
     }
   }
 
@@ -66,18 +73,17 @@ class NotificationRepoImpl extends NotificationRepo {
   }
 
   @override
-  Future<Either<ErrorResponse, NotificationListResponse>> markNotificationAsRead(String? notificationId) async {
+  Future<Either<ErrorResponse, NotificationReadResponse>> markNotificationAsRead(String? notificationId) async {
     String? token =  await SecureCacheHelper.getToken();
 
     try {
-      final response = await apiService.post(
+      final response = await apiService.put(
         endpoint: '/api/v1/user/notifications/$notificationId/read',
-        data: {},
         token: token,
       );
 
       if (response['success'] == true) {
-        return Right(NotificationListResponse.fromJson(response));
+        return Right(NotificationReadResponse.fromJson(response));
       } else {
         return Left(ErrorResponse(
           message: response['message'],
@@ -91,18 +97,17 @@ class NotificationRepoImpl extends NotificationRepo {
   }
 
   @override
-  Future<Either<ErrorResponse, NotificationListResponse>> markNotificationAsUnread(String? notificationId) async {
+  Future<Either<ErrorResponse, NotificationReadResponse>> markNotificationAsUnread(String? notificationId) async {
     String? token =  await SecureCacheHelper.getToken();
 
     try {
-      final response = await apiService.post(
+      final response = await apiService.put(
         endpoint: '/api/v1/user/notifications/$notificationId/unread',
-        data: {},
         token: token,
       );
 
       if (response['success'] == true) {
-        return Right(NotificationListResponse.fromJson(response));
+        return Right(NotificationReadResponse.fromJson(response));
       } else {
         return Left(ErrorResponse(
           message: response['message'],
@@ -116,18 +121,17 @@ class NotificationRepoImpl extends NotificationRepo {
   }
 
   @override
-  Future<Either<ErrorResponse, NotificationListResponse>> markAllNotificationsAsRead() async {
+  Future<Either<ErrorResponse, NotificationReadResponse>> markAllNotificationsAsRead() async {
     String? token =  await SecureCacheHelper.getToken();
 
     try {
-      final response = await apiService.post(
+      final response = await apiService.put(
         endpoint: '/api/v1/user/notifications/read-all',
-        data: {},
         token: token,
       );
 
       if (response['success'] == true) {
-        return Right(NotificationListResponse.fromJson(response));
+        return Right(NotificationReadResponse.fromJson(response));
       } else {
         return Left(ErrorResponse(
           message: response['message'],
@@ -141,18 +145,17 @@ class NotificationRepoImpl extends NotificationRepo {
   }
 
   @override
-  Future<Either<ErrorResponse, NotificationListResponse>> markAllNotificationsAsUnread() async {
+  Future<Either<ErrorResponse, NotificationReadResponse>> markAllNotificationsAsUnread() async {
     String? token =  await SecureCacheHelper.getToken();
 
     try {
-      final response = await apiService.post(
+      final response = await apiService.put(
         endpoint: '/api/v1/user/notifications/unread-all',
-        data: {},
         token: token,
       );
 
       if (response['success'] == true) {
-        return Right(NotificationListResponse.fromJson(response));
+        return Right(NotificationReadResponse.fromJson(response));
       } else {
         return Left(ErrorResponse(
           message: response['message'],

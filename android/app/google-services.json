@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "401385978148",
-    "project_id": "dealdash-878ba",
-    "storage_bucket": "dealdash-878ba.appspot.com"
+    "project_number": "709442613771",
+    "project_id": "deal-dash-cf6e3",
+    "storage_bucket": "deal-dash-cf6e3.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:401385978148:android:8ddcd918e78efa00c11bb1",
+        "mobilesdk_app_id": "1:709442613771:android:f4f9db51d84a3fc442cd0e",
         "android_client_info": {
           "package_name": "com.example.dealdash"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCv2As0cXtnY_piXdb_dP6gaLAOAz1a-54"
+          "current_key": "AIzaSyBzDONBIsXM0R_GNyUPqB-k5iDH4g3U74I"
         }
       ],
       "services": {

@@ -2,7 +2,10 @@ import 'package:dealdash/core/widget/product_details.dart';
 import 'package:dealdash/feature/notification/data/model/notification_model.dart';
 import 'package:flutter/material.dart';
 import 'package:dealdash/feature/search/data/model/offer_model.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:timeago/timeago.dart' as timeago;
+
+import '../../logic/notification_cubit.dart';
 
 class NotificationCard extends StatelessWidget {
   final NotificationItem notification;
@@ -18,6 +21,9 @@ class NotificationCard extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: InkWell(
         onTap: () {
+          if (notification.readAt == null) {
+            context.read<NotificationCubit>().setNotificationAsRead(notification.id);
+          }
           // Navigate to Offer Screen with the offerDetails passed
           Navigator.push(
             context,

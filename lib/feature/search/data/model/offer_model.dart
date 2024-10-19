@@ -31,7 +31,7 @@ class Offer {
   final DateTime startDate;
   final DateTime endDate;
   final DateTime createdAt;
-  final DateTime updatedAt;
+  final DateTime? updatedAt;
   final DateTime? deletedAt;
 
   Offer({
@@ -47,7 +47,7 @@ class Offer {
     required this.startDate,
     required this.endDate,
     required this.createdAt,
-    required this.updatedAt,
+    this.updatedAt,
     this.deletedAt,
   });
 

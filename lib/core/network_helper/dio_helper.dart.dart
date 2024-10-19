@@ -1,3 +1,4 @@
+import 'package:dealdash/core/cache_helper/cache_helper.dart';
 import 'package:dealdash/core/error/failure.dart';
 import 'package:dio/dio.dart';
 
@@ -44,7 +45,7 @@ class ApiService {
             'Content-Type': 'application/json',
             'Accept-Language': 'en',
             'Accept': 'application/json',
-            'FCM-Token': fcmToken,
+            'FCM-Token': fcmToken ?? await SecureCacheHelper.getFCMToken(),
           },
         ),
       );
@@ -80,7 +81,43 @@ class ApiService {
           headers: {
             'authorization': 'Bearer $token',
             'Content-Type': 'application/json',
-            'FCM-Token': fcmToken,
+            'FCM-Token': fcmToken ?? await SecureCacheHelper.getFCMToken(),
+          },
+        ),
+      );
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        return response.data;
+      } else if (response.statusCode == 404 || response.statusCode == 400) {
+        return response.data['message'];
+      } else {
+        throw DioException(
+          requestOptions: response.requestOptions,
+          response: response,
+        );
+      }
+    } on DioException catch (e) {
+      handelDioException(e);
+      rethrow;
+    }
+  }
+
+  Future<Map<String, dynamic>> put({
+    required String endpoint,
+    Map<String, dynamic>? data,
+    String? token,
+    String? fcmToken,
+  }) async {
+    try {
+      var response = await _dio.put(
+        '$_baseUrl$endpoint',
+        data: data,
+        options: Options(
+          headers: {
+            'authorization': 'Bearer $token',
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Accept-Language': 'en',
+            'FCM-Token': fcmToken ?? await SecureCacheHelper.getFCMToken(),
           },
         ),
       );

@@ -1,6 +1,5 @@
 import 'package:dealdash/feature/search/data/model/offer_model.dart';
 
-
 class NotificationListResponse {
   final bool success;
   final String message;
@@ -20,9 +19,37 @@ class NotificationListResponse {
     return NotificationListResponse(
       success: json['success'],
       message: json['message'],
-      data: List<NotificationItem>.from(json['data'].map((notification) => NotificationItem.fromJson(notification))),
+      data: List<NotificationItem>.from(json['data']
+          .map((notification) => NotificationItem.fromJson(notification))),
       meta: Meta.fromJson(json['meta']),
       links: Links.fromJson(json['links']),
+    );
+  }
+}
+
+class NotificationReadResponse {
+  final bool success;
+  final String message;
+  final List<NotificationItem>? data;
+  final Meta? meta;
+  final Links? links;
+
+  NotificationReadResponse({
+    required this.success,
+    required this.message,
+    this.data,
+    this.meta,
+    this.links,
+  });
+
+  factory NotificationReadResponse.fromJson(Map<String, dynamic> json) {
+    return NotificationReadResponse(
+      success: json['success'],
+      message: json['message'],
+      // data: List<NotificationItem>.from(json['data']
+      //     .map((notification) => NotificationItem.fromJson(notification))),
+      // meta: Meta.fromJson(json['meta']),
+      // links: Links.fromJson(json['links']),
     );
   }
 }
@@ -43,7 +70,7 @@ class NotificationItem {
     required this.notifiableType,
     required this.notifiableId,
     required this.data,
-    this.readAt,
+    required this.readAt,
     required this.createdAt,
     required this.updatedAt,
   });
@@ -57,8 +84,9 @@ class NotificationItem {
       data: Offer.fromJson(json['data']),
       // data: Data.fromJson(json['data']),
       // readAt: DateTime.parse(json['read_at']),
-      createdAt: DateTime.parse(json['created_at']),
-      updatedAt: DateTime.parse(json['updated_at']),
+      readAt: json['read_at'] != null ? DateTime.parse(json['read_at']) : null,
+      createdAt: json['created_at'] != null ? DateTime.parse(json['created_at']) : null,
+      updatedAt: json['updated_at'] != null ? DateTime.parse(json['updated_at']) : null,
     );
   }
 }
@@ -78,7 +106,6 @@ class NotificationItem {
 //
 //
 // }
-
 
 class Meta {
   final int currentPage;

@@ -44,8 +44,8 @@ class NotificationView extends StatelessWidget {
                 ),
               );
             } else if (state is NotificationFailure) {
-              return const Center(
-                  child: Text('No Notification yet:'));
+              return  Center(
+                  child: Text(state.errorMessage));
             } else {
               return Container(); 
                        }

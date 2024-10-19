@@ -1,7 +1,6 @@
 import 'package:dealdash/core/widget/product_details.dart';
 import 'package:dealdash/feature/notification/data/model/notification_model.dart';
 import 'package:flutter/material.dart';
-import 'package:dealdash/feature/search/data/model/offer_model.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 class NotificationCard extends StatelessWidget {
